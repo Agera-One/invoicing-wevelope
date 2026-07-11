@@ -4,7 +4,7 @@ An invoicing website is a native PHP-based application used to manage customers,
 
 ## Features
 
-- Authentication 
+- Authentication  
 - Dashboard
 - User Management
 - Customer Management
