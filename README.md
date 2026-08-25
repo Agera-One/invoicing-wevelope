@@ -59,13 +59,7 @@ composer install
 
 ### 3. Setup Database
 
-Create a new database in MySQL:
-
-```bash
-CREATE DATABASE invoicing_wevelope;
-```
-
-Then, import the database file available at:
+Import the database file available at:
 
 ```text
 app/
