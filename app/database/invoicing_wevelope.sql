@@ -31,11 +31,11 @@ CREATE TABLE `company` (
   `id` int NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(320) NOT NULL,
-  `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `business_entity` varchar(255) NOT NULL,
   `sector` varchar(255) NOT NULL,
-  `website` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `website` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   `country` varchar(255) NOT NULL,
   `province` varchar(255) NOT NULL,
   `city` varchar(255) NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE `company` (
   `address` text NOT NULL,
   `logo` text NOT NULL,
   `signature` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `company`
@@ -62,13 +62,13 @@ INSERT INTO `company` (`id`, `name`, `email`, `phone`, `business_entity`, `secto
 
 CREATE TABLE `customer` (
   `id` int NOT NULL,
-  `customer_code` char(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `customer_code` char(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(320) NOT NULL,
-  `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `address` text NOT NULL,
   `company_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `customer`
@@ -93,13 +93,13 @@ INSERT INTO `customer` (`id`, `customer_code`, `name`, `email`, `phone`, `addres
 
 CREATE TABLE `invoice` (
   `id` int NOT NULL,
-  `invoice_code` char(13) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `invoice_code` char(13) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `date` date NOT NULL,
   `due_date` date NOT NULL,
   `pic_id` int NOT NULL,
   `company_id` int NOT NULL,
   `customer_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `invoice`
@@ -123,7 +123,7 @@ CREATE TABLE `invoice_detail` (
   `amount` bigint NOT NULL,
   `invoice_id` int NOT NULL,
   `item_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `invoice_detail`
@@ -144,11 +144,11 @@ INSERT INTO `invoice_detail` (`id`, `unit_price`, `quantity`, `amount`, `invoice
 
 CREATE TABLE `item` (
   `id` int NOT NULL,
-  `ref_no` varchar(13) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `ref_no` varchar(13) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `name` varchar(255) NOT NULL,
   `price` bigint NOT NULL,
   `company_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `item`
@@ -215,11 +215,11 @@ INSERT INTO `item` (`id`, `ref_no`, `name`, `price`, `company_id`) VALUES
 
 CREATE TABLE `payment` (
   `id` int NOT NULL,
-  `payment_code` char(13) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `payment_code` char(13) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `date` date NOT NULL,
   `amount` bigint NOT NULL,
   `invoice_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `payment`
@@ -241,12 +241,12 @@ INSERT INTO `payment` (`id`, `payment_code`, `date`, `amount`, `invoice_id`) VAL
 CREATE TABLE `pic` (
   `id` int NOT NULL,
   `name` varchar(255) NOT NULL,
-  `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `email` varchar(320) NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   `position` varchar(255) NOT NULL,
   `company_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pic`
@@ -265,13 +265,13 @@ INSERT INTO `pic` (`id`, `name`, `phone`, `email`, `is_active`, `position`, `com
 
 CREATE TABLE `user` (
   `id` int NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `email` varchar(320) NOT NULL,
   `password` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `company_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`

@@ -1,0 +1,84 @@
+# Invoicing Website
+
+Invoicing website adalah aplikasi berbasis PHP Native yang digunakan untuk mengelola customer, item, invoice, pembayaran, dan laporan penjualan.
+
+## Features
+
+- Authentication
+- Dashboard
+- User Management
+- Customer Management
+- Item Management
+- Invoice Management
+- Payment Management
+- Sales Report
+
+## Tech Stack
+
+- PHP 8.x
+- MySQL
+- Apache
+- HTML
+- CSS
+- JavaScript
+- Bootstrap / Tailwind CSS
+
+## Requirements
+
+Pastikan sudah terinstall:
+
+- PHP       >= 8.3.30
+- MySQL     >= 8.4.3
+- Apache    >= 2.4.66
+- Git       >= 2.47.1
+- Composer  >= 2.9.4
+- Medoo     >= 2.4.0
+- Bootstrap >= 5.3.8
+
+## Installation
+
+### 1. Clone Repository
+
+Then clone the repository:
+
+```bash
+git clone https://github.com/Agera-One/invoicing-wevelope.git
+```
+
+Navigate to the project directory:
+
+```bash
+cd invoicing-wevelope
+```
+
+### 2. Install Dependencies
+
+Install all PHP dependencies using Composer:
+
+```bash
+composer install
+```
+
+### 3. Setup Database
+
+Create a new database in MySQL:
+
+```bash
+CREATE DATABASE nama_database;
+```
+
+Then, import the database file available at:
+
+```text
+app/
+└── database/
+    └── invoicing_wevelope.sql
+```
+
+### 4. Run the Application
+
+The application will be available at:
+
+```text
+http://localhost/invoicing-wevelope/
+```
