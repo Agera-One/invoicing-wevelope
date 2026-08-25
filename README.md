@@ -1,6 +1,6 @@
 # Invoicing Website
 
-Invoicing website adalah aplikasi berbasis PHP Native yang digunakan untuk mengelola customer, item, invoice, pembayaran, dan laporan penjualan.
+An invoicing website is a native PHP-based application used to manage customers, items, invoices, payments, and sales reports.
 
 ## Features
 
