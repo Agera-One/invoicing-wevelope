@@ -15,25 +15,23 @@ An invoicing website is a native PHP-based application used to manage customers,
 
 ## Tech Stack
 
-- PHP 8.x
+- PHP
 - MySQL
 - Apache
 - HTML
 - CSS
 - JavaScript
-- Bootstrap / Tailwind CSS
+- Bootstrap
 
 ## Requirements
 
-Pastikan sudah terinstall:
+Ensure the following is installed:
 
 - PHP       >= 8.3.30
 - MySQL     >= 8.4.3
 - Apache    >= 2.4.66
 - Git       >= 2.47.1
 - Composer  >= 2.9.4
-- Medoo     >= 2.4.0
-- Bootstrap >= 5.3.8
 
 ## Installation
 
@@ -64,7 +62,7 @@ composer install
 Create a new database in MySQL:
 
 ```bash
-CREATE DATABASE nama_database;
+CREATE DATABASE invoicing_wevelope;
 ```
 
 Then, import the database file available at:
