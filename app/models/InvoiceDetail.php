@@ -10,12 +10,12 @@ class InvoiceDetail extends BaseModel
     }
 
     public function getAll($invoice_id) {
-        return $this->getConnection()->select('invoice_detail', [
-            '[>]invoice' => ['invoice_id' => 'id'],
-            '[>]customer' => ['invoice.customer_id' => 'id'],
-            '[>]pic' => ['invoice.pic_id' => 'id'],
+        return $this->getConnection()->select('invoice', [
+            '[>]invoice_detail' => ['id' => 'invoice_id'],
+            '[>]customer' => ['customer_id' => 'id'],
+            '[>]pic' => ['pic_id' => 'id'],
             '[>]item' => ['invoice_detail.item_id' => 'id'],
-            '[><]company' => ['invoice.company_id' => 'id'],
+            '[>]company' => ['company_id' => 'id'],
         ], [
             'invoice.id(invoice_id)',
             'invoice.invoice_code',
@@ -33,7 +33,7 @@ class InvoiceDetail extends BaseModel
             'company.email(company_email)',
             'company.province(company_province)',
             'company.subdistrict(company_subdistrict)',
-            'company.logo(company_logo)' ?? '',
+            'company.logo(company_logo)',
         ], [
             'invoice.id' => $invoice_id
         ]);
