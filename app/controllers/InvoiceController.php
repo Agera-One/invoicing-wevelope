@@ -90,7 +90,8 @@ class InvoiceController extends BaseController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_POST['company_id'] = $this->companyId;
             $this->invoice->create($_POST);
-            $this->redirect(BASEURL . 'invoice');
+            $invoice_id = $this->db->id();
+            $this->redirect(BASEURL . 'invoice/detail/' . $invoice_id);
         } else {
             $this->view('invoice/add', $datas);
         }
