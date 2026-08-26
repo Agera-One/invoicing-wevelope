@@ -25,7 +25,7 @@ class DetailController extends BaseController
         $total_bill = 0;
 
         foreach ($invoice_details as $invoice_detail) {
-            $total_bill += $invoice_detail['amount'];
+            $total_bill += $invoice_detail['amount'] ?? 0;
         }
 
         $datas = [
