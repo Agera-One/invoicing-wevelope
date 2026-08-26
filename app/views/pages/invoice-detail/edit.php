@@ -36,38 +36,37 @@
                     </div>
                     <form action="" method="POST" id="itemDetailForm">
                         <div class="card-body">
+                            <input name="invoice_id" value="<?= $invoice_id ?>" type="hidden">
                             <div class="mb-3">
-                                <input name="invoice_id" value="<?= $invoice_id ?>" type="hidden">
-                                <div class="mb-3">
-                                    <label class="form-label">Item Name</label>
-                                    <select name="item_id" id="item_id" class="form-select" aria-label="Default select example">
-                                        <?php foreach ($item_data as $item): ?>
-                                            <option value="<?= $item['id']; ?>" data-price="<?= $item['price']; ?>" <?= ($detail_data['item_id'] == $item['id']) ? 'selected' : ''; ?>>
-                                                <?= $item['name'] ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Quantity</label>
-                                    <input value="<?= $detail_data['quantity'] ?? ''; ?>" name="quantity" id="quantity" type="number" class="form-control" required>
-                                    <div id="quantityError" class="invalid-feedback"></div>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Unit Price</label>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <div id="unit_price_box" class="form-control-plaintext fs-5 fw-bold text-success bg-body-secondary border rounded px-3 py-2 mb-0">
-                                            <i class="bi bi-currency-dollar me-2"></i><span id="unit_price_display">Rp<?= number_format($detail_data['unit_price'] ?? 0, 0, ',', '.') ?></span>
-                                        </div>
-                                        <input type="hidden" name="unit_price" id="unit_price" value="<?= $detail_data['unit_price'] ?? 0; ?>">
+                                <label class="form-label">Item Name</label>
+                                <select name="item_id" id="item_id" class="form-select" aria-label="Default select example">
+                                    <?php foreach ($item_data as $item): ?>
+                                        <option value="<?= $item['id']; ?>" data-price="<?= $item['price']; ?>" <?= ($detail_data['item_id'] == $item['id']) ? 'selected' : ''; ?>>
+                                            <?= $item['name'] ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Quantity</label>
+                                <input value="<?= $detail_data['quantity'] ?? ''; ?>" name="quantity" id="quantity" type="number" class="form-control" required>
+                                <div id="quantityError" class="invalid-feedback"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Unit Price</label>
+                                <div class="d-flex align-items-center gap-2">
+                                    <div id="unit_price_box" class="form-control-plaintext fs-5 fw-bold text-success bg-body-secondary border rounded px-3 py-2 mb-0">
+                                        <i class="bi bi-currency-dollar me-2"></i><span id="unit_price_display">Rp<?= number_format($detail_data['unit_price'] ?? 0, 0, ',', '.') ?></span>
                                     </div>
-                                    <div id="unitPriceError" class="invalid-feedback"></div>
+                                    <input type="hidden" name="unit_price" id="unit_price" value="<?= $detail_data['unit_price'] ?? 0; ?>">
                                 </div>
+                                <div id="unitPriceError" class="invalid-feedback"></div>
                             </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-success">Save</button>
-                                <a href="<?= BASEURL . 'invoice/detail' ?>/<?= $invoice_id ?>" class="btn btn-danger">Cancel</a>
-                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success">Save</button>
+                            <a href="<?= BASEURL . 'invoice/detail' ?>/<?= $invoice_id ?>" class="btn btn-danger">Cancel</a>
+                        </div>
                     </form>
                 </div>
             </div>

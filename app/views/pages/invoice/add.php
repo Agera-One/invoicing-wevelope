@@ -36,52 +36,50 @@
                     <form id="invoiceForm" action="" method="POST">
                         <div class="card-body">
                             <div class="mb-3">
-                                <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Invoice Code</label>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <div class="form-control-plaintext fs-5 fw-bold text-primary bg-body-secondary border rounded px-3 py-2 mb-0">
-                                            <i class="bi bi-upc-scan me-2"></i><span><?= $invoice_code ?></span>
-                                        </div>
-                                        <input type="hidden" name="invoice_code" value="<?= $invoice_code ?>">
+                                <label for="exampleInputEmail1" class="form-label">Invoice Code</label>
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="form-control-plaintext fs-5 fw-bold text-primary bg-body-secondary border rounded px-3 py-2 mb-0">
+                                        <i class="bi bi-upc-scan me-2"></i><span><?= $invoice_code ?></span>
                                     </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">PIC Name</label>
-                                    <select name="pic_id" class="form-select" aria-label="Default select example" required>
-                                        <option value="" disabled selected>Select PIC name</option>
-                                        <?php foreach ($pic_data as $pic): ?>
-                                            <option value="<?= $pic['id'] ?>" <?= ($pic_id == $pic['id']) ? 'selected' : ''; ?>>
-                                                <?= $pic['name']; ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Customer Name</label>
-                                    <select name="customer_id" class="form-select" aria-label="Default select example" required>
-                                        <option value="" disabled selected>Select customer name</option>
-                                        <?php foreach ($customer_data as $customer): ?>
-                                            <option value="<?= $customer['id'] ?>" <?= ($customer_id == $customer['id']) ? 'selected' : ''; ?>>
-                                                <?= $customer['name']; ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Date</label>
-                                    <input id="invoice_date" value="<?= $_POST['date'] ?? date('Y-m-d') ?>" name="date" type="date" class="form-control" required>
-                                    <div id="invoiceDateError" class="invalid-feedback"></div>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Due Date</label>
-                                    <input id="due_date" value="<?= $_POST['due_date'] ?? date('Y-m-d', strtotime('+7 days')) ?>" name="due_date" type="date" class="form-control" required>
-                                    <div id="dueDateError" class="invalid-feedback"></div>
+                                    <input type="hidden" name="invoice_code" value="<?= $invoice_code ?>">
                                 </div>
                             </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-success">Save</button>
-                                <a href="<?= BASEURL . 'invoice' ?>" class="btn btn-danger">Cancel</a>
+                            <div class="mb-3">
+                                <label class="form-label">PIC Name</label>
+                                <select name="pic_id" class="form-select" aria-label="Default select example" required>
+                                    <option value="" disabled selected>Select PIC name</option>
+                                    <?php foreach ($pic_data as $pic): ?>
+                                        <option value="<?= $pic['id'] ?>" <?= ($pic_id == $pic['id']) ? 'selected' : ''; ?>>
+                                            <?= $pic['name']; ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
+                            <div class="mb-3">
+                                <label class="form-label">Customer Name</label>
+                                <select name="customer_id" class="form-select" aria-label="Default select example" required>
+                                    <option value="" disabled selected>Select customer name</option>
+                                    <?php foreach ($customer_data as $customer): ?>
+                                        <option value="<?= $customer['id'] ?>" <?= ($customer_id == $customer['id']) ? 'selected' : ''; ?>>
+                                            <?= $customer['name']; ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Date</label>
+                                <input id="invoice_date" value="<?= $_POST['date'] ?? date('Y-m-d') ?>" name="date" type="date" class="form-control" required>
+                                <div id="invoiceDateError" class="invalid-feedback"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Due Date</label>
+                                <input id="due_date" value="<?= $_POST['due_date'] ?? date('Y-m-d', strtotime('+7 days')) ?>" name="due_date" type="date" class="form-control" required>
+                                <div id="dueDateError" class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success">Save</button>
+                            <a href="<?= BASEURL . 'invoice' ?>" class="btn btn-danger">Cancel</a>
                         </div>
                     </form>
                 </div>
