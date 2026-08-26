@@ -63,7 +63,8 @@ class InvoiceController extends BaseController
         $this->view('invoice/index', $datas);
     }
 
-    public function add() {
+    public function add()
+    {
         $invoice_code = $this->invoice->generateCode($this->db, "invoice", "invoice_code", "INV");
 
         $pic_id = $_POST['pic_id'] ?? '';
@@ -97,6 +98,16 @@ class InvoiceController extends BaseController
 
     public function edit($id)
     {
+        if ($this->isInvoicePaid($id)) {
+            echo
+            '<script>
+                alert("This invoice has been fully paid and can no longer be edited.");
+                window.location.href = "' . BASEURL . 'invoice";
+            </script>';
+
+            exit;
+        }
+
         $invoices = $this->invoice->find($id);
         $customer_data = $this->customer->getAll(['company_id' => $this->companyId]);
         $pic_data = $this->pic->getAll(['company_id' => $this->companyId]);
@@ -115,7 +126,19 @@ class InvoiceController extends BaseController
         }
     }
 
-    public function delete($id) {
+    private function isInvoicePaid($invoice_id)
+    {
+        $detail_amounts = $this->db->select('invoice_detail', 'amount', ['invoice_id' => $invoice_id]);
+        $total_bill = array_sum($detail_amounts);
+
+        $payment_amounts = $this->db->select('payment', 'amount', ['invoice_id' => $invoice_id]);
+        $total_payment = array_sum($payment_amounts);
+
+        return $total_bill > 0 && $total_payment >= $total_bill;
+    }
+
+    public function delete($id)
+    {
         $total_invoice_detail = $this->db->has('invoice_detail', [
             'invoice_id' => $id
         ]);
@@ -125,7 +148,7 @@ class InvoiceController extends BaseController
         ]);
 
         if ($total_invoice_detail || $total_payment) {
-            echo 
+            echo
             '<script>
                 alert("The invoice cannot be deleted because it is still being used by another table.");
                 window.location.href = "' . BASEURL . 'invoice";
