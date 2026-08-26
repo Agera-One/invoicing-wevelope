@@ -39,8 +39,9 @@
                             <form action="<?= BASEURL . 'company/contact' ?>" method="POST">
                             <?php endif; ?>
                             <div class="card-body">
+                                <div class="row row-gap-3">
                                 <?php if ($section === 'info'): ?>
-                                    <div class="mb-3">
+                                    <div class="col-sm-6">
                                         <label class="form-label">Company Name</label>
                                         <input
                                             type="text"
@@ -49,7 +50,7 @@
                                             value="<?= $name ?? '' ?>"
                                             required>
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="col-sm-6">
                                         <label class="form-label">Business Entity</label>
                                         <select name="business_entity" class="form-select" required>
                                             <option value="" disabled <?= empty($business_entity) ? 'selected' : '' ?>>
@@ -75,7 +76,7 @@
                                             </option>
                                         </select>
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="col-sm-6">
                                         <label class="form-label">Business Sector</label>
                                         <input
                                             type="text"
@@ -83,7 +84,7 @@
                                             class="form-control"
                                             value="<?= $sector ?? '' ?>">
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="col-sm-6">
                                         <label class="form-label">Website</label>
                                         <input
                                             type="url"
@@ -91,14 +92,14 @@
                                             class="form-control"
                                             value="<?= $website ?? '' ?>">
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="col-12">
                                         <label class="form-label">Business Description</label>
                                         <textarea
                                             name="description"
                                             class="form-control"
                                             rows="4"><?= $description ?? '' ?></textarea>
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="col-sm-6">
                                         <label class="form-label">Country</label>
                                         <input
                                             type="text"
@@ -106,7 +107,7 @@
                                             class="form-control"
                                             value="<?= $country ?? '' ?>">
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="col-sm-6">
                                         <label class="form-label">Province</label>
                                         <input
                                             type="text"
@@ -114,7 +115,7 @@
                                             class="form-control"
                                             value="<?= $province ?? '' ?>">
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="col-sm-6">
                                         <label class="form-label">City / Regency</label>
                                         <input
                                             type="text"
@@ -122,7 +123,7 @@
                                             class="form-control"
                                             value="<?= $city ?? '' ?>">
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="col-sm-6">
                                         <label class="form-label">Subdistrict</label>
                                         <input
                                             type="text"
@@ -130,7 +131,7 @@
                                             class="form-control"
                                             value="<?= $subdistrict ?? '' ?>">
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="col-12">
                                         <label class="form-label">Address</label>
                                         <textarea
                                             name="address"
@@ -139,7 +140,7 @@
                                     </div>
 
                                 <?php elseif ($section === 'contact'): ?>
-                                    <div class="mb-3">
+                                    <div class="col-sm-6">
                                         <label class="form-label">Email</label>
                                         <input
                                             type="email"
@@ -147,7 +148,7 @@
                                             class="form-control"
                                             value="<?= $email ?? '' ?>">
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="col-sm-6">
                                         <label class="form-label">Phone</label>
                                         <input
                                             type="text"
@@ -156,6 +157,7 @@
                                             value="<?= $phone ?? '' ?>">
                                     </div>
                                 <?php endif; ?>
+                                </div>
                             </div>
 
                             <div class="card-footer">
