@@ -4,11 +4,13 @@ document.getElementById("userForm")
 
   const name = document.getElementById("name");
   const email = document.getElementById("email");
+  const phone = document.getElementById("phone");
   const password = document.getElementById("password");
   const confirmPassword = document.getElementById("confirm_password");
 
   const nameError = document.getElementById("nameError");
   const emailError = document.getElementById("emailError");
+  const phoneError = document.getElementById("phoneError");
   const passwordError = document.getElementById("passwordError");
   const confirmPasswordError = confirmPassword
     ? document.getElementById("confirmPasswordError")
@@ -16,11 +18,13 @@ document.getElementById("userForm")
 
   name.classList.remove("is-invalid");
   email.classList.remove("is-invalid");
+  phone.classList.remove("is-invalid");
   password.classList.remove("is-invalid");
   if (confirmPassword) confirmPassword.classList.remove("is-invalid");
 
   nameError.textContent = "";
   emailError.textContent = "";
+  phoneError.textContent = "";
   passwordError.textContent = "";
   if (confirmPasswordError) confirmPasswordError.textContent = "";
 
@@ -33,6 +37,12 @@ document.getElementById("userForm")
   if (email.value.length > 50) {
     emailError.textContent = "Maximum email length is 50 characters.";
     email.classList.add("is-invalid");
+    valid = false;
+  }
+
+  if (phone.value.length > 20) {
+    phoneError.textContent = "Maximum phone length is 20 characters.";
+    phone.classList.add("is-invalid");
     valid = false;
   }
 
