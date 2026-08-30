@@ -67,10 +67,15 @@ class UserController extends BaseController
     {
         $error = false;
         $datas = $this->user->find(['id' => $id]);
+        $isSelf = ($id == $this->userId);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (empty($_POST['password']) && empty($_POST['confirm_password'])) {
                 $_POST['password'] = $datas['password'];
+            }
+
+            if ($isSelf) {
+                $_POST['is_active'] = $datas['is_active'];
             }
 
             $email_exists = $this->db->has('user', [
@@ -89,15 +94,18 @@ class UserController extends BaseController
 
             if ($email_exists) {
                 echo '<script>alert("Email already exists")</script>';
+                $datas['is_self'] = $isSelf;
                 $this->view('user/edit', $datas);
             } elseif ($phone_exists) {
                 echo '<script>alert("phone already exists")</script>';
+                $datas['is_self'] = $isSelf;
                 $this->view('user/edit', $datas);
             } elseif ($error === false) {
                 $this->user->update($id, $_POST);
                 $this->redirect(BASEURL . 'user');
             }
         } else {
+            $datas['is_self'] = $isSelf;
             $this->view('user/edit', $datas);
         }
     }

@@ -18,7 +18,14 @@ class LoginController extends BaseController {
         $user = $this->user->find(['email' => $email]);
 
         if ($user) {
-            if (password_verify($password, $user["password"])) {
+
+            if ($user["is_active"] == 0) {
+                echo
+                '<script>
+                    alert("Your account has been deactivated.");
+                    window.location.href = "' . BASEURL . 'login";
+                </script>';
+            } elseif (password_verify($password, $user["password"])) {
                 Session::set('user_id', $user['id']);
                 Session::set('company_id', $user['company_id']);
 

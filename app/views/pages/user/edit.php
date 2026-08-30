@@ -52,11 +52,15 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Status user</label>
-                                <select name="is_active" class="form-select" aria-label="Default select example" required>
+                                <select name="is_active" class="form-select" aria-label="Default select example"
+                                    <?= !empty($is_self) ? 'disabled' : '' ?> required>
                                     <option value="" disabled selected>Select status</option>
                                     <option value="1" <?= ($is_active == '1') ? 'selected' : ''; ?>>Active</option>
                                     <option value="0" <?= ($is_active == '0') ? 'selected' : ''; ?>>Inactive</option>
                                 </select>
+                                <?php if (!empty($is_self)): ?>
+                                    <small class="text-danger">You cannot change your own account status.</small>
+                                <?php endif; ?>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Password</label>
@@ -68,10 +72,11 @@
                                     <div class="invalid-feedback" id="confirmPasswordError"></div>
                                 </div>
                             </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-success">Update</button>
-                                <a href="<?= BASEURL . 'user' ?>" class="btn btn-danger">Cancel</a>
-                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success">Update</button>
+                            <a href="<?= BASEURL . 'user' ?>" class="btn btn-danger">Cancel</a>
+                        </div>
                     </form>
                 </div>
             </div>
