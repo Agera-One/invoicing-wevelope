@@ -1,42 +1,32 @@
 <?php
 
-class User extends BaseModel
+namespace App\Models;
+
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Database\Factories\UserFactory;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Attributes\Hidden;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
+#[Fillable(['name', 'email', 'password'])]
+#[Hidden(['password', 'remember_token'])]
+class User extends Authenticatable
 {
-    public function __construct()
+    /** @use HasFactory<UserFactory> */
+    use HasFactory, Notifiable;
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
     {
-        parent::__construct();
-    }
-
-    public function getAll($query_options) {
-        return $this->getConnection()->select('user', '*', $query_options);
-    }
-
-    public function find($where) {
-        return $this->getConnection()->get('user', '*', $where);
-    }
-
-    public function create($data) {
-        return $this->getConnection()->insert('user', [
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => password_hash($data["password"], PASSWORD_DEFAULT),
-            'company_id' => $data['company_id']
-        ]);
-    }
-
-    public function update($id, $data) {
-        return $this->getConnection()->update('user', [
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => password_hash($data["password"], PASSWORD_DEFAULT)
-        ], [
-            'id' => $id
-        ]);
-    }
-
-    public function delete($id) {
-        return $this->getConnection()->delete('user', [
-            'id' => $id
-        ]);
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
     }
 }
