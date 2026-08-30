@@ -46,11 +46,11 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">PIC Name</label>
-                                <select name="pic_id" class="form-select" aria-label="Default select example" required>
+                                <select name="user_id" class="form-select" aria-label="Default select example" required>
                                     <option value="" disabled selected>Select PIC name</option>
-                                    <?php foreach ($pic_data as $pic): ?>
-                                        <option value="<?= $pic['id'] ?>" <?= ($pic_id == $pic['id']) ? 'selected' : ''; ?>>
-                                            <?= $pic['name']; ?>
+                                    <?php foreach ($user_data as $user): ?>
+                                        <option value="<?= $user['id'] ?>" <?= ($user_id == $user['id']) ? 'selected' : ''; ?>>
+                                            <?= $user['name']; ?>
                                         </option>
                                     <?php endforeach; ?>
                                 </select>

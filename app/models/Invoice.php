@@ -11,11 +11,11 @@ class Invoice extends BaseModel {
         return $this->getConnection()->select('invoice', $join, [
             'invoice.id',
             'invoice.customer_id',
-            'invoice.pic_id',
+            'invoice.user_id',
             'invoice.invoice_code',
             'invoice.date',
             'invoice.due_date',
-            'pic.name(pic_name)',
+            'user.name(user_name)',
             'customer.name(customer_name)',
             'total_bill' => Medoo::raw('(SELECT COALESCE(SUM(amount),0) FROM invoice_detail WHERE invoice_detail.invoice_id = <invoice.id>)'),
             'total_payment' => Medoo::raw('(SELECT COALESCE(SUM(amount),0) FROM payment WHERE payment.invoice_id = <invoice.id>)'),
@@ -55,7 +55,7 @@ class Invoice extends BaseModel {
 
     public function create($data) {
         $this->getConnection()->insert('invoice', [
-            'pic_id' => $data['pic_id'],
+            'user_id' => $data['user_id'],
             'customer_id' => $data['customer_id'],
             'invoice_code' => $data['invoice_code'],
             'date' => $data['date'],
@@ -67,7 +67,7 @@ class Invoice extends BaseModel {
     public function update($id, $data) {
         $this->getConnection()->update('invoice', [
             'customer_id' => $data['customer_id'],
-            'pic_id' => $data['pic_id'],
+            'user_id' => $data['user_id'],
             'date' => $data['date'],
             'due_date' => $data['due_date']
         ], [

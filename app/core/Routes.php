@@ -36,13 +36,6 @@ class Routes {
         $app->get('/customer/import', ['CustomerController', 'importCsv']);
         $app->post('/customer/import', ['CustomerController', 'importCsv']);
 
-        $app->get('/pic', ['PicController', 'index']);
-        $app->get('/pic/add', ['PicController', 'add']);
-        $app->post('/pic/add', ['PicController', 'add']);
-        $app->get('/pic/edit', ['PicController', 'edit']);
-        $app->post('/pic/edit', ['PicController', 'edit']);
-        $app->get('/pic/delete', ['PicController', 'delete']);
-
         $app->get('/invoice', ['InvoiceController', 'index']);
         $app->get('/invoice/add', ['InvoiceController', 'add']);
         $app->post('/invoice/add', ['InvoiceController', 'add']);

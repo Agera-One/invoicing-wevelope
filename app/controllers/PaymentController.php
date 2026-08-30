@@ -53,7 +53,7 @@ class PaymentController extends BaseController
             '[><]customer' => ['customer_id' => 'id'],
             '[>]invoice_detail' => ['id' => 'invoice_id'],
             '[>]payment' => ['id' => 'invoice_id'],
-            '[><]pic' => ['pic_id' => 'id'],
+            '[><]user' => ['user_id' => 'id'],
         ];
 
         $where_condition = ['invoice.company_id' => $this->companyId];
@@ -93,7 +93,7 @@ class PaymentController extends BaseController
             '[><]customer' => ['customer_id' => 'id'],
             '[>]invoice_detail' => ['id' => 'invoice_id'],
             '[>]payment' => ['id' => 'invoice_id'],
-            '[><]pic' => ['pic_id' => 'id'],
+            '[><]user' => ['user_id' => 'id'],
         ];
 
         $where_condition = ['invoice.company_id' => $this->companyId];

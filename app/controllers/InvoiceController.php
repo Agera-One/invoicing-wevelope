@@ -5,7 +5,7 @@ class InvoiceController extends BaseController
     private $invoice;
     private $invoiceDetail;
     private $customer;
-    private $pic;
+    private $user;
     private $db;
 
     public function __construct()
@@ -14,7 +14,7 @@ class InvoiceController extends BaseController
         $this->invoice = $this->model('invoice');
         $this->invoiceDetail = $this->model('invoicedetail');
         $this->customer = $this->model('customer');
-        $this->pic = $this->model('pic');
+        $this->user = $this->model('user');
         $this->db = $this->invoice->getConnection();
     }
 
@@ -31,7 +31,7 @@ class InvoiceController extends BaseController
             '[><]customer' => ['customer_id' => 'id'],
             '[>]invoice_detail' => ['id' => 'invoice_id'],
             '[>]payment' => ['id' => 'invoice_id'],
-            '[><]pic' => ['pic_id' => 'id'],
+            '[><]user' => ['user_id' => 'id'],
         ];
 
         $where_condition['invoice.company_id'] = $this->companyId;
@@ -44,7 +44,7 @@ class InvoiceController extends BaseController
             $where_condition['invoice.date[<=]'] = $date_to;
         }
 
-        $where_condition = $this->search($keyword, $where_condition, ['invoice.invoice_code', 'customer.name', 'pic.name']);
+        $where_condition = $this->search($keyword, $where_condition, ['invoice.invoice_code', 'customer.name', 'user.name']);
         $pagination = $this->invoice->pagination($this->db, $page, 'invoice', 'invoice.id', $where_condition, $join_structure);
 
         $invoices = $this->invoice->getAll($join_structure, $where_condition, $pagination['offset'], $pagination['limit']);
@@ -67,12 +67,12 @@ class InvoiceController extends BaseController
     {
         $invoice_code = $this->invoice->generateCode($this->db, "invoice", "invoice_code", "INV");
 
-        $pic_id = $_POST['pic_id'] ?? '';
+        $user_id = $_POST['user_id'] ?? '';
         $customer_id = $_POST['customer_id'] ?? '';
 
         $customer_data = $this->customer->getAll(['company_id' => $this->companyId]);
 
-        $pic_data = $this->pic->getAll([
+        $user_data = $this->user->getAll([
             'AND' => [
                 'is_active' => 1,
                 'company_id' => $this->companyId
@@ -81,10 +81,10 @@ class InvoiceController extends BaseController
 
         $datas = [
             'invoice_code' => $invoice_code,
-            'pic_id' => $pic_id,
+            'user_id' => $user_id,
             'customer_id' => $customer_id,
             'customer_data' => $customer_data,
-            'pic_data' => $pic_data
+            'user_data' => $user_data
         ];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -111,12 +111,12 @@ class InvoiceController extends BaseController
 
         $invoices = $this->invoice->find($id);
         $customer_data = $this->customer->getAll(['company_id' => $this->companyId]);
-        $pic_data = $this->pic->getAll(['company_id' => $this->companyId]);
+        $user_data = $this->user->getAll(['company_id' => $this->companyId]);
 
         $datas = [
             'invoices' => $invoices,
             'customer_data' => $customer_data,
-            'pic_data' => $pic_data,
+            'user_data' => $user_data,
         ];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

@@ -53,9 +53,9 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">PIC Name</label>
-                                <select name="pic_id" class="form-select" aria-label="Default select example">
-                                    <?php foreach ($pic_data as $pic): ?>
-                                        <option value="<?= $pic['id']; ?>" <?= ($invoices['pic_id'] == $pic['id']) ? 'selected' : ''; ?>><?= $pic['name']; ?></option>
+                                <select name="user_id" class="form-select" aria-label="Default select example">
+                                    <?php foreach ($user_data as $user): ?>
+                                        <option value="<?= $user['id']; ?>" <?= ($invoices['user_id'] == $user['id']) ? 'selected' : ''; ?>><?= $user['name']; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>

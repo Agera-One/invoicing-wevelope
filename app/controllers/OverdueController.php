@@ -23,7 +23,7 @@ class OverdueController extends BaseController
         $join_structure = [
             '[><]customer' => ['customer_id' => 'id'],
             '[><]invoice_detail' => ['id' => 'invoice_id'],
-            '[><]pic' => ['pic_id' => 'id'],
+            '[><]user' => ['user_id' => 'id'],
         ];
 
         $where_condition = [

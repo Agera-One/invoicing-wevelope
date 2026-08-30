@@ -13,7 +13,7 @@ class InvoiceDetail extends BaseModel
         return $this->getConnection()->select('invoice', [
             '[>]invoice_detail' => ['id' => 'invoice_id'],
             '[>]customer' => ['customer_id' => 'id'],
-            '[>]pic' => ['pic_id' => 'id'],
+            '[>]user' => ['user_id' => 'id'],
             '[>]item' => ['invoice_detail.item_id' => 'id'],
             '[>]company' => ['company_id' => 'id'],
         ], [
@@ -22,7 +22,7 @@ class InvoiceDetail extends BaseModel
             'invoice.date',
             'invoice.due_date',
             'customer.name(customer_name)',
-            'pic.name(pic_name)',
+            'user.name(user_name)',
             'invoice_detail.id(detail_id)',
             'invoice_detail.unit_price',
             'invoice_detail.quantity',

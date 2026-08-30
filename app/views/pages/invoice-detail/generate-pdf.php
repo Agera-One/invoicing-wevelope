@@ -188,7 +188,7 @@
                 <div style="font-weight: bold; font-size: 14px; margin-bottom: 15px;"><?= $invoice['customer_name'] ?></div>
 
                 <div style="color: #6c757d; font-size: 11px; text-transform: uppercase; margin-bottom: 3px;">Handled by</div>
-                <div style="font-weight: bold;"><?= $invoice['pic_name'] ?></div>
+                <div style="font-weight: bold;"><?= $invoice['user_name'] ?></div>
             </td>
             <td style="width: 50%; text-align: right; vertical-align: top;">
                 <div style="color: #6c757d; font-size: 11px; text-transform: uppercase; margin-bottom: 3px;">Issue date</div>
@@ -247,7 +247,6 @@
                 <?php else: ?>
                     <div class="signature-spacer"></div>
                 <?php endif; ?>
-                <!-- <div class="signature-name"><?= $invoice['pic_name'] ?></div> -->
                 <div class="signature-name"><?= $invoice['company_name'] ?></div>
             </td>
         </tr>

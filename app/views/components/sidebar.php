@@ -48,12 +48,6 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a href="<?= BASEURL . 'pic' ?>" class="nav-link" data-page="pic">
-                                <i class="bi bi-person-check nav-icon"></i>
-                                <p>Company PIC</p>
-                            </a>
-                        </li>
                     </ul>
                 </li>
 

@@ -102,7 +102,7 @@
                                         <tr>
                                             <th scope="row" class="ps-4 text-muted fw-normal"><?= ++$pagination['offset'] ?></th>
                                             <td class="fw-medium"><?= $invoice['invoice_code'] ?></td>
-                                            <td><?= $invoice['pic_name'] ?></td>
+                                            <td><?= $invoice['user_name'] ?></td>
                                             <td><?= $invoice['customer_name'] ?></td>
                                             <td><?= $invoice['date'] ?></td>
                                             <td><?= $invoice['due_date'] ?></td>
