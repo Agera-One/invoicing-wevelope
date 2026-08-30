@@ -64,7 +64,6 @@
                                         <th scope="col">Email</th>
                                         <th scope="col">Created At</th>
                                         <th scope="col">Updated At</th>
-                                        <th scope="col" class="text-center">Status</th>
                                         <th scope="col" class="pe-4" width="160">Action</th>
                                     </tr>
                                 </thead>
@@ -77,7 +76,6 @@
                                             <td><?= $user['email'] ?></td>
                                             <td><?= date('d F Y', strtotime($user['created_at'])) ?></td>
                                             <td><?= $updated_at->format('d F Y H:i') ?></td>
-                                            <?= ($user['id'] == $user_id) ? '<td class="text-center"><span class="badge text-bg-success"> Online </span></td>' : '<td class="text-center"><span class="badge text-bg-secondary"> Offline </span></td>'; ?>
                                             <td class="pe-4">
                                                 <div class="d-flex gap-1">
                                                     <a class="btn btn-sm btn-success px-3" href="<?= BASEURL . 'user/edit' ?>/<?= $user['id'] ?>">Edit</a>
