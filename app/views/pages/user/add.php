@@ -46,6 +46,19 @@
                                 <div class="invalid-feedback" id="emailError"></div>
                             </div>
                             <div class="mb-3">
+                                <label class="form-label">Phone</label>
+                                <input id="phone" value="<?= $_SESSION['old']['phone'] ?? '' ?>" name="phone" type="tel" class="form-control" required>
+                                <div class="invalid-feedback" id="phoneError"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Status PIC</label>
+                                <select name="is_active" class="form-select" aria-label="Default select example" required>
+                                    <option value="" disabled selected>Select status</option>
+                                    <option value="1" <?= ($is_active == '1') ? 'selected' : '' ?>>Active</option>
+                                    <option value="0" <?= ($is_active == '0') ? 'selected' : '' ?>>Inactive</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
                                 <label class="form-label">Password</label>
                                 <input id="password" value="<?= $_SESSION['old']['password'] ?? '' ?>" name="password" type="password" class="form-control" required>
                                 <div class="invalid-feedback" id="passwordError"></div>

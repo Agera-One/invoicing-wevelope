@@ -19,6 +19,8 @@ class User extends BaseModel
         return $this->getConnection()->insert('user', [
             'name' => $data['name'],
             'email' => $data['email'],
+            'phone' => $data['phone'],
+            'is_active' => $data['is_active'],
             'password' => password_hash($data["password"], PASSWORD_DEFAULT),
             'company_id' => $data['company_id']
         ]);
@@ -28,6 +30,8 @@ class User extends BaseModel
         return $this->getConnection()->update('user', [
             'name' => $data['name'],
             'email' => $data['email'],
+            'phone' => $data['phone'],
+            'is_active' => $data['is_active'],
             'password' => password_hash($data["password"], PASSWORD_DEFAULT)
         ], [
             'id' => $id

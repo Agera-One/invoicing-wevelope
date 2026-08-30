@@ -20,7 +20,7 @@ class UserController extends BaseController
         $search = $_GET['search'] ?? '';
         $page = $_GET['page'] ?? 1;
 
-        $where_condition = $this->search($search, $where_condition, ['name', 'email', 'created_at', 'updated_at']);
+        $where_condition = $this->search($search, $where_condition, ['name', 'email', 'phone']);
         $pagination = $this->user->pagination($this->db, $page, 'user', 'id', $where_condition);
 
         $users = $this->user->getAll($where_condition, $pagination['offset'], $pagination['limit']);
@@ -37,13 +37,19 @@ class UserController extends BaseController
 
     public function add()
     {
+        $is_active = '';
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_POST['company_id'] = $this->companyId;
 
             $email_exists = $this->db->has('user', ['email' => $_POST['email']]);
+            $phone_exists = $this->db->has('user', ['phone' => $_POST['phone']]);
 
-            if ($email_exists) {
-                $_SESSION['error'] = 'Email already exists';
+            if ($email_exists || $phone_exists) {
+                $_SESSION['error'] = $email_exists
+                    ? 'Email already exists'
+                    : 'Phone number already exists';
+
                 $_SESSION['old'] = $_POST;
 
                 $this->redirect(BASEURL . 'user/add');
@@ -53,7 +59,7 @@ class UserController extends BaseController
                 $this->redirect(BASEURL . 'user');
             }
         } else {
-            $this->view('user/add');
+            $this->view('user/add', ['is_active' => $is_active]);
         }
     }
 
@@ -74,8 +80,18 @@ class UserController extends BaseController
                 ]
             ]);
 
+            $phone_exists = $this->db->has('user', [
+                'AND' => [
+                    'phone' => $_POST['phone'],
+                    'id[!]' => $id
+                ]
+            ]);
+
             if ($email_exists) {
                 echo '<script>alert("Email already exists")</script>';
+                $this->view('user/edit', $datas);
+            } elseif ($phone_exists) {
+                echo '<script>alert("phone already exists")</script>';
                 $this->view('user/edit', $datas);
             } elseif ($error === false) {
                 $this->user->update($id, $_POST);

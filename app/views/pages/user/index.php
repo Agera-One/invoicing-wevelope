@@ -62,20 +62,19 @@
                                         <th scope="col" class="ps-4" width="60">#</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Email</th>
-                                        <th scope="col">Created At</th>
-                                        <th scope="col">Updated At</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col" class="text-center">Status</th>
                                         <th scope="col" class="pe-4" width="160">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($users as $user):
-                                        $updated_at = new DateTime($user['updated_at']); ?>
+                                    <?php foreach ($users as $user): ?>
                                         <tr>
                                             <th scope="row" class="ps-4 text-muted fw-normal"><?= ++$pagination['offset'] ?></th>
                                             <td><?= $user['name'] ?></td>
                                             <td><?= $user['email'] ?></td>
-                                            <td><?= date('d F Y', strtotime($user['created_at'])) ?></td>
-                                            <td><?= $updated_at->format('d F Y H:i') ?></td>
+                                            <td><?= $user['phone'] ?></td>
+                                            <?= $user['is_active'] == '1' ? '<td class="text-center"><span class="badge text-bg-success"> Active </span></td>' : '<td class="text-center"><span class="badge text-bg-danger"> Inactive </span></td>' ?>
                                             <td class="pe-4">
                                                 <div class="d-flex gap-1">
                                                     <a class="btn btn-sm btn-success px-3" href="<?= BASEURL . 'user/edit' ?>/<?= $user['id'] ?>">Edit</a>
