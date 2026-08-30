@@ -54,12 +54,6 @@
                         </div>
                     </div>
                 </form>
-
-                <p class="mb-0">
-                    <a href="<?= BASEURL . 'register' ?>" class="text-center">
-                        Register a new account
-                    </a>
-                </p>
             </div>
         </div>
     </div>

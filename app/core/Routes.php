@@ -7,15 +7,13 @@ class Routes {
             $app->setDefaultController('ErrorController');
             $app->setDefaultMethod('index');
         } else {
-            $app->setDefaultController('AuthController');
-            $app->setDefaultMethod('showLoginForm');
+            $app->setDefaultController('LoginController');
+            $app->setDefaultMethod('index');
         }
 
-        $app->get('/login', ['AuthController', 'showLoginForm']);
-        $app->post('/login/store', ['AuthController', 'login']);
-        $app->get('/register', ['AuthController', 'showRegisterForm']);
-        $app->post('/register/store', ['AuthController', 'register']);
-        $app->get('/logout', ['AuthController', 'logout']);
+        $app->get('/login', ['LoginController', 'index']);
+        $app->post('/login/store', ['LoginController', 'store']);
+        $app->get('/logout', ['LoginController', 'logout']);
 
         $app->get('/dashboard', ['DashboardController', 'index']);
 
