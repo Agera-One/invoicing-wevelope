@@ -57,7 +57,7 @@
                                 <label class="form-label">Unit Price</label>
                                 <div class="d-flex align-items-center gap-2">
                                     <div id="unit_price_box" class="form-control-plaintext fs-5 fw-bold text-success bg-body-secondary border rounded px-3 py-2 mb-0">
-                                        <i class="bi bi-currency-dollar me-2"></i><span id="unit_price_display">Rp<?= number_format($_POST['unit_price'] ?? 0, 0, ',', '.') ?></span>
+                                        <span id="unit_price_display">Rp<?= number_format($_POST['unit_price'] ?? 0, 0, ',', '.') ?></span>
                                     </div>
                                     <input type="hidden" name="unit_price" id="unit_price" value="<?= $_POST['unit_price'] ?? 0; ?>">
                                 </div>
