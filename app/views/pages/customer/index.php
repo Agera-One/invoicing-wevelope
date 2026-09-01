@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/customer.css' ?>">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css"
+        crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
 
@@ -25,9 +27,24 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>" class="text-decoration-none">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>"
+                                    class="text-decoration-none">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Customers Management</li>
                         </ol>
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-3">
+                    <div class="col-6 col-lg-3">
+                        <div class="card h-100 shadow-sm border-0">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <small class="text-secondary text-uppercase">Total Customers</small>
+                                    <i class="bi bi-people text-primary"></i>
+                                </div>
+                                <div class="fs-5 fw-bold">...</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -52,7 +69,10 @@
                                 <span class="input-group-text bg-transparent border-end-0 text-muted">
                                     <i class="bi bi-search"></i>
                                 </span>
-                                <input name="search" id="table-filter" type="search" class="form-control border-start-0 ps-1" placeholder="Filter rows…" aria-label="Filter rows" autofocus autocomplete="off" value="<?= $_GET['search'] ?? ''; ?>">
+                                <input name="search" id="table-filter" type="search"
+                                    class="form-control border-start-0 ps-1" placeholder="Filter rows…"
+                                    aria-label="Filter rows" autofocus autocomplete="off"
+                                    value="<?= $_GET['search'] ?? ''; ?>">
                             </div>
                         </form>
                         <a href="<?= BASEURL . 'customer' ?>" class="btn btn-outline-secondary w-25">
@@ -93,10 +113,13 @@
                                                     </button>
                                                     <ul class="dropdown-menu dropdown-menu-end">
                                                         <li>
-                                                            <a class="dropdown-item text-warning" href="<?= BASEURL . 'customer/edit' ?>/<?= $customer['id'] ?>">Edit</a>
+                                                            <a class="dropdown-item text-warning"
+                                                                href="<?= BASEURL . 'customer/edit' ?>/<?= $customer['id'] ?>">Edit</a>
                                                         </li>
                                                         <li>
-                                                            <a class="dropdown-item text-danger" href="<?= BASEURL . 'customer/delete' ?>/<?= $customer['id'] ?>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                                                            <a class="dropdown-item text-danger"
+                                                                href="<?= BASEURL . 'customer/delete' ?>/<?= $customer['id'] ?>"
+                                                                onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
                                                         </li>
                                                     </ul>
                                                 </div>

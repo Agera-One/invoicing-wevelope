@@ -116,4 +116,39 @@ class Invoice extends BaseModel {
 
         return compact('total_unpaid', 'total_overdue');
     }
+
+    public function validatorPeriod($period) {
+        if ($period === 'daily') {
+            $periodKeyExpr   = "DATE(<invoice.date>)";
+            $periodLabelExpr = "DATE_FORMAT(<invoice.date>, '%W, %d %M %Y')";
+            $limit           = 7;
+        } elseif ($period === 'weekly') {
+            $periodKeyExpr   = "YEARWEEK(<invoice.date>, 1)";
+            $periodLabelExpr = "CONCAT('Week ', WEEK(MIN(<invoice.date>), 1), ' (', DATE_FORMAT(MIN(<invoice.date>), '%M'), ')')";
+            $limit           = 5;
+        } else {
+            $periodKeyExpr   = "DATE_FORMAT(<invoice.date>, '%Y-%m')";
+            $periodLabelExpr = "DATE_FORMAT(<invoice.date>, '%Y-%m')";
+            $limit           = 6;
+        }
+
+        return [
+            'periodKeyExpr' => $periodKeyExpr,
+            'periodLabelExpr' => $periodLabelExpr,
+            'limit' => $limit,
+        ];
+    }
+
+    public function sumUnpaidPeriod($periodKeyExpr, $periodLabelExpr, $company_id, $limit) {
+        return $this->getConnection()->select('invoice', [
+            'period_key' => Medoo::raw($periodKeyExpr),
+            'period' => Medoo::raw($periodLabelExpr),
+            'unpaid' => Medoo::raw('SUM((SELECT COALESCE(SUM(amount),0) FROM invoice_detail WHERE invoice_detail.invoice_id = <invoice.id>) - (SELECT COALESCE(SUM(amount),0) FROM payment WHERE payment.invoice_id = <invoice.id>))')
+        ], [
+            'GROUP' => 'period_key',
+            'ORDER' => ['period_key' => 'DESC'],
+            'invoice.company_id' => $company_id,
+            'LIMIT' => $limit
+        ]);
+    }
 }

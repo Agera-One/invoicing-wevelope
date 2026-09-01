@@ -34,15 +34,15 @@
                 <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
                     <div class="btn-group period-filter" role="group" aria-label="Period filter">
                         <a href="?period=daily"
-                            class="btn btn-outline-primary <?= $period === 'daily' ? 'active btn-primary text-dark' : '' ?>">
+                            class="btn btn-outline-primary <?= $period === 'daily' ? 'active btn-primary text-white' : '' ?>">
                             Daily
                         </a>
                         <a href="?period=weekly"
-                            class="btn btn-outline-primary <?= $period === 'weekly' ? 'active btn-primary text-dark' : '' ?>">
+                            class="btn btn-outline-primary <?= $period === 'weekly' ? 'active btn-primary text-white' : '' ?>">
                             Weekly
                         </a>
                         <a href="?period=monthly"
-                            class="btn btn-outline-primary <?= $period === 'monthly' ? 'active btn-primary text-dark' : '' ?>">
+                            class="btn btn-outline-primary <?= $period === 'monthly' ? 'active btn-primary text-white' : '' ?>">
                             Monthly
                         </a>
                     </div>

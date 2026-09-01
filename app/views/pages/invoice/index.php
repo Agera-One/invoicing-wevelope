@@ -107,13 +107,13 @@
                                             <td><?= $invoice['due_date'] ?></td>
                                             <td>Rp<?= number_format($invoice['total_bill'] ?? 0, 0, ',', '.') ?></td>
                                             <?php if ($remaining_unpaid > 0 && $invoice['due_date'] < $today): ?>
-                                                <td class="text-center"><span class="badge text-bg-danger">Overdue</span></td>
+                                                <td class="text-center"><span class="badge text-custom-overdue">Overdue</span></td>
                                             <?php elseif ($invoice_item == 0): ?>
                                                 <td class="text-center"><span class="badge text-bg-secondary">No Item</span></td>
                                             <?php elseif ($invoice['total_payment'] < $invoice['total_bill']): ?>
-                                                <td class="text-center"><span class="badge text-bg-warning">Unpaid</span></td>
+                                                <td class="text-center"><span class="badge text-custom-unpaid">Unpaid</span></td>
                                             <?php elseif ($invoice['total_payment'] == $invoice['total_bill']): ?>
-                                                <td class="text-center"><span class="badge text-bg-success">Paid</span></td>
+                                                <td class="text-center"><span class="badge text-custom-paid">Paid</span></td>
                                             <?php endif; ?>
                                             <td class="text-center">
                                                 <div class="dropdown">

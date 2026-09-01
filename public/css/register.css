@@ -45,13 +45,13 @@
 }
 
 .wizard-steps li.active {
-    color: var(--bs-primary);
+    color: #5d5fee;
     font-weight: 600;
 }
 
 .wizard-steps li.active::before {
-    background: var(--bs-primary);
-    border-color: var(--bs-primary);
+    background: #5d5fee;
+    border-color: #5d5fee;
     color: #fff;
 }
 
@@ -68,4 +68,12 @@
     max-width: 900px;
     margin: 2rem auto;
     padding: 0 1rem;
+}
+
+.btn-custom {
+    background-color: #5d5fee;
+}
+
+.btn-custom:hover {
+    background-color: #4d4fc6;
 }

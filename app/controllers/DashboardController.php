@@ -27,9 +27,31 @@ class DashboardController extends BaseController
         $sum_unpaid_overdue = $this->invoice->sumUnpaidOverdue($today);
 
         $period = $this->payment->validatorPeriod('daily');
-        $revenue_trend = array_reverse(
-            $this->payment->sumRevenuePeriod($period['periodKeyExpr'], $period['periodLabelExpr'], $this->companyId, $period['limit'])
-        );
+        $revenue_trend_raw = $this->payment->sumRevenuePeriod($period['periodKeyExpr'], $period['periodLabelExpr'], $this->companyId, $period['limit']);
+
+        $period_invoice = $this->invoice->validatorPeriod('daily');
+        $unpaid_trend_raw = $this->invoice->sumUnpaidPeriod($period_invoice['periodKeyExpr'], $period_invoice['periodLabelExpr'], $this->companyId, $period_invoice['limit']);
+
+        $revenueByDate = [];
+        foreach ($revenue_trend_raw as $r) {
+            $revenueByDate[$r['period_key']] = $r['revenue'];
+        }
+
+        $unpaidByDate = [];
+        foreach ($unpaid_trend_raw as $r) {
+            $unpaidByDate[$r['period_key']] = $r['unpaid'];
+        }
+
+        $days = 7;
+        $trend_labels = [];
+        $trend_values = [];
+        $unpaid_trend_values = [];
+        for ($i = $days - 1; $i >= 0; $i--) {
+            $d = date('Y-m-d', strtotime("-{$i} day"));
+            $trend_labels[]        = date('d F Y', strtotime($d));
+            $trend_values[]        = floatval($revenueByDate[$d] ?? 0);
+            $unpaid_trend_values[] = floatval($unpaidByDate[$d] ?? 0);
+        }
 
         $datas = [
             'number' => $number,
@@ -41,7 +63,9 @@ class DashboardController extends BaseController
             'total_unpaid'  => $sum_unpaid_overdue['total_unpaid']  ?? 0,
             'total_overdue' => $sum_unpaid_overdue['total_overdue'] ?? 0,
             'invoice_detail' => $this->invoiceDetail,
-            'revenue_trend' => $revenue_trend,
+            'trend_labels' => $trend_labels,
+            'trend_values' => $trend_values,
+            'unpaid_trend_values' => $unpaid_trend_values,
         ];
 
         $this->view('dashboard/index', $datas);

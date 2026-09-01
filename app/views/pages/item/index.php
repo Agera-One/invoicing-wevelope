@@ -30,6 +30,20 @@
                     </div>
                 </div>
 
+                <div class="row g-3 mb-3">
+                    <div class="col-6 col-lg-3">
+                        <div class="card h-100 shadow-sm border-0">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <small class="text-secondary text-uppercase">Total Items</small>
+                                    <i class="bi bi-box-seam text-primary"></i>
+                                </div>
+                                <div class="fs-5 fw-bold">...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
                     <div class="d-flex flex-wrap gap-2">
                         <a href="<?= BASEURL . 'item/add' ?>" class="btn btn-primary shadow-sm">
@@ -81,10 +95,13 @@
                                                     </button>
                                                     <ul class="dropdown-menu dropdown-menu-end">
                                                         <li>
-                                                            <a class="dropdown-item text-warning    " href="<?= BASEURL . 'item/edit' ?>/<?= $item['id'] ?>">Edit</a>
+                                                            <a class="dropdown-item text-warning    "
+                                                                href="<?= BASEURL . 'item/edit' ?>/<?= $item['id'] ?>">Edit</a>
                                                         </li>
                                                         <li>
-                                                            <a class="dropdown-item text-danger" href="<?= BASEURL . 'item/delete' ?>/<?= $item['id'] ?>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                                                            <a class="dropdown-item text-danger"
+                                                                href="<?= BASEURL . 'item/delete' ?>/<?= $item['id'] ?>"
+                                                                onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
                                                         </li>
                                                     </ul>
                                                 </div>

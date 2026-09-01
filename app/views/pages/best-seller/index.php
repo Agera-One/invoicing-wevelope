@@ -36,19 +36,19 @@
                 <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
                     <div class="btn-group period-filter" role="group" aria-label="Period filter">
                         <a href="?period=all"
-                            class="btn btn-outline-primary <?= $period === 'all' ? 'active btn-primary text-dark' : '' ?>">
+                            class="btn btn-outline-primary <?= $period === 'all' ? 'active btn-primary text-white' : '' ?>">
                             All Time
                         </a>
                         <a href="?period=yearly"
-                            class="btn btn-outline-primary <?= $period === 'yearly' ? 'active btn-primary text-dark' : '' ?>">
+                            class="btn btn-outline-primary <?= $period === 'yearly' ? 'active btn-primary text-white' : '' ?>">
                             Yearly
                         </a>
                         <a href="?period=monthly"
-                            class="btn btn-outline-primary <?= $period === 'monthly' ? 'active btn-primary text-dark' : '' ?>">
+                            class="btn btn-outline-primary <?= $period === 'monthly' ? 'active btn-primary text-white' : '' ?>">
                             Monthly
                         </a>
                         <a href="?period=weekly"
-                            class="btn btn-outline-primary <?= $period === 'weekly' ? 'active btn-primary text-dark' : '' ?>">
+                            class="btn btn-outline-primary <?= $period === 'weekly' ? 'active btn-primary text-white' : '' ?>">
                             Weekly
                         </a>
                     </div>

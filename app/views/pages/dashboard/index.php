@@ -6,11 +6,14 @@ $mini_stats = [
     ['label' => 'Total Overdue', 'value' => 'Rp' . number_format($total_overdue, 0, ',', '.'), 'icon' => 'bi-exclamation-triangle text-danger'],
 ];
 
-$trend_labels = array_column($revenue_trend, 'period');
-$trend_values = array_map('floatval', array_column($revenue_trend, 'revenue'));
+$trend_values = $trend_values ?? [];
+$trend_labels = $trend_labels ?? [];
 $trend_latest = $trend_values ? end($trend_values) : 0;
 $trend_prev = count($trend_values) > 1 ? $trend_values[count($trend_values) - 2] : 0;
-$trend_change = $trend_prev > 0 ? round((($trend_latest - $trend_prev) / $trend_prev) * 100) : 0;
+
+$unpaid_trend_values = $unpaid_trend_values ?? [];
+$unpaid_trend_latest = $unpaid_trend_values ? end($unpaid_trend_values) : 0;
+$unpaid_trend_prev = count($unpaid_trend_values) > 1 ? $unpaid_trend_values[count($unpaid_trend_values) - 2] : 0;
 
 $oo_outstanding = $total_unpaid;
 $oo_overdue = $total_overdue;
@@ -70,22 +73,29 @@ $oo_breakdown = [
                     <div class="col-12 col-lg-8">
                         <div class="card h-100 shadow-sm border-0">
                             <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="d-flex justify-content-between align-items-start mb-3 flex-wrap gap-3">
                                     <div>
-                                        <div class="dash-section-title mb-2">Revenue Trend</div>
+                                        <div class="dash-section-title mb-2"><span class="channel-dot" style="background:#5abd85"></span> Revenue Trend</div>
                                         <?php if ($trend_values): ?>
                                             <div class="d-flex align-items-baseline gap-2">
                                                 <span
                                                     class="fs-3 fw-bold">Rp<?= number_format($trend_latest, 0, ',', '.') ?></span>
-                                                <span
-                                                    class="badge rounded-pill <?= $trend_change >= 0 ? 'text-bg-success' : 'text-bg-danger' ?> bg-opacity-25 <?= $trend_change >= 0 ? 'text-success-emphasis' : 'text-danger-emphasis' ?>">
-                                                    <i
-                                                        class="bi <?= $trend_change >= 0 ? 'bi-arrow-up-short' : 'bi-arrow-down-short' ?>"></i><?= abs($trend_change) ?>%
-                                                </span>
                                             </div>
                                             <small class="text-secondary">vs previous day</small>
                                         <?php else: ?>
                                             <div class="text-secondary small">No payment data yet.</div>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div>
+                                        <div class="dash-section-title mb-2"><span class="channel-dot" style="background:#ffc107"></span> Unpaid Trend</div>
+                                        <?php if ($unpaid_trend_values): ?>
+                                            <div class="d-flex align-items-baseline gap-2">
+                                                <span
+                                                    class="fs-3 fw-bold">Rp<?= number_format($unpaid_trend_latest, 0, ',', '.') ?></span>
+                                            </div>
+                                            <small class="text-secondary">vs previous day</small>
+                                        <?php else: ?>
+                                            <div class="text-secondary small">No unpaid data yet.</div>
                                         <?php endif; ?>
                                     </div>
                                 </div>
@@ -164,29 +174,53 @@ $oo_breakdown = [
     <script>
         const trendLabels = <?= json_encode($trend_labels) ?>;
         const trendValues = <?= json_encode($trend_values) ?>;
+        const unpaidTrendValues = <?= json_encode($unpaid_trend_values) ?>;
         const trendCtx = document.getElementById('revenueTrendChart');
-        const trendGradient = trendCtx.getContext('2d').createLinearGradient(0, 0, 0, 220);
-        trendGradient.addColorStop(0, 'rgba(45, 212, 64, 0.48)');
-        trendGradient.addColorStop(1, 'rgba(45, 212, 120, 0.16)');
+        const revenueGradient = trendCtx.getContext('2d').createLinearGradient(0, 0, 0, 220);
+        revenueGradient.addColorStop(0, 'rgba(45, 212, 64, 0.48)');
+        revenueGradient.addColorStop(1, 'rgba(45, 212, 120, 0.16)');
+        const unpaidGradient = trendCtx.getContext('2d').createLinearGradient(0, 0, 0, 220);
+        unpaidGradient.addColorStop(0, 'rgba(255, 193, 7, 0.35)');
+        unpaidGradient.addColorStop(1, 'rgba(255, 193, 7, 0.05)');
         new Chart(trendCtx, {
             type: 'line',
             data: {
                 labels: trendLabels,
-                datasets: [{
-                    data: trendValues,
-                    borderColor: '#5abd85',
-                    backgroundColor: trendGradient,
-                    fill: true,
-                    tension: 0.4,
-                    pointRadius: 0,
-                    borderWidth: 2
-                }]
+                datasets: [
+                    {
+                        label: 'Revenue',
+                        data: trendValues,
+                        borderColor: '#5abd85',
+                        backgroundColor: revenueGradient,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 3,
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'Unpaid',
+                        data: unpaidTrendValues,
+                        borderColor: '#ffc107',
+                        backgroundColor: unpaidGradient,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 3,
+                        borderWidth: 2
+                    }
+                ]
             },
             options: {
-                plugins: {legend: {display: false}},
+                plugins: {
+                    legend: {display: true, position: 'top', align: 'end', labels: {boxWidth: 10, boxHeight: 10}},
+                    tooltip: {
+                        callbacks: {
+                            label: ctx => ctx.dataset.label + ': Rp' + ctx.parsed.y.toLocaleString('id-ID')
+                        }
+                    }
+                },
                 scales: {
                     x: {grid: {display: false}},
-                    y: {grid: {color: 'rgba(255,255,255,0.06)'}, ticks: {callback: v => 'Rp' + v / 10000 + 'k'}}
+                    y: {grid: {color: 'rgba(255,255,255,0.06)'}, ticks: {callback: v => 'Rp' + (v / 1000000).toLocaleString('id-ID') + 'M'}}
                 }
             }
         });
