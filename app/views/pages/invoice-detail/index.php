@@ -122,17 +122,13 @@
                                                         <td class="text-end">Rp<?= number_format($invoice_detail['unit_price'], 0, ',', '.') ?></td>
                                                         <td class="text-end">Rp<?= number_format($invoice_detail['amount'], 0, ',', '.') ?></td>
                                                         <td class="text-end d-print-none">
-                                                            <?php if (!$is_paid): ?>
-                                                                <a class="btn btn-sm btn-success" href="<?= BASEURL . 'detail/edit' ?>/<?= $invoice_detail['detail_id'] ?>/<?= $invoice_detail['invoice_id'] ?>">
-                                                                    Edit
-                                                                </a>
-                                                                <a class="btn btn-sm btn-danger" href="<?= BASEURL . 'detail/delete' ?>/<?= $invoice_detail['detail_id'] ?>/<?= $invoice_detail['invoice_id'] ?>"
-                                                                    onclick="return confirm('Are you sure you want to delete this detail?');">
-                                                                    Delete
-                                                                </a>
-                                                            <?php else: ?>
-                                                                <span class="text-muted small">Locked</span>
-                                                            <?php endif; ?>
+                                                            <a class="btn btn-sm btn-success" href="<?= BASEURL . 'detail/edit' ?>/<?= $invoice_detail['detail_id'] ?>/<?= $invoice_detail['invoice_id'] ?>">
+                                                                Edit
+                                                            </a>
+                                                            <a class="btn btn-sm btn-danger" href="<?= BASEURL . 'detail/delete' ?>/<?= $invoice_detail['detail_id'] ?>/<?= $invoice_detail['invoice_id'] ?>"
+                                                                onclick="return confirm('Are you sure you want to delete this detail?');">
+                                                                Delete
+                                                            </a>
                                                         </td>
                                                     </tr>
                                                 <?php endif; ?>
@@ -141,14 +137,7 @@
                                     </table>
                                 </div>
 
-                                <?php if (!$is_paid): ?>
-                                    <a href="<?= BASEURL . 'detail/add' ?>/<?= $invoice_id ?>" class="btn btn-primary d-print-none">Add Item</a>
-                                <?php else: ?>
-                                    <p class="text-muted small mb-0 d-print-none">
-                                        <i class="bi bi-lock-fill me-1"></i>
-                                        This invoice has been fully paid and can no longer be modified.
-                                    </p>
-                                <?php endif; ?>
+                                <a href="<?= BASEURL . 'detail/add' ?>/<?= $invoice_id ?>" class="btn btn-primary d-print-none">Add Item</a>
 
                                 <div class="row justify-content-end">
                                     <div class="col-md-5 col-lg-4">

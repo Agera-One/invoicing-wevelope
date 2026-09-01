@@ -33,7 +33,6 @@ class DetailController extends BaseController
             'invoice_details' => $invoice_details,
             'invoice' => $invoice,
             'total_bill' => $total_bill,
-            'is_paid' => $this->isInvoicePaid($invoice_id),
         ];
 
         $this->view('invoice-detail/index', $datas);
@@ -41,9 +40,6 @@ class DetailController extends BaseController
 
     public function add($invoice_id)
     {
-        if ($this->isInvoicePaid($invoice_id)) {
-            $this->blockPaidInvoiceAction($invoice_id);
-        }
 
         $item_id = $_POST['item_id'] ?? '';
         $item_data = $this->item->getAll(['company_id' => $this->companyId]);
@@ -76,10 +72,6 @@ class DetailController extends BaseController
 
     public function edit($id, $invoice_id)
     {
-        if ($this->isInvoicePaid($invoice_id)) {
-            $this->blockPaidInvoiceAction($invoice_id);
-        }
-
         $detail_data = $this->invoiceDetail->find($id);
         $item_data = $this->item->getAll(['company_id' => $this->companyId]);
 
@@ -110,34 +102,8 @@ class DetailController extends BaseController
 
     public function delete($id, $invoice_id)
     {
-        if ($this->isInvoicePaid($invoice_id)) {
-            $this->blockPaidInvoiceAction($invoice_id);
-        }
-
         $this->invoiceDetail->delete($id);
         $this->redirect(BASEURL . 'invoice/detail/' . $invoice_id);
-    }
-
-    private function isInvoicePaid($invoice_id)
-    {
-        $detail_amounts = $this->db->select('invoice_detail', 'amount', ['invoice_id' => $invoice_id]);
-        $total_bill = array_sum($detail_amounts);
-
-        $payment_amounts = $this->db->select('payment', 'amount', ['invoice_id' => $invoice_id]);
-        $total_payment = array_sum($payment_amounts);
-
-        return $total_bill > 0 && $total_payment >= $total_bill;
-    }
-
-    private function blockPaidInvoiceAction($invoice_id)
-    {
-        echo
-        '<script>
-            alert("This invoice has been fully paid and can no longer be modified.");
-            window.location.href = "' . BASEURL . 'invoice/detail/' . $invoice_id . '";
-        </script>';
-
-        exit;
     }
 
     private function getInvoiceData($invoice_id)

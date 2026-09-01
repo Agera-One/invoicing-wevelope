@@ -97,8 +97,7 @@
                                 <tbody>
                                     <?php foreach ($invoices as $invoice):
                                         $invoice_item = $invoice_detail->invoiceItemCount($invoice['id']);
-                                        $remaining_unpaid = $invoice['total_bill'] - $invoice['total_payment'];
-                                        $is_paid = ($invoice_item > 0) && ($invoice['total_bill'] > 0) && ($invoice['total_payment'] == $invoice['total_bill']); ?>
+                                        $remaining_unpaid = $invoice['total_bill'] - $invoice['total_payment']; ?>
                                         <tr>
                                             <th scope="row" class="ps-4 text-muted fw-normal"><?= ++$pagination['offset'] ?></th>
                                             <td class="fw-medium"><?= $invoice['invoice_code'] ?></td>
@@ -119,11 +118,9 @@
                                             <td class="pe-4">
                                                 <div class="d-flex gap-1">
                                                     <a class="btn btn-sm btn-info text-black" href="<?= BASEURL . 'invoice/detail' ?>/<?= $invoice['id'] ?>">Detail</a>
-                                                    <?php if (!$is_paid): ?>
-                                                        <a class="btn btn-sm btn-success" href="<?= BASEURL . 'invoice/edit' ?>/<?= $invoice['id'] ?>">Edit</a>
-                                                        <a class="btn btn-sm btn-danger" href="<?= BASEURL . 'invoice/delete' ?>/<?= $invoice['id'] ?>"
-                                                            onclick="return confirm('Are you sure you want to delete this invoice?');">Delete</a>
-                                                    <?php endif; ?>
+                                                    <a class="btn btn-sm btn-success" href="<?= BASEURL . 'invoice/edit' ?>/<?= $invoice['id'] ?>">Edit</a>
+                                                    <a class="btn btn-sm btn-danger" href="<?= BASEURL . 'invoice/delete' ?>/<?= $invoice['id'] ?>"
+                                                        onclick="return confirm('Are you sure you want to delete this invoice?');">Delete</a>
                                                 </div>
                                             </td>
                                         </tr>

@@ -99,16 +99,6 @@ class InvoiceController extends BaseController
 
     public function edit($id)
     {
-        if ($this->isInvoicePaid($id)) {
-            echo
-            '<script>
-                alert("This invoice has been fully paid and can no longer be edited.");
-                window.location.href = "' . BASEURL . 'invoice";
-            </script>';
-
-            exit;
-        }
-
         $invoices = $this->invoice->find($id);
         $customer_data = $this->customer->getAll(['company_id' => $this->companyId]);
         $user_data = $this->user->getAll(['company_id' => $this->companyId]);
@@ -125,17 +115,6 @@ class InvoiceController extends BaseController
         } else {
             $this->view('invoice/edit', $datas);
         }
-    }
-
-    private function isInvoicePaid($invoice_id)
-    {
-        $detail_amounts = $this->db->select('invoice_detail', 'amount', ['invoice_id' => $invoice_id]);
-        $total_bill = array_sum($detail_amounts);
-
-        $payment_amounts = $this->db->select('payment', 'amount', ['invoice_id' => $invoice_id]);
-        $total_payment = array_sum($payment_amounts);
-
-        return $total_bill > 0 && $total_payment >= $total_bill;
     }
 
     public function delete($id)
