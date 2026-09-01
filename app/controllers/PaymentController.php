@@ -12,7 +12,7 @@ class PaymentController extends BaseController
         parent::__construct();
         $this->payment = $this->model('payment');
         $this->invoice = $this->model('invoice');
-        $this->invoiceDetail = $this->model('invoicedetail');
+        $this->invoiceDetail = $this->model('invoiceDetail');
         $this->db = $this->invoice->getConnection();
     }
 

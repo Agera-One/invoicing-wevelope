@@ -16,8 +16,8 @@ class BaseController
         $this->userId    = Session::get('user_id');
         $this->companyId = Session::get('company_id');
 
-        $user    = $this->model('User');
-        $company = $this->model('Company');
+        $user    = $this->model('user');
+        $company = $this->model('company');
 
         $this->currentUser        = $user->find(['id' => $this->userId]);
         $this->currentCompanyName = $company->find('name', $this->companyId);

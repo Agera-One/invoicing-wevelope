@@ -13,7 +13,7 @@ class DashboardController extends BaseController
         $this->invoice = $this->model('invoice');
         $this->payment = $this->model('payment');
         $this->item = $this->model('item');
-        $this->invoiceDetail = $this->model('invoicedetail');
+        $this->invoiceDetail = $this->model('invoiceDetail');
     }
 
     public function index()

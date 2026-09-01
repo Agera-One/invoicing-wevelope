@@ -12,7 +12,7 @@ class DetailController extends BaseController
     public function __construct()
     {
         parent::__construct();
-        $this->invoiceDetail = $this->model('invoicedetail');
+        $this->invoiceDetail = $this->model('invoiceDetail');
         $this->item = $this->model('item');
         $this->db = $this->invoiceDetail->getConnection();
     }
