@@ -45,17 +45,6 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">PIC Name</label>
-                                <select name="user_id" class="form-select" aria-label="Default select example" required>
-                                    <option value="" disabled selected>Select PIC name</option>
-                                    <?php foreach ($user_data as $user): ?>
-                                        <option value="<?= $user['id'] ?>" <?= ($user_id == $user['id']) ? 'selected' : ''; ?>>
-                                            <?= $user['name']; ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="mb-3">
                                 <label class="form-label">Customer Name</label>
                                 <select name="customer_id" class="form-select" aria-label="Default select example" required>
                                     <option value="" disabled selected>Select customer name</option>

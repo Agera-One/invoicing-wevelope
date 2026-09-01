@@ -52,14 +52,6 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">PIC Name</label>
-                                <select name="user_id" class="form-select" aria-label="Default select example">
-                                    <?php foreach ($user_data as $user): ?>
-                                        <option value="<?= $user['id']; ?>" <?= ($invoices['user_id'] == $user['id']) ? 'selected' : ''; ?>><?= $user['name']; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="mb-3">
                                 <label class="form-label">Date</label>
                                 <input value="<?= $invoices['date']; ?>" name="date" type="date" class="form-control" required>
                             </div>

@@ -67,6 +67,7 @@ class InvoiceController extends BaseController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_POST['company_id'] = $this->companyId;
+            $_POST['user_id'] = $this->userId;
             unset($_POST['invoice_code']);
 
             $_POST['invoice_code'] = $this->invoice->generateCode($this->db, "invoice", "invoice_code", "INV");
@@ -82,19 +83,12 @@ class InvoiceController extends BaseController
         $customer_id = $_POST['customer_id'] ?? '';
 
         $customer_data = $this->customer->getAll(['company_id' => $this->companyId]);
-        $user_data = $this->user->getAll([
-            'AND' => [
-                'is_active' => 1,
-                'company_id' => $this->companyId
-            ]
-        ]);
 
         $datas = [
             'invoice_code' => $invoice_code,
             'user_id' => $user_id,
             'customer_id' => $customer_id,
             'customer_data' => $customer_data,
-            'user_data' => $user_data
         ];
 
         $this->view('invoice/add', $datas);
@@ -104,12 +98,10 @@ class InvoiceController extends BaseController
     {
         $invoices = $this->invoice->find($id);
         $customer_data = $this->customer->getAll(['company_id' => $this->companyId]);
-        $user_data = $this->user->getAll(['company_id' => $this->companyId]);
 
         $datas = [
             'invoices' => $invoices,
             'customer_data' => $customer_data,
-            'user_data' => $user_data,
         ];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

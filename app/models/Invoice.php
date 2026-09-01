@@ -55,19 +55,18 @@ class Invoice extends BaseModel {
 
     public function create($data) {
         $this->getConnection()->insert('invoice', [
-            'user_id' => $data['user_id'],
-            'customer_id' => $data['customer_id'],
             'invoice_code' => $data['invoice_code'],
             'date' => $data['date'],
             'due_date' => $data['due_date'],
             'company_id' => $data['company_id'],
+            'customer_id' => $data['customer_id'],
+            'user_id' => $data['user_id'],
         ]);
     }
 
     public function update($id, $data) {
         $this->getConnection()->update('invoice', [
             'customer_id' => $data['customer_id'],
-            'user_id' => $data['user_id'],
             'date' => $data['date'],
             'due_date' => $data['due_date']
         ], [
