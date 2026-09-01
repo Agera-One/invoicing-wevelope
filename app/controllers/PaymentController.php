@@ -45,9 +45,7 @@ class PaymentController extends BaseController
 
     public function add($get_invoice_id = '')
     {
-        $payment_code = $this->payment->generateCode($this->db, "payment", "payment_code", "PAY");
-
-        $invoice_id  = $_POST['invoice_id'] ?? $get_invoice_id;
+        $invoice_id = $_POST['invoice_id'] ?? $get_invoice_id;
 
         $join_structure = [
             '[><]customer' => ['customer_id' => 'id'],
@@ -57,7 +55,6 @@ class PaymentController extends BaseController
         ];
 
         $where_condition = ['invoice.company_id' => $this->companyId];
-
         $invoice_data = $this->invoice->getAll($join_structure, $where_condition);
 
         $selected_invoice = null;
@@ -68,6 +65,19 @@ class PaymentController extends BaseController
             }
         }
 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $_POST['invoice_id'] = $invoice_id;
+            unset($_POST['payment_code']);
+
+            $_POST['payment_code'] = $this->payment->generateCode($this->db, "payment", "payment_code", "PAY");
+
+            $this->payment->create($_POST);
+            $this->redirect(BASEURL . 'payment');
+            return;
+        }
+
+        $payment_code = $this->payment->generateCode($this->db, "payment", "payment_code", "PAY");
+
         $datas = [
             'payment_code' => $payment_code,
             'invoice_id' => $invoice_id,
@@ -75,14 +85,7 @@ class PaymentController extends BaseController
             'selected_invoice' => $selected_invoice,
         ];
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $_POST['invoice_id'] = $invoice_id;
-
-            $this->payment->create($_POST);
-            $this->redirect(BASEURL . 'payment');
-        } else {
-            $this->view('payment/add', $datas);
-        }
+        $this->view('payment/add', $datas);
     }
 
     public function edit($id)

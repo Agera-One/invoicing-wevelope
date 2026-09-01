@@ -31,14 +31,18 @@ class ItemController extends BaseController {
         $this->view('item/index', $datas);
     }
 
-    public function add() {
-        $ref_no = $this->item->generateCode($this->db, "item", "ref_no", "REF");
-
+    public function add()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_POST['company_id'] = $this->companyId;
+            unset($_POST['ref_no']);
+
+            $_POST['ref_no'] = $this->item->generateCode($this->db, "item", "ref_no", "REF");
+
             $this->item->create($_POST);
             $this->redirect(BASEURL . 'item');
         } else {
+            $ref_no = $this->item->generateCode($this->db, "item", "ref_no", "REF");
             $this->view('item/add', ['ref_no' => $ref_no]);
         }
     }

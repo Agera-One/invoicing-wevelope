@@ -35,14 +35,15 @@ class CustomerController extends BaseController
 
     public function add()
     {
-        $customer_code = $this->customer->generateCode($this->db, "customer", "customer_code", "CUST");
-
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $customer_code = $this->customer->generateCode($this->db, "customer", "customer_code", "CUST");
             $this->view('customer/add', ['customer_code' => $customer_code]);
             return;
         }
 
         $_POST['company_id'] = $this->companyId;
+        unset($_POST['customer_code']);
+
         $duplicateError = $this->findDuplicateContactField($_POST['email'], $_POST['phone']);
 
         if ($duplicateError) {
@@ -53,6 +54,7 @@ class CustomerController extends BaseController
         }
 
         unset($_SESSION['old']);
+        $_POST['customer_code'] = $this->customer->generateCode($this->db, "customer", "customer_code", "CUST");
         $this->customer->create($_POST);
         $this->redirect(BASEURL . 'customer');
     }

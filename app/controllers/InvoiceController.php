@@ -65,13 +65,23 @@ class InvoiceController extends BaseController
 
     public function add()
     {
-        $invoice_code = $this->invoice->generateCode($this->db, "invoice", "invoice_code", "INV");
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $_POST['company_id'] = $this->companyId;
+            unset($_POST['invoice_code']);
 
+            $_POST['invoice_code'] = $this->invoice->generateCode($this->db, "invoice", "invoice_code", "INV");
+
+            $this->invoice->create($_POST);
+            $invoice_id = $this->db->id();
+            $this->redirect(BASEURL . 'invoice/detail/' . $invoice_id);
+            return;
+        }
+
+        $invoice_code = $this->invoice->generateCode($this->db, "invoice", "invoice_code", "INV");
         $user_id = $_POST['user_id'] ?? '';
         $customer_id = $_POST['customer_id'] ?? '';
 
         $customer_data = $this->customer->getAll(['company_id' => $this->companyId]);
-
         $user_data = $this->user->getAll([
             'AND' => [
                 'is_active' => 1,
@@ -87,14 +97,7 @@ class InvoiceController extends BaseController
             'user_data' => $user_data
         ];
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $_POST['company_id'] = $this->companyId;
-            $this->invoice->create($_POST);
-            $invoice_id = $this->db->id();
-            $this->redirect(BASEURL . 'invoice/detail/' . $invoice_id);
-        } else {
-            $this->view('invoice/add', $datas);
-        }
+        $this->view('invoice/add', $datas);
     }
 
     public function edit($id)
