@@ -22,8 +22,8 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'invoice' ?>">Invoices Billing</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none" href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none" href="<?= BASEURL . 'invoice' ?>">Invoices Billing</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Add New Invoice</li>
                         </ol>
                     </div>
@@ -34,7 +34,7 @@
                         <div class="card-title">Add New Invoice</div>
                     </div>
                     <form id="invoiceForm" action="" method="POST">
-                        <div class="card-body">
+                        <div class="card-body row row-gap-3">
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Invoice Code</label>
                                 <div class="d-flex align-items-center gap-2">
@@ -44,7 +44,7 @@
                                     <input type="hidden" name="invoice_code" value="<?= $invoice_code ?>">
                                 </div>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 col-sm-6">
                                 <label class="form-label">PIC Name</label>
                                 <select name="pic_id" class="form-select" aria-label="Default select example" required>
                                     <option value="" disabled selected>Select PIC name</option>
@@ -55,7 +55,7 @@
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 col-sm-6">
                                 <label class="form-label">Customer Name</label>
                                 <select name="customer_id" class="form-select" aria-label="Default select example" required>
                                     <option value="" disabled selected>Select customer name</option>
@@ -66,19 +66,19 @@
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label">Date</label>
+                            <div class="mb-3 col-sm-6">
+                            <label class="form-label">Date</label>
                                 <input id="invoice_date" value="<?= $_POST['date'] ?? date('Y-m-d') ?>" name="date" type="date" class="form-control" required>
                                 <div id="invoiceDateError" class="invalid-feedback"></div>
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label">Due Date</label>
+                            <div class="mb-3 col-sm-6">
+                            <label class="form-label">Due Date</label>
                                 <input id="due_date" value="<?= $_POST['due_date'] ?? date('Y-m-d', strtotime('+7 days')) ?>" name="due_date" type="date" class="form-control" required>
                                 <div id="dueDateError" class="invalid-feedback"></div>
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="submit" class="btn btn-primary me-2">Save</button>
                             <a href="<?= BASEURL . 'invoice' ?>" class="btn btn-danger">Cancel</a>
                         </div>
                     </form>

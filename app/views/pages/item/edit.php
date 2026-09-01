@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Edit Item</title>
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
 </head>
@@ -18,18 +18,18 @@
             <div class="container-fluid px-4">
                 <div class="row">
                     <div class="col-sm-6 mb-4">
-                        <h3 class="fw-bold h4 m-0 text-white">Edit Item</h3>
+                        <h3 class="fw-bold h4 m-0">Edit Item</h3>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'item' ?>">Items Management</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none" href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none" href="<?= BASEURL . 'item' ?>">Items Management</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Edit Item</li>
                         </ol>
                     </div>
                 </div>
 
-                <div class="card card-primary card-outline mb-4">
+                <div class="card card-warning card-outline mb-4">
                     <div class="card-header">
                         <div class="card-title">Edit Item</div>
                     </div>
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-success">Update</button>
+                            <button type="submit" class="btn btn-warning me-2">Update</button>
                             <a href="<?= BASEURL . 'item' ?>" class="btn btn-danger">Cancel</a>
                         </div>
                     </form>

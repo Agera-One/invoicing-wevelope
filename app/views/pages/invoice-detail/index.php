@@ -28,8 +28,8 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'invoice' ?>">Invoices Billing</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none" href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none" href="<?= BASEURL . 'invoice' ?>">Invoices Billing</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Invoice Details</li>
                         </ol>
                     </div>
@@ -56,7 +56,7 @@
                             </div>
                         </div>
 
-                        <div class="card">
+                        <div class="card shadow-sm border-0">
                             <div class="card-body p-4 p-md-5">
                                 <div class="row mb-4">
                                     <div class="col-sm-6">
@@ -64,9 +64,9 @@
                                             <img src="<?= BASEURL . 'public/uploads/company/logo/' ?><?= $invoice['company_logo'] ?>" alt="<?= $invoice['company_name']; ?>"
                                                 style="max-height: 100px; width: auto;"
                                                 class="mb-4">
-                                            <h2 class="h4 text-primary fw-semibold"><?= $invoice['company_name'] ?></h2>
+                                            <h2 class="h4 text-white fw-semibold"><?= $invoice['company_name'] ?></h2>
                                         <?php else : ?>
-                                            <h2 class="h4 text-primary fw-semibold"><?= $invoice['company_name'] ?></h2>
+                                            <h2 class="h4 text-white fw-semibold"><?= $invoice['company_name'] ?></h2>
                                         <?php endif; ?>
                                         <p class="text-secondary mb-0 small">
                                             <?= $invoice['company_province'] ?><br>
@@ -123,12 +123,12 @@
                                                         <td class="text-end">Rp<?= number_format($invoice_detail['amount'], 0, ',', '.') ?></td>
                                                         <td class="text-end d-print-none">
                                                             <?php if (!$is_paid): ?>
-                                                                <a class="btn btn-sm btn-success" href="<?= BASEURL . 'detail/edit' ?>/<?= $invoice_detail['detail_id'] ?>/<?= $invoice_detail['invoice_id'] ?>">
-                                                                    Edit
+                                                                <a class="btn btn-sm btn-outline-warning" href="<?= BASEURL . 'detail/edit' ?>/<?= $invoice_detail['detail_id'] ?>/<?= $invoice_detail['invoice_id'] ?>">
+                                                                    <i class="bi bi-pencil-square"></i>
                                                                 </a>
-                                                                <a class="btn btn-sm btn-danger" href="<?= BASEURL . 'detail/delete' ?>/<?= $invoice_detail['detail_id'] ?>/<?= $invoice_detail['invoice_id'] ?>"
+                                                                <a class="btn btn-sm btn-outline-danger" href="<?= BASEURL . 'detail/delete' ?>/<?= $invoice_detail['detail_id'] ?>/<?= $invoice_detail['invoice_id'] ?>"
                                                                     onclick="return confirm('Are you sure you want to delete this detail?');">
-                                                                    Delete
+                                                                    <i class="bi bi-trash"></i>
                                                                 </a>
                                                             <?php else: ?>
                                                                 <span class="text-muted small">Locked</span>

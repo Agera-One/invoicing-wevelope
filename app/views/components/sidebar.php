@@ -17,7 +17,7 @@
                 data-accordion="false">
 
                 <li class="nav-item">
-                    <a href="<?= BASEURL . 'dashboard' ?>" class="nav-link">
+                    <a href="<?= BASEURL . 'dashboard' ?>" class="nav-link" data-page="dashboard">
                         <i class="nav-icon bi bi-grid-1x2"></i>
                         <p>Dashboard</p>
                     </a>
@@ -48,12 +48,12 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="<?= BASEURL . 'pic' ?>" class="nav-link" data-page="pic">
                                 <i class="bi bi-person-check nav-icon"></i>
                                 <p>Company PIC</p>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
 

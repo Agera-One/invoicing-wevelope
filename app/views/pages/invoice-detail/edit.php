@@ -22,15 +22,15 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'invoice' ?>">Invoices Billing</a></li>
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'invoice/detail' ?>/<?= $invoice_id ?>">Invoice Details</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none" href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none" href="<?= BASEURL . 'invoice' ?>">Invoices Billing</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none" href="<?= BASEURL . 'invoice/detail' ?>/<?= $invoice_id ?>">Invoice Details</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Edit Invoice Item</li>
                         </ol>
                     </div>
                 </div>
 
-                <div class="card card-primary card-outline mb-4">
+                <div class="card card-warning card-outline mb-4">
                     <div class="card-header">
                         <div class="card-title">Edit Detail</div>
                     </div>
@@ -64,7 +64,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="submit" class="btn btn-warning me-2">Save</button>
                             <a href="<?= BASEURL . 'invoice/detail' ?>/<?= $invoice_id ?>" class="btn btn-danger">Cancel</a>
                         </div>
                     </form>

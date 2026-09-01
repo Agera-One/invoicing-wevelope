@@ -26,6 +26,11 @@ class DashboardController extends BaseController
         $top_item = $this->item->getTopItem();
         $sum_unpaid_overdue = $this->invoice->sumUnpaidOverdue($today);
 
+        $period = $this->payment->validatorPeriod('daily');
+        $revenue_trend = array_reverse(
+            $this->payment->sumRevenuePeriod($period['periodKeyExpr'], $period['periodLabelExpr'], $this->companyId, $period['limit'])
+        );
+
         $datas = [
             'number' => $number,
             'today' => $today,
@@ -36,6 +41,7 @@ class DashboardController extends BaseController
             'total_unpaid'  => $sum_unpaid_overdue['total_unpaid']  ?? 0,
             'total_overdue' => $sum_unpaid_overdue['total_overdue'] ?? 0,
             'invoice_detail' => $this->invoiceDetail,
+            'revenue_trend' => $revenue_trend,
         ];
 
         $this->view('dashboard/index', $datas);

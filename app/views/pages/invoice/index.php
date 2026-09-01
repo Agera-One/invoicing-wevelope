@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -7,9 +7,8 @@
     <title>Invoices Billing</title>
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css"
-        crossorigin="anonymous" />
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/invoice.css' ?>">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css" crossorigin="anonymous" />
 </head>
 
 <body class="layout-fixed fixed-header sidebar-expand-lg bg-body-tertiary">
@@ -25,7 +24,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>" class="text-decoration-none">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Invoices Billing</li>
                         </ol>
                     </div>
@@ -34,7 +33,7 @@
                 <div class="flex-wrap align-items-center justify-content-between gap-3 mb-4">
                     <div class="d-flex flex-wrap gap-2">
                         <a href="<?= BASEURL . 'invoice/add' ?>" class="btn btn-primary shadow-sm">
-                            <i class="bi bi-plus-circle me-1"></i> Add New Invoice
+                            <i class="bi bi-plus-lg me-1"></i> Add Invoice
                         </a>
                     </div>
 
@@ -66,7 +65,7 @@
                                     value="<?= $date_to ?? ''; ?>">
                             </div>
                             <div class="col-md-2 d-flex align-items-end gap-2">
-                                <button id="btn-search" type="submit" class="btn btn-md btn-primary w-100" name="search">
+                                <button id="btn-search" type="submit" class="btn btn-md btn-secondary w-100" name="search">
                                     <i class="bi bi-search me-1"></i>Search
                                 </button>
                                 <a href="<?= BASEURL . 'invoice' ?>" class="btn btn-outline-secondary w-100">
@@ -81,17 +80,17 @@
                     <div class="card-body p-0">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover align-middle mb-0">
-                                <thead class="table-light text-uppercase fs-7 tracking-wider">
+                                <thead>
                                     <tr>
-                                        <th scope="col" class="ps-4" width="60">#</th>
-                                        <th scope="col">Invoice Code</th>
-                                        <th scope="col">PIC Name</th>
-                                        <th scope="col">Customer Name</th>
-                                        <th scope="col">Invoice Date</th>
-                                        <th scope="col">Due Date</th>
-                                        <th scope="col">Total Bill</th>
-                                        <th scope="col" class="text-center">Status</th>
-                                        <th scope="col" class="pe-4" width="200">Action</th>
+                                        <th class="ps-4">#</th>
+                                        <th class="ps-4">Invoice Code</th>
+                                        <th>PIC Name</th>
+                                        <th>Customer Name</th>
+                                        <th>Invoice Date</th>
+                                        <th>Due Date</th>
+                                        <th>Total Bill</th>
+                                        <th class="text-center">Status</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -100,7 +99,7 @@
                                         $remaining_unpaid = $invoice['total_bill'] - $invoice['total_payment'];
                                         $is_paid = ($invoice_item > 0) && ($invoice['total_bill'] > 0) && ($invoice['total_payment'] == $invoice['total_bill']); ?>
                                         <tr>
-                                            <th scope="row" class="ps-4 text-muted fw-normal"><?= ++$pagination['offset'] ?></th>
+                                            <th class="ps-4 text-muted fw-normal"><?= ++$pagination['offset'] ?></th>
                                             <td class="fw-medium"><?= $invoice['invoice_code'] ?></td>
                                             <td><?= $invoice['pic_name'] ?></td>
                                             <td><?= $invoice['customer_name'] ?></td>
@@ -116,14 +115,26 @@
                                             <?php elseif ($invoice['total_payment'] == $invoice['total_bill']): ?>
                                                 <td class="text-center"><span class="badge text-bg-success">Paid</span></td>
                                             <?php endif; ?>
-                                            <td class="pe-4">
-                                                <div class="d-flex gap-1">
-                                                    <a class="btn btn-sm btn-info text-black" href="<?= BASEURL . 'invoice/detail' ?>/<?= $invoice['id'] ?>">Detail</a>
-                                                    <?php if (!$is_paid): ?>
-                                                        <a class="btn btn-sm btn-success" href="<?= BASEURL . 'invoice/edit' ?>/<?= $invoice['id'] ?>">Edit</a>
-                                                        <a class="btn btn-sm btn-danger" href="<?= BASEURL . 'invoice/delete' ?>/<?= $invoice['id'] ?>"
-                                                            onclick="return confirm('Are you sure you want to delete this invoice?');">Delete</a>
-                                                    <?php endif; ?>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                    <button class="btn btn-sm btn-icon" type="button"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="bi bi-three-dots"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                        <li>
+                                                            <a class="dropdown-item text-info" href="<?= BASEURL . 'invoice/detail' ?>/<?= $invoice['id'] ?>">Detail</a>
+                                                        </li>
+                                                        
+                                                        <?php if (!$is_paid): ?>
+                                                        <li>
+                                                            <a class="dropdown-item text-warning" href="<?= BASEURL . 'invoice/edit' ?>/<?= $invoice['id'] ?>">Edit</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item text-danger" href="<?= BASEURL . 'invoice/delete' ?>/<?= $invoice['id'] ?>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                                                        </li>
+                                                        <?php endif; ?>
+                                                    </ul>
                                                 </div>
                                             </td>
                                         </tr>

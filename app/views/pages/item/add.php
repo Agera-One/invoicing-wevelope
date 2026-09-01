@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Add Item</title>
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
 </head>
@@ -18,12 +18,12 @@
             <div class="container-fluid px-4">
                 <div class="row">
                     <div class="col-sm-6 mb-4">
-                        <h3 class="fw-bold h4 m-0 text-white">Add Item</h3>
+                        <h3 class="fw-bold h4 m-0">Add Item</h3>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'item' ?>">Items Management</a></li>
+                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>" class="text-decoration-none">Dashboard</a></li>
+                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'item' ?>" class="text-decoration-none">Items Management</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Add Item</li>
                         </ol>
                     </div>
@@ -56,7 +56,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="submit" class="btn btn-primary me-2">Save</button>
                             <a href="<?= BASEURL . 'item' ?>" class="btn btn-danger">Cancel</a>
                         </div>
                     </form>

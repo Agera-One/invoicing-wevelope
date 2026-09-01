@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/report.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/best-seller.css' ?>">
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css"
         crossorigin="anonymous" />
@@ -26,7 +27,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>" class="text-decoration-none">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Best Selling Products</li>
                         </ol>
                     </div>
@@ -35,19 +36,19 @@
                 <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
                     <div class="btn-group period-filter" role="group" aria-label="Period filter">
                         <a href="?period=all"
-                            class="btn btn-outline-light <?= $period === 'all' ? 'active btn-light text-dark' : '' ?>">
+                            class="btn btn-outline-primary <?= $period === 'all' ? 'active btn-primary text-dark' : '' ?>">
                             All Time
                         </a>
                         <a href="?period=yearly"
-                            class="btn btn-outline-light <?= $period === 'yearly' ? 'active btn-light text-dark' : '' ?>">
+                            class="btn btn-outline-primary <?= $period === 'yearly' ? 'active btn-primary text-dark' : '' ?>">
                             Yearly
                         </a>
                         <a href="?period=monthly"
-                            class="btn btn-outline-light <?= $period === 'monthly' ? 'active btn-light text-dark' : '' ?>">
+                            class="btn btn-outline-primary <?= $period === 'monthly' ? 'active btn-primary text-dark' : '' ?>">
                             Monthly
                         </a>
                         <a href="?period=weekly"
-                            class="btn btn-outline-light <?= $period === 'weekly' ? 'active btn-light text-dark' : '' ?>">
+                            class="btn btn-outline-primary <?= $period === 'weekly' ? 'active btn-primary text-dark' : '' ?>">
                             Weekly
                         </a>
                     </div>
@@ -60,13 +61,13 @@
                     <div class="card-body p-0">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover align-middle mb-0">
-                                <thead class="table-light text-uppercase fs-7 tracking-wider">
+                                <thead>
                                     <tr>
-                                        <th scope="col" class="ps-4" width="60">#</th>
-                                        <th scope="col">Item Name</th>
-                                        <th scope="col">Unit Price</th>
-                                        <th scope="col">Units Sold</th>
-                                        <th scope="col" class="pe-4">Total Sales</th>
+                                        <th class="ps-4" width="60">#</th>
+                                        <th class="ps-4">Item Name</th>
+                                        <th class="text-end">Unit Price</th>
+                                        <th class="text-center">Units Sold</th>
+                                        <th class="text-end">Total Sales</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -79,11 +80,11 @@
                                     <?php else: ?>
                                         <?php foreach ($top_products as $top_product): ?>
                                             <tr>
-                                                <th scope="row" class="ps-4 text-muted fw-normal"><?= $number++ ?></th>
+                                                <th class="ps-4 text-muted fw-normal"><?= $number++ ?></th>
                                                 <td class="fw-medium"><?= $top_product['item_name'] ?></td>
-                                                <td>Rp<?= number_format($top_product['price'], 0, ',', '.') ?></td>
-                                                <td><?= $top_product['total_unit_sold'] ?></td>
-                                                <td class="pe-4 fw-semibold">Rp<?= number_format($top_product['total_sales'], 0, ',', '.') ?></td>
+                                                <td class="text-end">Rp<?= number_format($top_product['price'], 0, ',', '.') ?></td>
+                                                <td class="text-center"><?= $top_product['total_unit_sold'] ?></td>
+                                                <td class="text-end fw-semibold">Rp<?= number_format($top_product['total_sales'], 0, ',', '.') ?></td>
                                             </tr>
                                         <?php endforeach; ?>
                                     <?php endif; ?>

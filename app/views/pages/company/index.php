@@ -24,7 +24,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>" class="text-decoration-none">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Company Profile Settings</li>
                         </ol>
                     </div>
@@ -33,8 +33,8 @@
                 <div class="content-wrapper">
                     <div class="app-content">
                         <div class="row">
-                            <div class="col-md-7">
-                                <div class="card custom-dark-card">
+                            <div class="col-7">
+                                <div class="card custom-dark-card shadow-sm border-0">
                                     <div class="card-header">
                                         <span class="card-title mb-0">Company Information</span>
                                     </div>
@@ -99,7 +99,8 @@
 
                                         <div class="text-end">
                                             <a href="<?= BASEURL . 'company/info' ?>" class="btn btn-custom-warning btn-sm px-3">
-                                                <i class="bi bi-pencil-square me-1"></i> Change
+                                                <!-- <i class="bi bi-pencil-square me-1"></i> -->
+                                                 Change
                                             </a>
                                         </div>
                                     </div>
@@ -107,7 +108,7 @@
                             </div>
 
                             <div class="col-md-5">
-                                <div class="card custom-dark-card">
+                                <div class="card custom-dark-card shadow-sm border-0">
                                     <div class="card-header">
                                         <span class="card-title mb-0">Company Contact Information</span>
                                     </div>
@@ -126,13 +127,14 @@
                                         </div>
                                         <div class="text-end">
                                             <a href="<?= BASEURL . 'company/contact' ?>" class="btn btn-custom-warning btn-sm px-3">
-                                                <i class="bi bi-pencil-square me-1"></i> Change
+                                                <!-- <i class="bi bi-pencil-square me-1"></i> -->
+                                                 Change
                                             </a>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="card custom-dark-card mt-3">
+                                <div class="card custom-dark-card mt-3 shadow-sm border-0">
                                     <div class="card-header">
                                         <span class="card-title mb-0">Document Branding</span>
                                     </div>

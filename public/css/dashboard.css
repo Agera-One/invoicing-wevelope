@@ -1,5 +1,16 @@
-.dash-section {
-    margin-bottom: 2rem;
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+    background-color: #212529;
+}
+
+.app-wrapper {
+    height: 100vh;
+}
+
+.app-main {
+    overflow-y: auto;
 }
 
 .dash-section-title {
@@ -9,17 +20,6 @@
     text-transform: uppercase;
     color: var(--bs-secondary-color);
     margin-bottom: .9rem;
-}
-
-.product-row {
-    display: flex;
-    align-items: center;
-    gap: .85rem;
-    padding: .65rem 0;
-}
-
-.product-row+.product-row {
-    border-top: 1px solid var(--bs-border-color);
 }
 
 .product-rank {
@@ -35,93 +35,40 @@
     flex-shrink: 0;
 }
 
-.finance-card {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: .6rem;
-    padding: 1.15rem 1.3rem;
-    background: var(--bs-body-bg);
-    border: 1px solid var(--bs-border-color);
-    border-left: 4px solid var(--accent);
-    border-radius: .6rem;
+.card {
+    background-color: #212529;
 }
 
-.finance-card-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: .75rem;
+.channel-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
 }
 
-.finance-card-label {
-    font-size: .9rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: .04em;
+.satisfaction-donut {
+    position: relative;
+    width: 220px;
+    height: 220px;
 }
 
-.finance-card-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: .5rem;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.05rem;
-    color: var(--accent);
-    background: rgba(var(--accent-rgb), .12);
+.table > thead {
+    background: #24272b;
 }
 
-.finance-card-value {
-    font-size: 1.6rem;
+.table > thead th {
     font-weight: 700;
-    line-height: 1.30;
-    font-variant-numeric: tabular-nums;
-    color: var(--bs-emphasis-color);
+    color: #fff;
+    border-bottom: 1px solid var(--bs-border-color);
+    padding: .9rem 1rem;
 }
 
-.finance-card-caption {
-    font-size: .9rem;
+.table > tbody td {
+    padding: .9rem 1rem;
+    border-bottom: 1px solid var(--bs-border-color);
+    vertical-align: middle;
 }
 
-.finance-card-footer {
-    margin-top: auto;
-    padding-top: .6rem;
-    border-top: 1px solid var(--bs-border-color);
-}
-
-.finance-card-footer a {
-    font-size: .8rem;
-    font-weight: 600;
-    text-decoration: none;
-    color: var(--accent);
-    display: inline-flex;
-    align-items: center;
-    gap: .25rem;
-}
-
-.finance-card-footer a:hover {
-    text-decoration: underline;
-}
-
-.finance-card--primary {
-    --accent: var(--bs-primary);
-    --accent-rgb: var(--bs-primary-rgb);
-}
-
-.finance-card--success {
-    --accent: var(--bs-success);
-    --accent-rgb: var(--bs-success-rgb);
-}
-
-.finance-card--warning {
-    --accent: var(--bs-warning);
-    --accent-rgb: var(--bs-warning-rgb);
-}
-
-.finance-card--danger {
-    --accent: var(--bs-danger);
-    --accent-rgb: var(--bs-danger-rgb);
+.table > tbody tr:last-child td {
+    border-bottom: none;
 }

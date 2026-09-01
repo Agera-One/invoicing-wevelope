@@ -1,5 +1,26 @@
+<?php
+$mini_stats = [
+    ['label' => 'Invoice Value', 'value' => 'Rp' . number_format($invoice_value, 0, ',', '.'), 'icon' => 'bi-receipt-cutoff text-primary'],
+    ['label' => 'Total Revenue', 'value' => 'Rp' . number_format($total_revenue, 0, ',', '.'), 'icon' => 'bi-cash-coin text-success'],
+    ['label' => 'Total Unpaid', 'value' => 'Rp' . number_format($total_unpaid, 0, ',', '.'), 'icon' => 'bi-hourglass-split text-warning'],
+    ['label' => 'Total Overdue', 'value' => 'Rp' . number_format($total_overdue, 0, ',', '.'), 'icon' => 'bi-exclamation-triangle text-danger'],
+];
+
+$trend_labels = array_column($revenue_trend, 'period');
+$trend_values = array_map('floatval', array_column($revenue_trend, 'revenue'));
+$trend_latest = $trend_values ? end($trend_values) : 0;
+$trend_prev = count($trend_values) > 1 ? $trend_values[count($trend_values) - 2] : 0;
+$trend_change = $trend_prev > 0 ? round((($trend_latest - $trend_prev) / $trend_prev) * 100) : 0;
+
+$oo_outstanding = $total_unpaid;
+$oo_overdue = $total_overdue;
+$oo_breakdown = [
+    ['label' => 'Outstanding', 'value' => $oo_outstanding, 'color' => '#ffc107'],
+    ['label' => 'Overdue', 'value' => $oo_overdue, 'color' => '#dc3237'],
+];
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -8,9 +29,7 @@
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/dashboard.css' ?>">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css"
-        crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 </head>
 
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
@@ -20,131 +39,116 @@
 
         <main class="app-main py-4">
             <div class="container-fluid px-4">
-                <div class="row">
-                    <div class="col-sm-6 mb-4">
-                        <h3 class="fw-bold h4 m-0 text-white">Dashboard</h3>
+                <div class="row mb-4">
+                    <div class="col-sm-6">
+                        <h3 class="fw-bold h4 m-0">Dashboard</h3>
                     </div>
                     <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-end">
+                        <ol class="breadcrumb float-sm-end mb-0">
                             <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                         </ol>
                     </div>
                 </div>
 
-                <div class="row mb-4 g-3">
-                    <div class="col-lg-3 col-6">
-                        <div class="finance-card finance-card--primary">
-                            <div class="finance-card-top">
-                                <div class="finance-card-label">Invoice Value</div>
-                                <div class="finance-card-icon"><i class="bi bi-receipt-cutoff"></i></div>
-                            </div>
-                            <div class="finance-card-value">Rp<?= number_format($invoice_value, 0, ',', '.') ?></div>
-                            <div class="finance-card-footer">
-                                <a href="<?= BASEURL . 'invoice' ?>">More info <i class="bi bi-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6">
-                        <div class="finance-card finance-card--success">
-                            <div class="finance-card-top">
-                                <div class="finance-card-label">Total Revenue</div>
-                                <div class="finance-card-icon"><i class="bi bi-cash-coin"></i></div>
-                            </div>
-                            <div class="finance-card-value">Rp<?= number_format($total_revenue, 0, ',', '.') ?></div>
-                            <div class="finance-card-footer">
-                                <a href="<?= BASEURL . 'revenue' ?>">More info <i class="bi bi-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6">
-                        <div class="finance-card finance-card--warning">
-                            <div class="finance-card-top">
-                                <div class="finance-card-label">Total Unpaid</div>
-                                <div class="finance-card-icon"><i class="bi bi-hourglass-split"></i></div>
-                            </div>
-                            <div class="finance-card-value">Rp<?= number_format($total_unpaid, 0, ',', '.') ?></div>
-                            <div class="finance-card-footer">
-                                <a href="<?= BASEURL . 'outstanding' ?>">More info <i class="bi bi-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6">
-                        <div class="finance-card finance-card--danger">
-                            <div class="finance-card-top">
-                                <div class="finance-card-label">Total Overdue</div>
-                                <div class="finance-card-icon"><i class="bi bi-exclamation-triangle"></i></div>
-                            </div>
-                            <div class="finance-card-value">Rp<?= number_format($total_overdue, 0, ',', '.') ?></div>
-                            <div class="finance-card-footer">
-                                <a href="<?= BASEURL . 'overdue' ?>">More info <i class="bi bi-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="dash-section">
-                    <div class="row g-3">
-                        <div class="col-12 col-lg-5">
-                            <div class="dash-section-title">Top Selling Products</div>
-                            <div class="card h-100">
+                <div class="row g-3 mb-3">
+                    <?php foreach ($mini_stats as $stat): ?>
+                        <div class="col-6 col-lg-3">
+                            <div class="card h-100 shadow-sm border-0">
                                 <div class="card-body">
-                                    <?php foreach ($top_item as $top_product): ?>
-                                        <div class="product-row">
-                                            <span class="product-rank"><?= $number++ ?></span>
-                                            <div class="flex-grow-1">
-                                                <div class="small fw-semibold"><?= $top_product['item_name'] ?></div>
-                                                <small class="text-muted"><?= $top_product['total_unit_sold'] ?> sold</small>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <small class="text-secondary text-uppercase"><?= $stat['label'] ?></small>
+                                        <i class="bi <?= $stat['icon'] ?>"></i>
+                                    </div>
+                                    <div class="fs-5 fw-bold"><?= $stat['value'] ?></div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
+                <div class="row g-3 mb-3">
+                    <div class="col-12 col-lg-8">
+                        <div class="card h-100 shadow-sm border-0">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <div>
+                                        <div class="dash-section-title mb-2">Revenue Trend</div>
+                                        <?php if ($trend_values): ?>
+                                            <div class="d-flex align-items-baseline gap-2">
+                                                <span
+                                                    class="fs-3 fw-bold">Rp<?= number_format($trend_latest, 0, ',', '.') ?></span>
+                                                <span
+                                                    class="badge rounded-pill <?= $trend_change >= 0 ? 'text-bg-success' : 'text-bg-danger' ?> bg-opacity-25 <?= $trend_change >= 0 ? 'text-success-emphasis' : 'text-danger-emphasis' ?>">
+                                                    <i
+                                                        class="bi <?= $trend_change >= 0 ? 'bi-arrow-up-short' : 'bi-arrow-down-short' ?>"></i><?= abs($trend_change) ?>%
+                                                </span>
                                             </div>
-                                            <div class="text-end small fw-semibold">Rp <?= number_format($top_product['total_revenue'], 0, ',', '.') ?></div>
-                                        </div>
+                                            <small class="text-secondary">vs previous day</small>
+                                        <?php else: ?>
+                                            <div class="text-secondary small">No payment data yet.</div>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                                <canvas id="revenueTrendChart" height="90"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0">
+                            <div class="card-body text-center">
+                                <div class="dash-section-title mb-3 text-start">Outstanding vs Overdue</div>
+                                <div class="satisfaction-donut mx-auto mb-3 mt-5">
+                                    <canvas id="ooChart"></canvas>
+                                </div>
+                                <div class="d-flex justify-content-center flex-wrap gap-3 align-items-end">
+                                    <?php foreach ($oo_breakdown as $s): ?>
+                                        <small class="text-secondary">
+                                            <span class="channel-dot" style="background:<?= $s['color'] ?>"></span>
+                                            <?= $s['label'] ?> Rp<?= number_format($s['value'], 0, ',', '.') ?>
+                                        </small>
                                     <?php endforeach; ?>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="col-12 col-lg-7">
-                            <div class="dash-section-title">Recent Invoices</div>
-                            <div class="card h-100">
-                                <div class="card-body p-0 d-flex flex-column">
-                                    <div class="table-responsive flex-grow-1">
-                                        <table class="table table-hover align-middle mb-0" role="table">
-                                            <thead class="table table-hover align-middle mb-0" role="table">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <div class="card h-100 shadow-sm border-0">
+                            <div class="card-body p-0 d-flex flex-column">
+                                <div class="dash-section-title p-3 pb-0">Best Selling Product (All Time)</div>
+                                <div class="table-responsive flex-grow-1">
+                                    <table class="table table-hover align-middle mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>Product</th>
+                                                <th>Sold</th>
+                                                <th class="text-end">Revenue</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($top_item as $top_product): ?>
                                                 <tr>
-                                                    <th scope="col">Invoice Code</th>
-                                                    <th scope="col">Customer Name</th>
-                                                    <th scope="col">Date</th>
-                                                    <th scope="col">Due Date</th>
-                                                    <th scope="col">Total Bill</th>
-                                                    <th scope="col" class="text-center">Status</th>
+                                                    <td>
+                                                        <div class="d-flex align-items-center gap-2">
+                                                            <span class="product-rank"><?= $number++ ?></span>
+                                                            <div>
+                                                                <div class="small fw-semibold">
+                                                                    <?= $top_product['item_name'] ?>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="fw-semibold"><?= $top_product['total_unit_sold'] ?> sold</td>
+                                                    <td class="fw-semibold text-end">
+                                                        Rp<?= number_format($top_product['total_revenue'], 0, ',', '.') ?>
+                                                    </td>
                                                 </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php foreach ($invoices as $invoice):
-                                                    $invoice_item = $invoice_detail->invoiceItemCount($invoice['id']);
-                                                    $remaining_unpaid = $invoice['total_bill'] - $invoice['total_payment']; ?>
-                                                    <tr>
-                                                        <td class="fw-medium"><?= $invoice['invoice_code'] ?></td>
-                                                        <td><?= $invoice['customer_name'] ?></td>
-                                                        <td><?= $invoice['date'] ?></td>
-                                                        <td><?= $invoice['due_date'] ?></td>
-                                                        <td>Rp<?= number_format($invoice['total_bill'], 0, ',', '.') ?></td>
-                                                        <?php if ($remaining_unpaid > 0 && $invoice['due_date'] < $today): ?>
-                                                            <td class="text-center"><span class="badge text-bg-danger">Overdue</span></td>
-                                                        <?php elseif ($invoice_item == 0): ?>
-                                                            <td class="text-center"><span class="badge text-bg-secondary">No Item</span></td>
-                                                        <?php elseif ($invoice['total_payment'] < $invoice['total_bill']): ?>
-                                                            <td class="text-center"><span class="badge text-bg-warning">Unpaid</span></td>
-                                                        <?php elseif ($invoice['total_payment'] == $invoice['total_bill']): ?>
-                                                            <td class="text-center"><span class="badge text-bg-success">Paid</span></td>
-                                                        <?php endif; ?>
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="text-center border-top py-2">
-                                        <a href="<?= BASEURL . 'invoice' ?>" class="btn btn-sm btn-link text-decoration-none">View All Transactions
-                                            <i class="bi bi-arrow-right ms-1"></i></a>
-                                    </div>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -157,6 +161,53 @@
     <script src="<?= BASEURL . 'public/js/lte-theme.js' ?>"></script>
     <script src="<?= BASEURL . 'public/js/adminlte.js' ?>"></script>
     <script src="<?= BASEURL . 'public/js/bootstrap.bundle.js' ?>"></script>
+    <script>
+        const trendLabels = <?= json_encode($trend_labels) ?>;
+        const trendValues = <?= json_encode($trend_values) ?>;
+        const trendCtx = document.getElementById('revenueTrendChart');
+        const trendGradient = trendCtx.getContext('2d').createLinearGradient(0, 0, 0, 220);
+        trendGradient.addColorStop(0, 'rgba(45, 212, 64, 0.48)');
+        trendGradient.addColorStop(1, 'rgba(45, 212, 120, 0.16)');
+        new Chart(trendCtx, {
+            type: 'line',
+            data: {
+                labels: trendLabels,
+                datasets: [{
+                    data: trendValues,
+                    borderColor: '#5abd85',
+                    backgroundColor: trendGradient,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 0,
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                plugins: {legend: {display: false}},
+                scales: {
+                    x: {grid: {display: false}},
+                    y: {grid: {color: 'rgba(255,255,255,0.06)'}, ticks: {callback: v => 'Rp' + v / 10000 + 'k'}}
+                }
+            }
+        });
+
+        const ooData = <?= json_encode(array_column($oo_breakdown, 'value')) ?>;
+        const ooColors = <?= json_encode(array_column($oo_breakdown, 'color')) ?>;
+        new Chart(document.getElementById('ooChart'), {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: ooData,
+                    backgroundColor: ooColors,
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                cutout: '65%',
+                plugins: {legend: {display: false}}
+            }
+        });
+    </script>
 </body>
 
 </html>

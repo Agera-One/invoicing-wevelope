@@ -32,12 +32,12 @@
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="form-label" for="wz-email">Email<span class="required-indicator sr-only"> (required)</span></label>
-                                <input type="email" class="form-control" id="wz-email" name="email" placeholder="name@example.com" required="">
+                                <input type="email" class="form-control" id="wz-email" name="email" placeholder="name@example.com">
                                 <div class="invalid-feedback">Please enter a valid email.</div>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label" for="wz-username"> Username <span class="required-indicator sr-only"> (required)</span></label>
-                                <input type="text" class="form-control" id="wz-username" name="username" placeholder="e.g. johndoe" required="" minlength="3">
+                                <input type="text" class="form-control" id="wz-username" name="username" placeholder="e.g. johndoe" minlength="3">
                                 <div class="invalid-feedback">
                                     Username must be at least 3 characters.
                                 </div>

@@ -22,8 +22,8 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'payment' ?>">Payment Transactions</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none" href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none" href="<?= BASEURL . 'payment' ?>">Payment Transactions</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Add Payment</li>
                         </ol>
                     </div>
@@ -81,7 +81,7 @@
                                     </span>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center py-1">
-                                    <span class="text-muted">Amount Paid</span>
+                                    <span class="text-muted">Already Paid</span>
                                     <span id="summary-paid">
                                         Rp<?= number_format($selected_invoice['total_amount_paid'] ?? 0, 0, ',', '.') ?>
                                     </span>
@@ -117,7 +117,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="submit" class="btn btn-primary me-2">Save</button>
                             <a href="<?= BASEURL . 'payment' ?>" class="btn btn-danger">Cancel</a>
                         </div>
                     </form>

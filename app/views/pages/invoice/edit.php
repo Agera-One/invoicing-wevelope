@@ -22,19 +22,19 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'invoice' ?>">Invoices Billing</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none" href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none" href="<?= BASEURL . 'invoice' ?>">Invoices Billing</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Edit Invoice</li>
                         </ol>
                     </div>
                 </div>
 
-                <div class="card card-primary card-outline mb-4">
+                <div class="card card-warning card-outline mb-4">
                     <div class="card-header">
                         <div class="card-title">Edit Invoice</div>
                     </div>
                     <form action="" method="POST">
-                        <div class="card-body">
+                        <div class="card-body row row-gap-3">
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Invoice Code</label>
                                 <div class="d-flex align-items-center gap-2">
@@ -43,7 +43,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 col-sm-6">
                                 <label class="form-label">Customer Name</label>
                                 <select name="customer_id" class="form-select" aria-label="Default select example">
                                     <?php foreach ($customer_data as $customer): ?>
@@ -51,7 +51,7 @@
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 col-sm-6">
                                 <label class="form-label">PIC Name</label>
                                 <select name="pic_id" class="form-select" aria-label="Default select example">
                                     <?php foreach ($pic_data as $pic): ?>
@@ -59,17 +59,17 @@
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 col-sm-6">
                                 <label class="form-label">Date</label>
                                 <input value="<?= $invoices['date']; ?>" name="date" type="date" class="form-control" required>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 col-sm-6">
                                 <label class="form-label">Due Date</label>
                                 <input value="<?= $invoices['due_date']; ?>" name="due_date" type="date" class="form-control" required>
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-success">Update</button>
+                            <button type="submit" class="btn btn-warning me-2">Update</button>
                             <a href="<?= BASEURL . 'invoice' ?>" class="btn btn-danger">Cancel</a>
                         </div>
                     </form>

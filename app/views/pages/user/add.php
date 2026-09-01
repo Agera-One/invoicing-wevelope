@@ -22,8 +22,8 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'user' ?>">User Management</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none" href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none" href="<?= BASEURL . 'user' ?>">User Management</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Add New User</li>
                         </ol>
                     </div>
@@ -59,7 +59,7 @@
                             <?php endif; ?>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="submit" class="btn btn-primary me-2">Save</button>
                             <a href="<?= BASEURL . 'user' ?>" class="btn btn-danger">Cancel</a>
                         </div>
                     </form>

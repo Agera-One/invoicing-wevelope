@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -7,9 +7,8 @@
     <title>Payment Transactions</title>
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css"
-        crossorigin="anonymous" />
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/payment.css' ?>">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
 
@@ -26,7 +25,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>" class="text-decoration-none">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Payment Transactions</li>
                         </ol>
                     </div>
@@ -35,7 +34,7 @@
                 <div class="d-flex flex-wrap align-Payments-center justify-content-between gap-3 mb-4">
                     <div class="d-flex flex-wrap gap-2">
                         <a href="<?= BASEURL . 'payment/add' ?>" class="btn btn-primary shadow-sm">
-                            <i class="bi bi-plus-circle me-1"></i> Add New Payment
+                            <i class="bi bi-plus-lg me-1"></i> Add Payment
                         </a>
                     </div>
 
@@ -45,7 +44,7 @@
                                 <span class="input-group-text bg-transparent border-end-0 text-muted">
                                     <i class="bi bi-search"></i>
                                 </span>
-                                <input name="search" id="table-filter" type="search" class="form-control border-start-0 ps-0" placeholder="Filter rows…" aria-label="Filter rows" autofocus autocomplete="off" value="<?= $_GET['search'] ?? ''; ?>">
+                                <input name="search" id="table-filter" type="search" class="form-control border-start-0 ps-1" placeholder="Filter rows…" aria-label="Filter rows" autofocus autocomplete="off" value="<?= $_GET['search'] ?? ''; ?>">
                             </div>
                         </form>
                         <a href="<?= BASEURL . 'payment' ?>" class="btn btn-outline-secondary w-25">
@@ -58,31 +57,40 @@
                     <div class="card-body p-0">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover align-middle mb-0">
-                                <thead class="table-light text-uppercase fs-7 tracking-wider">
+                                <thead>
                                     <tr>
-                                        <th scope="col" class="ps-4" width="60">#</th>
-                                        <th scope="col">Payment Code</th>
-                                        <th scope="col">Invoice Code</th>
-                                        <th scope="col">Customer Name</th>
-                                        <th scope="col">Payment Date</th>
-                                        <th scope="col">Amount Paid</th>
-                                        <th scope="col" class="pe-4" width="160">Action</th>
+                                        <th class="ps-4">#</th>
+                                        <th class="ps-4">Payment Code</th>
+                                        <th>Invoice Code</th>
+                                        <th>Customer Name</th>
+                                        <th class="text-center">Payment Date</th>
+                                        <th class="text-end">Amount Paid</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($payments as $payment): ?>
                                         <tr>
-                                            <th scope="row" class="ps-4 text-muted fw-normal"><?= ++$pagination['offset'] ?></th>
+                                            <th class="ps-4 text-muted fw-normal"><?= ++$pagination['offset'] ?></th>
                                             <td class="fw-medium"><?= $payment['payment_code'] ?></td>
                                             <td><?= $payment['invoice_code'] ?></td>
                                             <td><?= $payment['customer_name'] ?></td>
-                                            <td><?= $payment['date'] ?></td>
-                                            <td>Rp<?= number_format($payment['amount'], 0, ',', '.') ?></td>
-                                            <td class="pe-4">
-                                                <div class="d-flex gap-1">
-                                                    <a class="btn btn-sm btn-success" href="<?= BASEURL . 'payment/edit' ?>/<?= $payment['id'] ?>">Edit</a>
-                                                    <a class="btn btn-sm btn-danger" href="<?= BASEURL . 'payment/delete' ?>/<?= $payment['id'] ?>"
-                                                        onclick="return confirm('Are you sure you want to delete this payment?');">Delete</a>
+                                            <td class="text-center"><?= $payment['date'] ?></td>
+                                            <td class="text-end">Rp<?= number_format($payment['amount'], 0, ',', '.') ?></td>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                    <button class="btn btn-sm btn-icon" type="button"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="bi bi-three-dots"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                        <li>
+                                                            <a class="dropdown-item text-warning" href="<?= BASEURL . 'payment/edit' ?>/<?= $payment['id'] ?>">Edit</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item text-danger" href="<?= BASEURL . 'payment/delete' ?>/<?= $payment['id'] ?>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                             </td>
                                         </tr>

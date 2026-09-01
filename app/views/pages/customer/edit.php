@@ -22,14 +22,14 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'customer' ?>">Customers Management</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none" href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none" href="<?= BASEURL . 'customer' ?>">Customers Management</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Edit Customer</li>
                         </ol>
                     </div>
                 </div>
 
-                <div class="card card-primary card-outline mb-4">
+                <div class="card card-warning card-outline mb-4">
                     <div class="card-header">
                         <div class="card-title">Edit Customer</div>
                     </div>
@@ -61,7 +61,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-success">Update</button>
+                            <button type="submit" class="btn btn-warning me-2">Update</button>
                             <a href="<?= BASEURL . 'customer' ?>" class="btn btn-danger">Cancel</a>
                         </div>
                     </form>
