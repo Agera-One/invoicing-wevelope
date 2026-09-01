@@ -32,14 +32,14 @@
                     </div>
                 </div>
 
-                <div class="d-flex flex-wrap align-Payments-center justify-content-between gap-3 mb-4">
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
                     <div class="d-flex flex-wrap gap-2">
                         <a href="<?= BASEURL . 'payment/add' ?>" class="btn btn-primary shadow-sm">
                             <i class="bi bi-plus-circle me-1"></i> Add New Payment
                         </a>
                     </div>
 
-                    <div class="col-md-4 d-flex align-Payments-end gap-2">
+                    <div class="col-md-4 d-flex align-items-end gap-2">
                         <form action="" method="GET" class="flex-grow-1">
                             <div class="input-group">
                                 <span class="input-group-text bg-transparent border-end-0 text-muted">

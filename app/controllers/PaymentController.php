@@ -108,6 +108,18 @@ class PaymentController extends BaseController
             }
         }
 
+        if ($selected_invoice) {
+            $selected_invoice['total_amount_paid'] -= $payment_data['amount'];
+
+            foreach ($invoice_data as &$invoice) {
+                if ((string)$invoice['id'] === (string)$payment_data['invoice_id']) {
+                    $invoice['total_amount_paid'] -= $payment_data['amount'];
+                    break;
+                }
+            }
+            unset($invoice);
+        }
+
         $datas = [
             'payment_data' => $payment_data,
             'invoice_data' => $invoice_data,
@@ -115,7 +127,26 @@ class PaymentController extends BaseController
         ];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->payment->update($id, $_POST);
+            if (!$selected_invoice) {
+                $datas['error'] = 'Invoice not found.';
+                $this->view('payment/edit', $datas);
+                return;
+            }
+
+            $amount = (float) ($_POST['amount'] ?? 0);
+            $remaining = $selected_invoice['total_bill'] - $selected_invoice['total_amount_paid'];
+
+            if ($amount <= 0 || $amount > $remaining) {
+                $datas['error'] = 'Payment amount (Rp' . number_format($amount, 0, ',', '.')
+                    . ') exceeds the remaining balance (Rp' . number_format(max($remaining, 0), 0, ',', '.') . ').';
+                $this->view('payment/edit', $datas);
+                return;
+            }
+
+            $allowed = ['invoice_id', 'date', 'amount'];
+            $update_data = array_intersect_key($_POST, array_flip($allowed));
+
+            $this->payment->update($id, $update_data);
             $this->redirect(BASEURL . 'payment');
         } else {
             $this->view('payment/edit', $datas);

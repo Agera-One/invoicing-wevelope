@@ -106,13 +106,15 @@
                                             <td><?= $invoice['date'] ?></td>
                                             <td><?= $invoice['due_date'] ?></td>
                                             <td>Rp<?= number_format($invoice['total_bill'] ?? 0, 0, ',', '.') ?></td>
-                                            <?php if ($remaining_unpaid > 0 && $invoice['due_date'] < $today): ?>
-                                                <td class="text-center"><span class="badge text-bg-danger">Overdue</span></td>
-                                            <?php elseif ($invoice_item == 0): ?>
+                                            <?php if ($invoice_item == 0): ?>
                                                 <td class="text-center"><span class="badge text-bg-secondary">No Item</span></td>
-                                            <?php elseif ($invoice['total_payment'] < $invoice['total_bill']): ?>
+                                            <?php elseif ($remaining_unpaid > 0 && $invoice['due_date'] < $today): ?>
+                                                <td class="text-center"><span class="badge text-bg-danger">Overdue</span></td>
+                                            <?php elseif ($remaining_unpaid > 0): ?>
                                                 <td class="text-center"><span class="badge text-bg-warning">Unpaid</span></td>
-                                            <?php elseif ($invoice['total_payment'] == $invoice['total_bill']): ?>
+                                            <?php elseif ($remaining_unpaid < 0): ?>
+                                                <td class="text-center"><span class="badge text-bg-info">Overpaid</span></td>
+                                            <?php else: ?>
                                                 <td class="text-center"><span class="badge text-bg-success">Paid</span></td>
                                             <?php endif; ?>
                                             <td class="pe-4">
