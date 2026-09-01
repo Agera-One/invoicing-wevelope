@@ -20,7 +20,7 @@ class DashboardController extends BaseController
     {
         $number = 1;
         $today = date('Y-m-d');
-        $invoice_value = $this->invoice->sumInvoiceValue();
+        $total_invoice = $this->invoice->countTotalInvoice();
         $total_revenue = $this->payment->sumRevenue();
         $invoices = $this->invoice->getAllCompact();
         $top_item = $this->item->getTopItem();
@@ -29,11 +29,11 @@ class DashboardController extends BaseController
         $datas = [
             'number' => $number,
             'today' => $today,
-            'invoice_value' => $invoice_value,
+            'total_invoice' => $total_invoice,
             'total_revenue' => $total_revenue,
             'invoices' => $invoices,
             'top_item' => $top_item,
-            'total_unpaid'  => $sum_unpaid_overdue['total_unpaid']  ?? 0,
+            'total_outstanding'  => $sum_unpaid_overdue['total_outstanding']  ?? 0,
             'total_overdue' => $sum_unpaid_overdue['total_overdue'] ?? 0,
             'invoice_detail' => $this->invoiceDetail,
         ];

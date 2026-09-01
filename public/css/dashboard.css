@@ -125,3 +125,8 @@
     --accent: var(--bs-danger);
     --accent-rgb: var(--bs-danger-rgb);
 }
+
+.tooltip .tooltip-inner {
+    text-align: left;
+    font-weight: bold;
+}

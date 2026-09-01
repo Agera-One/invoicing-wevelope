@@ -33,21 +33,15 @@
 
                 <div class="row mb-4 g-3">
                     <div class="col-lg-3 col-6">
-                        <div class="finance-card finance-card--primary">
-                            <div class="finance-card-top">
-                                <div class="finance-card-label">Invoice Value</div>
-                                <div class="finance-card-icon"><i class="bi bi-receipt-cutoff"></i></div>
-                            </div>
-                            <div class="finance-card-value">Rp<?= number_format($invoice_value, 0, ',', '.') ?></div>
-                            <div class="finance-card-footer">
-                                <a href="<?= BASEURL . 'invoice' ?>">More info <i class="bi bi-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6">
                         <div class="finance-card finance-card--success">
                             <div class="finance-card-top">
-                                <div class="finance-card-label">Total Revenue</div>
+                                <div class="finance-card-label">
+                                    total revenue
+                                    <i class="bi bi-info-circle text-muted ms-2"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="top"
+                                        title="Total revenue generated from all sales invoices."></i>
+                                </div>
                                 <div class="finance-card-icon"><i class="bi bi-cash-coin"></i></div>
                             </div>
                             <div class="finance-card-value">Rp<?= number_format($total_revenue, 0, ',', '.') ?></div>
@@ -59,10 +53,16 @@
                     <div class="col-lg-3 col-6">
                         <div class="finance-card finance-card--warning">
                             <div class="finance-card-top">
-                                <div class="finance-card-label">Total Unpaid</div>
+                                <div class="finance-card-label">
+                                    total outstanding
+                                    <i class="bi bi-info-circle text-muted ms-2"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="top"
+                                        title="Total sales invoices that are unpaid and not yet due"></i>
+                                </div>
                                 <div class="finance-card-icon"><i class="bi bi-hourglass-split"></i></div>
                             </div>
-                            <div class="finance-card-value">Rp<?= number_format($total_unpaid, 0, ',', '.') ?></div>
+                            <div class="finance-card-value">Rp<?= number_format($total_outstanding, 0, ',', '.') ?></div>
                             <div class="finance-card-footer">
                                 <a href="<?= BASEURL . 'outstanding' ?>">More info <i class="bi bi-arrow-right"></i></a>
                             </div>
@@ -71,12 +71,36 @@
                     <div class="col-lg-3 col-6">
                         <div class="finance-card finance-card--danger">
                             <div class="finance-card-top">
-                                <div class="finance-card-label">Total Overdue</div>
+                                <div class="finance-card-label">
+                                    total overdue
+                                    <i class="bi bi-info-circle text-muted ms-2"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="top"
+                                        title="Total sales invoices that are unpaid and past due."></i>
+                                </div>
                                 <div class="finance-card-icon"><i class="bi bi-exclamation-triangle"></i></div>
                             </div>
                             <div class="finance-card-value">Rp<?= number_format($total_overdue, 0, ',', '.') ?></div>
                             <div class="finance-card-footer">
                                 <a href="<?= BASEURL . 'overdue' ?>">More info <i class="bi bi-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="finance-card finance-card--primary">
+                            <div class="finance-card-top">
+                                <div class="finance-card-label">
+                                    total invoice
+                                    <i class="bi bi-info-circle text-muted ms-2"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="top"
+                                        title="Total sales invoices issued"></i>
+                                </div>
+                                <div class="finance-card-icon"><i class="bi bi-receipt-cutoff"></i></div>
+                            </div>
+                            <div class="finance-card-value"><?= $total_invoice ?></div>
+                            <div class="finance-card-footer">
+                                <a href="<?= BASEURL . 'invoice' ?>">More info <i class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -157,6 +181,12 @@
     <script src="<?= BASEURL . 'public/js/lte-theme.js' ?>"></script>
     <script src="<?= BASEURL . 'public/js/adminlte.js' ?>"></script>
     <script src="<?= BASEURL . 'public/js/bootstrap.bundle.js' ?>"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tooltipList = [...document.querySelectorAll('[data-bs-toggle="tooltip"]')]
+                .map(el => new bootstrap.Tooltip(el));
+        });
+    </script>
 </body>
 
 </html>

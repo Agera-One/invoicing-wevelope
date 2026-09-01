@@ -81,16 +81,14 @@ class Invoice extends BaseModel {
         ]);
     }
 
-    public function sumInvoiceValue() {
-        return $this->getConnection()->sum('invoice', [
-            '[><]invoice_detail' => ['id' => 'invoice_id']
-        ], 'invoice_detail.amount', [
+    public function countTotalInvoice() {
+        return $this->getConnection()->count('invoice', [
             'company_id' => $this->companyId
         ]) ?: 0;
     }
 
     public function sumUnpaidOverdue($today) {
-        $total_unpaid = 0;
+        $total_outstanding = 0;
         $total_overdue = 0;
 
         $invoices = $this->getConnection()->select('invoice', [
@@ -107,13 +105,13 @@ class Invoice extends BaseModel {
 
             if ($remaining > 0) {
                 if ($invoice['due_date'] >= $today) {
-                    $total_unpaid += $remaining;
+                    $total_outstanding += $remaining;
                 } else {
                     $total_overdue += $remaining;
                 }
             }
         }
 
-        return compact('total_unpaid', 'total_overdue');
+        return compact('total_outstanding', 'total_overdue');
     }
 }
