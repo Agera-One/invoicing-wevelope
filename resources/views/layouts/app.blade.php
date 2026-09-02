@@ -60,7 +60,8 @@
                                 >
 
                                 <span class="d-none d-md-inline">
-                                    <?= $current_user['name'] ?>
+                                    {{-- <?= $current_user['name'] ?> --}}
+                                    Administrator
                                 </span>
                             </a>
 
@@ -72,7 +73,8 @@
                                     >
 
                                     <p>
-                                        <?= $current_user['name'] ?>
+                                        {{-- <?= $current_user['name'] ?> --}}
+                                        Administrator
                                         <small>Admin</small>
                                     </p>
                                 </li>
@@ -93,7 +95,8 @@
 
             <aside class="app-sidebar shadow-sm">
                 <div class="sidebar-brand text-uppercase">
-                    <span class="brand-text"><?= $current_company_name ?></span>
+                    {{-- <span class="brand-text"><?= $current_company_name ?></span> --}}
+                    <span class="brand-text">Red Hat, Inc</span>
                 </div>
 
                 <div class="sidebar-wrapper">
@@ -287,12 +290,18 @@
                 </div>
             </aside>
 
-            <main>
+            <main class="app-main py-4">
                 @yield('content')
             </main>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/admin-lte@4.9.1/dist/js/adminlte.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const tooltipList = [...document.querySelectorAll('[data-bs-toggle="tooltip"]')]
+                    .map(el => new bootstrap.Tooltip(el));
+            });
+    </script>
     </body>
 </html>
