@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Payment;
 use App\Models\Invoice;
+use App\Models\Customer;
+use App\Models\Item;
 
 class DashboardController extends Controller
 {
@@ -11,37 +14,22 @@ class DashboardController extends Controller
     {
         $number = 1;
         $today = date('Y-m-d');
-        $invoice_value = Invoice::where('company_id', $this->companyId)
-            ->withSum('details', 'amount')
-            ->get()
-            ->sum('details_sum_amount') ?: 0;
-        $total_revenue = $this->payment->sumRevenue();
-        $invoices = $this->invoice->getAllCompact();
-        $top_item = $this->item->getTopItem();
-        $sum_unpaid_overdue = $this->invoice->sumUnpaidOverdue($today);
-
-        $datas = [
-            'number' => $number,
-            'today' => $today,
-            'invoice_value' => $invoice_value,
-            'total_revenue' => $total_revenue,
-            'invoices' => $invoices,
-            'top_item' => $top_item,
-            'total_unpaid'  => $sum_unpaid_overdue['total_unpaid']  ?? 0,
-            'total_overdue' => $sum_unpaid_overdue['total_overdue'] ?? 0,
-            'invoice_detail' => $this->invoiceDetail,
-        ];
+        $total_revenue = Payment::sum('amount');
+        $total_overdue = 400000;
+        $total_customer = Customer::count();
+        $total_invoice = Invoice::count();
+        $invoices = [];
+        $top_item = [];
 
         return view('pages.dashboard.index', compact(
             'number',
             'today',
-            'invoice_value',
             'total_revenue',
+            'total_overdue',
+            'total_customer',
+            'total_invoice',
             'invoices',
             'top_item',
-            'total_unpaid',
-            'total_overdue',
-            'invoice_detail'
         ));
     }
 }

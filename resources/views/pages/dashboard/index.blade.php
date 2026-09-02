@@ -3,7 +3,6 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<main class="app-main py-4">
     <div class="container-fluid px-4">
         <div class="row">
             <div class="col-sm-6 mb-4">
@@ -18,70 +17,83 @@
 
         <div class="row mb-4 g-3">
             <div class="col-lg-3 col-6">
-                <div class="finance-card finance-card--primary">
-                    <div class="finance-card-top">
-                        <div class="finance-card-label">Invoice Value</div>
-                        <div class="finance-card-icon"><i class="bi bi-receipt-cutoff"></i></div>
-                    </div>
-                    <div class="finance-card-value">Rp<?= number_format($invoice_value, 0, ',', '.') ?></div>
-                    <div class="finance-card-footer">
-                        <a href="/invoice">More info <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-6">
                 <div class="finance-card finance-card--success">
                     <div class="finance-card-top">
-                        <div class="finance-card-label">Total Revenue</div>
+                        <div class="finance-card-label">
+                            total revenue
+                            <i class="bi bi-info-circle text-muted ms-2"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="top"
+                                title="Total revenue generated from all sales invoices."></i>
+                        </div>
                         <div class="finance-card-icon"><i class="bi bi-cash-coin"></i></div>
                     </div>
-                    <div class="finance-card-value">Rp<?= number_format($total_revenue, 0, ',', '.') ?></div>
+                    <div class="finance-card-value">Rp{{ number_format($total_revenue, 0, ',', '.') }}</div>
                     <div class="finance-card-footer">
                         <a href="/revenue">More info <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 col-6">
-                <div class="finance-card finance-card--warning">
-                    <div class="finance-card-top">
-                        <div class="finance-card-label">Total Unpaid</div>
-                        <div class="finance-card-icon"><i class="bi bi-hourglass-split"></i></div>
-                    </div>
-                    <div class="finance-card-value">Rp<?= number_format($total_unpaid, 0, ',', '.') ?></div>
-                    <div class="finance-card-footer">
-                        <a href="/outstanding">More info <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-6">
                 <div class="finance-card finance-card--danger">
                     <div class="finance-card-top">
-                        <div class="finance-card-label">Total Overdue</div>
-                        <div class="finance-card-icon"><i class="bi bi-exclamation-triangle"></i></div>
+                        <div class="finance-card-label">
+                            total overdue
+                            <i class="bi bi-info-circle text-muted ms-2"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="top"
+                                title="Total sales invoices that are unpaid and past due."></i>
+                        </div>
+                        <div class="finance-card-icon"><i class="bi bi-exclamation-triangle-fill"></i></div>
                     </div>
-                    <div class="finance-card-value">Rp<?= number_format($total_overdue, 0, ',', '.') ?></div>
+                    <div class="finance-card-value">Rp{{ number_format($total_overdue, 0, ',', '.') }}</div>
                     <div class="finance-card-footer">
                         <a href="/overdue">More info <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
+            <div class="col-lg-3 col-6">
+                <div class="finance-card finance-card--primary">
+                    <div class="finance-card-top">
+                        <div class="finance-card-label">total invoice</div>
+                        <div class="finance-card-icon"><i class="bi bi-receipt-cutoff"></i></div>
+                    </div>
+                    <div class="finance-card-value">{{ $total_invoice }}</div>
+                    <div class="finance-card-footer">
+                        <a href="/invoice">More info <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="finance-card finance-card--warning">
+                    <div class="finance-card-top">
+                        <div class="finance-card-label">total customer</div>
+                        <div class="finance-card-icon"><i class="bi bi-person-fill"></i></div>
+                    </div>
+                    <div class="finance-card-value">{{ $total_customer }}</div>
+                    <div class="finance-card-footer">
+                        <a href="/customer">More info <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
+
         <div class="dash-section">
             <div class="row g-3">
                 <div class="col-12 col-lg-5">
                     <div class="dash-section-title">Top Selling Products</div>
                     <div class="card h-100">
                         <div class="card-body">
-                            <?php foreach ($top_item as $top_product): ?>
+                            @foreach ($top_item as $top_product)
                                 <div class="product-row">
-                                    <span class="product-rank"><?= $number++ ?></span>
+                                    <span class="product-rank">{{ $number++ }}</span>
                                     <div class="flex-grow-1">
-                                        <div class="small fw-semibold"><?= $top_product['item_name'] ?></div>
-                                        <small class="text-muted"><?= $top_product['total_unit_sold'] ?> sold</small>
+                                        <div class="small fw-semibold">{{ $top_product['item_name'] }}</div>
+                                        <small class="text-muted">{{ $top_product['total_unit_sold'] }} sold</small>
                                     </div>
-                                    <div class="text-end small fw-semibold">Rp <?= number_format($top_product['total_revenue'], 0, ',', '.') ?></div>
+                                    <div class="text-end small fw-semibold">Rp {{ number_format($top_product['total_revenue'], 0, ',', '.') }}</div>
                                 </div>
-                            <?php endforeach; ?>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -103,26 +115,29 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($invoices as $invoice):
-                                            $invoice_item = $invoice_detail->invoiceItemCount($invoice['id']);
-                                            $remaining_unpaid = $invoice['total_bill'] - $invoice['total_payment']; ?>
+                                        @foreach ($invoices as $invoice)
+                                            {{-- $invoice_item = $invoice_detail->invoiceItemCount($invoice['id']); --}}
+                                            @php
+                                                $invoice_item = '';
+                                                $remaining_unpaid = $invoice['total_bill'] - $invoice['total_payment'];
+                                            @endphp
                                             <tr>
-                                                <td class="fw-medium"><?= $invoice['invoice_code'] ?></td>
-                                                <td><?= $invoice['customer_name'] ?></td>
-                                                <td><?= $invoice['date'] ?></td>
-                                                <td><?= $invoice['due_date'] ?></td>
-                                                <td>Rp<?= number_format($invoice['total_bill'], 0, ',', '.') ?></td>
-                                                <?php if ($remaining_unpaid > 0 && $invoice['due_date'] < $today): ?>
+                                                <td class="fw-medium">{{ $invoice['invoice_code'] }}</td>
+                                                <td>{{ $invoice['customer_name'] }}</td>
+                                                <td>{{ $invoice['date'] }}</td>
+                                                <td>{{ $invoice['due_date'] }}</td>
+                                                <td>Rp{{ number_format($invoice['total_bill'], 0, ',', '.') }}</td>
+                                                @if ($remaining_unpaid > 0 && $invoice['due_date'] < $today)
                                                     <td class="text-center"><span class="badge text-bg-danger">Overdue</span></td>
-                                                <?php elseif ($invoice_item == 0): ?>
+                                                @elseif ($invoice_item == 0)
                                                     <td class="text-center"><span class="badge text-bg-secondary">No Item</span></td>
-                                                <?php elseif ($invoice['total_payment'] < $invoice['total_bill']): ?>
+                                                @elseif ($invoice['total_payment'] < $invoice['total_bill'])
                                                     <td class="text-center"><span class="badge text-bg-warning">Unpaid</span></td>
-                                                <?php elseif ($invoice['total_payment'] == $invoice['total_bill']): ?>
+                                                @elseif ($invoice['total_payment'] == $invoice['total_bill'])
                                                     <td class="text-center"><span class="badge text-bg-success">Paid</span></td>
-                                                <?php endif; ?>
+                                                @endif
                                             </tr>
-                                        <?php endforeach; ?>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -136,5 +151,4 @@
             </div>
         </div>
     </div>
-</main>
 @endsection
