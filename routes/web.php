@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,9 +13,7 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('welcome');
-    });
+    Route::get('/dashboard', [DashboardController::class, 'index']);
 
     // Route::get('/members', [MemberController::class, 'index']);
     // Route::post('/members', [MemberController::class, 'store'])->name('members.store');
