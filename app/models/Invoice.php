@@ -86,8 +86,7 @@ class Invoice extends BaseModel {
         ]) ?: 0;
     }
 
-    public function sumUnpaidOverdue($today) {
-        $total_outstanding = 0;
+    public function sumOverdue($today) {
         $total_overdue = 0;
 
         $invoices = $this->getConnection()->select('invoice', [
@@ -103,14 +102,12 @@ class Invoice extends BaseModel {
             $remaining = $invoice['total_bill'] - $invoice['total_payment'];
 
             if ($remaining > 0) {
-                if ($invoice['due_date'] >= $today) {
-                    $total_outstanding += $remaining;
-                } else {
+                if ($invoice['due_date'] < $today) {
                     $total_overdue += $remaining;
                 }
             }
         }
 
-        return compact('total_outstanding', 'total_overdue');
+        return compact( 'total_overdue');
     }
 }

@@ -60,4 +60,11 @@ class Customer extends BaseModel
 
         return $owner_id != $current_id;
     }
+
+    public function countTotalCustomer()
+    {
+        return $this->getConnection()->count('customer', [
+            'company_id' => $this->companyId
+        ]) ?: 0;
+    }
 }

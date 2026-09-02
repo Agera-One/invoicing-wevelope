@@ -51,24 +51,6 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-6">
-                        <div class="finance-card finance-card--warning">
-                            <div class="finance-card-top">
-                                <div class="finance-card-label">
-                                    total outstanding
-                                    <i class="bi bi-info-circle text-muted ms-2"
-                                        data-bs-toggle="tooltip"
-                                        data-bs-placement="top"
-                                        title="Total sales invoices that are unpaid and not yet due"></i>
-                                </div>
-                                <div class="finance-card-icon"><i class="bi bi-hourglass-split"></i></div>
-                            </div>
-                            <div class="finance-card-value">Rp<?= number_format($total_outstanding, 0, ',', '.') ?></div>
-                            <div class="finance-card-footer">
-                                <a href="<?= BASEURL . 'outstanding' ?>">More info <i class="bi bi-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6">
                         <div class="finance-card finance-card--danger">
                             <div class="finance-card-top">
                                 <div class="finance-card-label">
@@ -78,7 +60,7 @@
                                         data-bs-placement="top"
                                         title="Total sales invoices that are unpaid and past due."></i>
                                 </div>
-                                <div class="finance-card-icon"><i class="bi bi-exclamation-triangle"></i></div>
+                                <div class="finance-card-icon"><i class="bi bi-exclamation-triangle-fill"></i></div>
                             </div>
                             <div class="finance-card-value">Rp<?= number_format($total_overdue, 0, ',', '.') ?></div>
                             <div class="finance-card-footer">
@@ -89,18 +71,24 @@
                     <div class="col-lg-3 col-6">
                         <div class="finance-card finance-card--primary">
                             <div class="finance-card-top">
-                                <div class="finance-card-label">
-                                    total invoice
-                                    <i class="bi bi-info-circle text-muted ms-2"
-                                        data-bs-toggle="tooltip"
-                                        data-bs-placement="top"
-                                        title="Total sales invoices issued"></i>
-                                </div>
+                                <div class="finance-card-label">total invoice</div>
                                 <div class="finance-card-icon"><i class="bi bi-receipt-cutoff"></i></div>
                             </div>
                             <div class="finance-card-value"><?= $total_invoice ?></div>
                             <div class="finance-card-footer">
                                 <a href="<?= BASEURL . 'invoice' ?>">More info <i class="bi bi-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="finance-card finance-card--warning">
+                            <div class="finance-card-top">
+                                <div class="finance-card-label">total customer</div>
+                                <div class="finance-card-icon"><i class="bi bi-person-fill"></i></div>
+                            </div>
+                            <div class="finance-card-value"><?= $total_customer ?></div>
+                            <div class="finance-card-footer">
+                                <a href="<?= BASEURL . 'customer' ?>">More info <i class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
