@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/logout', [LoginController::class, 'logout']);
@@ -15,8 +16,6 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
 
-    // Route::get('/members', [MemberController::class, 'index']);
-    // Route::post('/members', [MemberController::class, 'store'])->name('members.store');
-    // Route::put('/members/{id}', [MemberController::class, 'update'])->name('members.update');
-    // Route::delete('/members/{id}', [MemberController::class, 'destroy'])->name('members.destroy');
+    Route::resource('item', ItemController::class)
+        ->except(['show']);
 });

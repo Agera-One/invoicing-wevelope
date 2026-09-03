@@ -9,5 +9,13 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 
 class Item extends Model
 {
-    //
+    public function scopeSearch($query, $search)
+    {
+        return $query->when($search, function ($q) use ($search) {
+            $q->where(function ($q) use ($search) {
+                $q->where('ref_no', 'like', "%{$search}%")
+                    ->orWhere('name', 'like', "%{$search}%");
+            });
+        });
+    }
 }
