@@ -9,7 +9,8 @@ class ItemController extends Controller
 {
     public function index()
     {
-        $items = Item::search(request('search'))
+        $items = Item::latest('id')
+            ->search(request('search'))
             ->paginate(10)
             ->withQueryString();
 
