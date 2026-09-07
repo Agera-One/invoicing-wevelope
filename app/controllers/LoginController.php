@@ -1,31 +1,28 @@
 <?php
 
-class LoginController extends BaseController {
+class LoginController extends BaseController
+{
     private $user;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->user = $this->model('user');
     }
 
-    public function index() {
+    public function index()
+    {
         $this->view('login/index');
     }
 
-    public function store() {
+    public function store()
+    {
         $email    = $_POST["email"] ?? '';
         $password = $_POST["password"] ?? '';
 
         $user = $this->user->find(['email' => $email]);
 
         if ($user) {
-
-            if ($user["is_active"] == 0) {
-                echo
-                '<script>
-                    alert("Your account has been deactivated.");
-                    window.location.href = "' . BASEURL . 'login";
-                </script>';
-            } elseif (password_verify($password, $user["password"])) {
+            if (password_verify($password, $user["password"])) {
                 Session::set('user_id', $user['id']);
                 Session::set('company_id', $user['company_id']);
 
@@ -40,13 +37,14 @@ class LoginController extends BaseController {
         } else {
             echo
             '<script>
-                alert("Email not found. Please register first.");
+                alert("Email not found.");
                 window.location.href = "' . BASEURL . 'login";
             </script>';
         }
     }
 
-    public function logout() {
+    public function logout()
+    {
         Session::destroy();
         $this->redirect(BASEURL . 'login');
     }

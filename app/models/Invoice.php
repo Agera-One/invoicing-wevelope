@@ -11,11 +11,9 @@ class Invoice extends BaseModel {
         return $this->getConnection()->select('invoice', $join, [
             'invoice.id',
             'invoice.customer_id',
-            'invoice.user_id',
             'invoice.invoice_code',
             'invoice.date',
             'invoice.due_date',
-            'user.name(user_name)',
             'customer.name(customer_name)',
             'total_bill' => Medoo::raw('(SELECT COALESCE(SUM(amount),0) FROM invoice_detail WHERE invoice_detail.invoice_id = <invoice.id>)'),
             'total_payment' => Medoo::raw('(SELECT COALESCE(SUM(amount),0) FROM payment WHERE payment.invoice_id = <invoice.id>)'),

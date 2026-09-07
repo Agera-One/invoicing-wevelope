@@ -139,13 +139,6 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a href="<?= BASEURL . 'user' ?>" class="nav-link" data-page="user">
-                                <i class="bi bi-person-gear nav-icon"></i>
-                                <p>User Management</p>
-                            </a>
-                        </li>
-
                     </ul>
                 </li>
 

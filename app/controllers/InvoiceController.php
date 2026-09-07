@@ -31,7 +31,6 @@ class InvoiceController extends BaseController
             '[><]customer' => ['customer_id' => 'id'],
             '[>]invoice_detail' => ['id' => 'invoice_id'],
             '[>]payment' => ['id' => 'invoice_id'],
-            '[><]user' => ['user_id' => 'id'],
         ];
 
         $where_condition['invoice.company_id'] = $this->companyId;
@@ -44,7 +43,7 @@ class InvoiceController extends BaseController
             $where_condition['invoice.date[<=]'] = $date_to;
         }
 
-        $where_condition = $this->search($keyword, $where_condition, ['invoice.invoice_code', 'customer.name', 'user.name']);
+        $where_condition = $this->search($keyword, $where_condition, ['invoice.invoice_code', 'customer.name']);
         $pagination = $this->invoice->pagination($this->db, $page, 'invoice', 'invoice.id', $where_condition, $join_structure);
 
         $invoices = $this->invoice->getAll($join_structure, $where_condition, $pagination['offset'], $pagination['limit']);

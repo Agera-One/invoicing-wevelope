@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit User</title>
+    <title>Profile User</title>
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
 </head>
@@ -18,22 +18,23 @@
             <div class="container-fluid px-4">
                 <div class="row">
                     <div class="col-sm-6 mb-4">
-                        <h3 class="fw-bold h4 m-0 text-white">Edit User</h3>
+                        <h3 class="fw-bold h4 m-0 text-white">Profile User</h3>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
                             <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'user' ?>">User Management</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Edit User</li>
+                            <li class="breadcrumb-item active" aria-current="page">Profile User</li>
                         </ol>
                     </div>
                 </div>
 
                 <div class="card card-primary card-outline mb-4">
                     <div class="card-header">
-                        <div class="card-title">Edit Item</div>
+                        <div class="card-title">Profile User</div>
                     </div>
                     <form action="" method="POST" id="userForm" novalidate>
+                        <input type="hidden" name="redirect_to" value="<?= htmlspecialchars($data['referrer'] ?? BASEURL . 'dashboard') ?>">
+
                         <div class="card-body">
                             <div class="mb-3">
                                 <label class="form-label">Name</label>
@@ -51,18 +52,6 @@
                                 <div class="invalid-feedback" id="phoneError"></div>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Status user</label>
-                                <select name="is_active" class="form-select" aria-label="Default select example"
-                                    <?= !empty($is_self) ? 'disabled' : '' ?> required>
-                                    <option value="" disabled selected>Select status</option>
-                                    <option value="1" <?= ($is_active == '1') ? 'selected' : ''; ?>>Active</option>
-                                    <option value="0" <?= ($is_active == '0') ? 'selected' : ''; ?>>Inactive</option>
-                                </select>
-                                <?php if (!empty($is_self)): ?>
-                                    <small class="text-danger">You cannot change your own account status.</small>
-                                <?php endif; ?>
-                            </div>
-                            <div class="mb-3">
                                 <label class="form-label">Password</label>
                                 <input id="password" name="password" type="password" class="form-control" placeholder="Leave blank if you don't want to change it">
                                 <div class="invalid-feedback" id="passwordError"></div>
@@ -75,7 +64,7 @@
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-success">Update</button>
-                            <a href="<?= BASEURL . 'user' ?>" class="btn btn-danger">Cancel</a>
+                            <a href="<?= htmlspecialchars($data['referrer'] ?? BASEURL . 'dashboard') ?>" class="btn btn-danger">Cancel</a>
                         </div>
                     </form>
                 </div>

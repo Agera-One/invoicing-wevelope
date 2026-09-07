@@ -1,7 +1,9 @@
 <?php
 
-class Routes {
-    public function register(App $app) {
+class Routes
+{
+    public function register(App $app)
+    {
 
         if (isset($_SESSION['user_id']) && isset($_SESSION['company_id'])) {
             $app->setDefaultController('ErrorController');
@@ -71,11 +73,7 @@ class Routes {
         $app->post('/company/logo', ['CompanyController', 'uploadLogo']);
         $app->post('/company/signature', ['CompanyController', 'uploadSignature']);
 
-        $app->get('/user', ['UserController', 'index']);
-        $app->get('/user/add', ['UserController', 'add']);
-        $app->post('/user/add', ['UserController', 'add']);
-        $app->get('/user/edit', ['UserController', 'edit']);
-        $app->post('/user/edit', ['UserController', 'edit']);
-        $app->get('/user/delete', ['UserController', 'delete']);
+        $app->get('/profile', ['ProfileController', 'edit']);
+        $app->post('/profile', ['ProfileController', 'edit']);
     }
 }

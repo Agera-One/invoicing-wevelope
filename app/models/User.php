@@ -31,7 +31,6 @@ class User extends BaseModel
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'is_active' => $data['is_active'],
             'password' => password_hash($data["password"], PASSWORD_DEFAULT)
         ], [
             'id' => $id

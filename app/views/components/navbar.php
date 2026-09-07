@@ -33,10 +33,13 @@
             <img
               src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&s=160"
               alt="User">
-            <p><?= $current_user['name'] ?><small>Admin</small></p>
+            <p><?= $current_user['name'] ?><small>Owner</small></p>
           </li>
-          <li class="user-footer">
-            <a href="<?= BASEURL . 'logout' ?>" class="btn btn-outline-danger w-100">
+          <li class="user-footer d-flex justify-content-between gap-2 p-2">
+            <a href="<?= BASEURL . 'profile' ?>" class="btn btn-secondary flex-fill">
+              Profile
+            </a>
+            <a href="<?= BASEURL . 'logout' ?>" class="btn btn-danger flex-fill">
               Logout
             </a>
           </li>
