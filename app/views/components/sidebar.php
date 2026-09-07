@@ -51,11 +51,11 @@
                     </ul>
                 </li>
 
-                <li class="nav-item" data-menu="sales">
+                <li class="nav-item" data-menu="transaction">
                     <a href="#" class="nav-link">
                         <i class="nav-icon bi bi-cart-check"></i>
                         <p>
-                            Sales
+                            Transaction
                             <i class="nav-arrow bi bi-chevron-right"></i>
                         </p>
                     </a>
