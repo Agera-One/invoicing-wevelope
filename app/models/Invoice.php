@@ -14,13 +14,23 @@ class Invoice extends Model
         return $this->hasOne(InvoiceDetail::class);
     }
 
-    public function payment()
+    public function payments()
     {
         return $this->hasMany(Payment::class);
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
     }
 
     public function customer()
     {
         return $this->belongsTo(Customer::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

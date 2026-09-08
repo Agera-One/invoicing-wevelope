@@ -19,7 +19,7 @@ class ItemController extends Controller
 
     public function create()
     {
-        // Menampilkan form tambah
+        return view('pages.item.add');
     }
 
     public function store(Request $request)

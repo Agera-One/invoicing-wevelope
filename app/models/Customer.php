@@ -9,8 +9,13 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 
 class Customer extends Model
 {
-    public function invoice()
+    public function invoices()
     {
         return $this->hasMany(Invoice::class);
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
     }
 }

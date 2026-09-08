@@ -9,13 +9,13 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 
 class Item extends Model
 {
-    public function scopeSearch($query, $search)
+    public function invoiceDetails()
     {
-        return $query->when($search, function ($q) use ($search) {
-            $q->where(function ($q) use ($search) {
-                $q->where('ref_no', 'like', "%{$search}%")
-                    ->orWhere('name', 'like', "%{$search}%");
-            });
-        });
+        return $this->hasMany(InvoiceDetail::class);
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
     }
 }
