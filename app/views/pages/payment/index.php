@@ -39,7 +39,7 @@
                         </a>
                     </div>
 
-                    <div class="col-md-4 d-flex align-items-end gap-2">
+                    <div class="col-md-4 d-flex align-items-end gap-3">
                         <form action="" method="GET" class="flex-grow-1">
                             <div class="input-group">
                                 <span class="input-group-text bg-transparent border-end-0 text-muted">
@@ -79,7 +79,7 @@
                                             <td><?= $payment['date'] ?></td>
                                             <td>Rp<?= number_format($payment['amount'], 0, ',', '.') ?></td>
                                             <td class="pe-4">
-                                                <div class="d-flex gap-1">
+                                                <div class="d-flex gap-3">
                                                     <a class="btn btn-sm btn-success" href="<?= BASEURL . 'payment/edit' ?>/<?= $payment['id'] ?>">Edit</a>
                                                     <a class="btn btn-sm btn-danger" href="<?= BASEURL . 'payment/delete' ?>/<?= $payment['id'] ?>"
                                                         onclick="return confirm('Are you sure you want to delete this payment?');">Delete</a>

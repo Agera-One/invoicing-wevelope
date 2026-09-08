@@ -60,7 +60,7 @@
                                 <input name="address" value="<?= $address ?>" type="text" class="form-control">
                             </div>
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer d-flex gap-3">
                             <button type="submit" class="btn btn-success">Update</button>
                             <a href="<?= BASEURL . 'customer' ?>" class="btn btn-danger">Cancel</a>
                         </div>

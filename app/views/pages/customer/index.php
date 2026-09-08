@@ -47,7 +47,7 @@
                         </a>
                     </div>
 
-                    <div class="col-md-4 d-flex align-customers-end gap-2">
+                    <div class="col-md-4 d-flex align-customers-end gap-3">
                         <form action="" method="GET" class="flex-grow-1">
                             <div class="input-group">
                                 <span class="input-group-text bg-transparent border-end-0 text-muted">
@@ -87,7 +87,7 @@
                                             <td><?= $customer['phone'] ?></td>
                                             <td><?= $customer['address'] ?></td>
                                             <td class="pe-4">
-                                                <div class="d-flex gap-1">
+                                                <div class="d-flex gap-3">
                                                     <a class="btn btn-sm btn-success" href="<?= BASEURL . 'customer/edit' ?>/<?= $customer['id'] ?>">Edit</a>
                                                     <a class="btn btn-sm btn-danger" href="<?= BASEURL . 'customer/delete' ?>/<?= $customer['id'] ?>"
                                                         onclick="return confirm('Are you sure you want to delete this customer?');">Delete</a>

@@ -38,7 +38,7 @@
                             <i class="bi bi-plus-circle me-1"></i> Add New Item
                         </a>
                     </div>
-                    <div class="col-md-4 d-flex align-items-end gap-2">
+                    <div class="col-md-4 d-flex align-items-end gap-3">
                         <form action="" method="GET" class="flex-grow-1">
                             <div class="input-group">
                                 <span class="input-group-text bg-transparent border-end-0 text-muted">
@@ -74,7 +74,7 @@
                                             <td><?= $item['name'] ?></td>
                                             <td>Rp<?= number_format($item['price'], 0, ',', '.') ?></td>
                                             <td class="pe-4">
-                                                <div class="d-flex gap-1">
+                                                <div class="d-flex gap-3">
                                                     <a class="btn btn-sm btn-success px-3" href="<?= BASEURL . 'item/edit' ?>/<?= $item['id'] ?>">Edit</a>
                                                     <a class="btn btn-sm btn-danger px-2" href="<?= BASEURL . 'item/delete' ?>/<?= $item['id'] ?>"
                                                         onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>

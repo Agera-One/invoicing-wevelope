@@ -54,7 +54,7 @@
                                 <div class="invalid-feedback" id="priceError"></div>
                             </div>
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer d-flex gap-3">
                             <button type="submit" class="btn btn-success">Update</button>
                             <a href="<?= BASEURL . 'item' ?>" class="btn btn-danger">Cancel</a>
                         </div>

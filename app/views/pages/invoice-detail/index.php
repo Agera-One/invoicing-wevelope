@@ -42,7 +42,7 @@
                                 <h3 class="fw-bold h4 m-0 text-white">Invoice Details</h3>
                             </div>
 
-                            <div class="d-flex flex-wrap justify-content-lg-end gap-2 d-print-none">
+                            <div class="d-flex flex-wrap justify-content-lg-end gap-3 d-print-none">
                                 <a href="<?= BASEURL . 'detail/print' ?>/<?= $invoice_id ?>"
                                     class="btn btn-outline-secondary" target="_blank">
                                     <i class="bi bi-printer me-1"></i>
@@ -121,14 +121,19 @@
                                                         <td class="text-end"><?= $invoice_detail['quantity'] ?></td>
                                                         <td class="text-end">Rp<?= number_format($invoice_detail['unit_price'], 0, ',', '.') ?></td>
                                                         <td class="text-end">Rp<?= number_format($invoice_detail['amount'], 0, ',', '.') ?></td>
-                                                        <td class="text-end d-print-none">
-                                                            <a class="btn btn-sm btn-success" href="<?= BASEURL . 'detail/edit' ?>/<?= $invoice_detail['detail_id'] ?>/<?= $invoice_detail['invoice_id'] ?>">
-                                                                Edit
-                                                            </a>
-                                                            <a class="btn btn-sm btn-danger" href="<?= BASEURL . 'detail/delete' ?>/<?= $invoice_detail['detail_id'] ?>/<?= $invoice_detail['invoice_id'] ?>"
-                                                                onclick="return confirm('Are you sure you want to delete this detail?');">
-                                                                Delete
-                                                            </a>
+                                                        <td class="d-print-none">
+                                                            <div class="d-flex justify-content-end gap-3">
+                                                                <a class="btn btn-sm btn-success"
+                                                                    href="<?= BASEURL . 'detail/edit' ?>/<?= $invoice_detail['detail_id'] ?>/<?= $invoice_detail['invoice_id'] ?>">
+                                                                    Edit
+                                                                </a>
+
+                                                                <a class="btn btn-sm btn-danger"
+                                                                    href="<?= BASEURL . 'detail/delete' ?>/<?= $invoice_detail['detail_id'] ?>/<?= $invoice_detail['invoice_id'] ?>"
+                                                                    onclick="return confirm('Are you sure you want to delete this detail?');">
+                                                                    Delete
+                                                                </a>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                 <?php endif; ?>

@@ -39,7 +39,7 @@
                     </div>
 
                     <form action="" method="GET">
-                        <div class="row g-2 my-3">
+                        <div class="row g-3 my-3">
                             <div class="col-md-4">
                                 <label class="form-label">Keyword</label>
                                 <input
@@ -65,7 +65,7 @@
                                     class="form-control"
                                     value="<?= $date_to ?? ''; ?>">
                             </div>
-                            <div class="col-md-2 d-flex align-items-end gap-2">
+                            <div class="col-md-2 d-flex align-items-end gap-3">
                                 <button id="btn-search" type="submit" class="btn btn-md btn-primary w-100" name="search">
                                     <i class="bi bi-search me-1"></i>Search
                                 </button>
@@ -116,7 +116,7 @@
                                                 <td class="text-center"><span class="badge text-bg-success">Paid</span></td>
                                             <?php endif; ?>
                                             <td class="pe-4">
-                                                <div class="d-flex gap-1">
+                                                <div class="d-flex gap-3">
                                                     <a class="btn btn-sm btn-info text-black" href="<?= BASEURL . 'invoice/detail' ?>/<?= $invoice['id'] ?>">Detail</a>
                                                     <a class="btn btn-sm btn-success" href="<?= BASEURL . 'invoice/edit' ?>/<?= $invoice['id'] ?>">Edit</a>
                                                     <a class="btn btn-sm btn-danger" href="<?= BASEURL . 'invoice/delete' ?>/<?= $invoice['id'] ?>"

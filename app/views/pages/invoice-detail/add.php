@@ -64,7 +64,7 @@
                                 <div id="unitPriceError" class="invalid-feedback"></div>
                             </div>
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer d-flex gap-3">
                             <button type="submit" class="btn btn-success">Save</button>
                             <a href="<?= BASEURL . 'invoice/detail' ?>/<?= $invoice_id ?>" class="btn btn-danger">Cancel</a>
                         </div>
