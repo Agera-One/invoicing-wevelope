@@ -35,9 +35,9 @@
                     </div>
                     <?php if ($section === 'info'): ?>
                         <form action="<?= BASEURL . 'company/info' ?>" method="POST">
-                        <?php elseif ($section === 'contact'): ?>
-                            <form action="<?= BASEURL . 'company/contact' ?>" method="POST">
-                            <?php endif; ?>
+                    <?php elseif ($section === 'contact'): ?>
+                        <form action="<?= BASEURL . 'company/contact' ?>" method="POST">
+                    <?php endif; ?>
                             <div class="card-body">
                                 <div class="row row-gap-3">
                                 <?php if ($section === 'info'): ?>
@@ -160,11 +160,11 @@
                                 </div>
                             </div>
 
-                            <div class="card-footer">
+                            <div class="card-footer d-flex gap-3">
                                 <button type="submit" class="btn btn-success">Update</button>
                                 <a href="<?= BASEURL . 'company' ?>" class="btn btn-danger">Cancel</a>
                             </div>
-                            </form>
+                        </form>
                 </div>
             </div>
         </main>
