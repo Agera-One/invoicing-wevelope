@@ -3,6 +3,7 @@
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/logout', [LoginController::class, 'logout']);
@@ -17,5 +18,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
 
     Route::resource('item', ItemController::class)
+        ->except(['show']);
+
+    Route::resource('customer', CustomerController::class)
         ->except(['show']);
 });
