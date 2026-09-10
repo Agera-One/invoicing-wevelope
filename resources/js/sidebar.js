@@ -1,39 +1,41 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const page = location.pathname.split("/").pop().replace(".php", "");
+    const page = location.pathname.split("/").pop().replace(".php", "");
 
-  const pages = {
-    dashboard: "dashboard",
+    const pages = {
+        dashboard: "dashboard",
 
-    item: "master",
-    customer: "master",
-    pic: "master",
+        item: "master",
+        customer: "master",
+        pic: "master",
 
-    invoice: "sales",
-    payment: "sales",
-    outstanding: "sales",
-    overdue: "sales",
+        invoice: "transaction",
+        payment: "transaction",
+        outstanding: "transaction",
+        overdue: "transaction",
 
-    revenue: "reports",
-    "best-seller": "reports",
+        revenue: "reports",
+        "best-seller": "reports",
 
-    company: "admin",
-    user: "admin",
-  };
+        company: "admin",
+        user: "admin",
+    };
 
-  document.querySelectorAll(".nav-link[data-page]").forEach((link) => {
-    if (link.dataset.page === page) {
-      link.classList.add("active");
-      const menu = pages[page];
+    document.querySelectorAll(".nav-link[data-page]").forEach((link) => {
+        if (link.dataset.page === page) {
+            link.classList.add("active");
+            const menu = pages[page];
 
-      if (menu) {
-        const group = document.querySelector(`[data-menu="${menu}"]`);
+            if (menu) {
+                const group = document.querySelector(`[data-menu="${menu}"]`);
 
-        if (group) {
-          group.classList.add("menu-open");
+                if (group) {
+                    group.classList.add("menu-open");
 
-          group.querySelector(":scope > .nav-link").classList.add("active");
+                    group
+                        .querySelector(":scope > .nav-link")
+                        .classList.add("active");
+                }
+            }
         }
-      }
-    }
-  });
+    });
 });
