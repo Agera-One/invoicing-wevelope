@@ -61,8 +61,8 @@
                             </div>
                         </div>
                         <div class="card-footer d-flex gap-3">
-                            <button type="submit" class="btn btn-success">Update</button>
-                            <a href="<?= BASEURL . 'invoice' ?>" class="btn btn-danger">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <a href="<?= BASEURL . 'invoice' ?>" class="btn btn-secondary">Cancel</a>
                         </div>
                     </form>
                 </div>
@@ -71,7 +71,7 @@
     </div>
 
     <script src="<?= BASEURL . 'public/js/invoice.js' ?>"></script>
-    <script src="<?= BASEURL . 'public/js/lte-theme.js' ?>"></script>z
+    <script src="<?= BASEURL . 'public/js/lte-theme.js' ?>"></script>
     <script src="<?= BASEURL . 'public/js/adminlte.js' ?>"></script>
     <script src="<?= BASEURL . 'public/js/bootstrap.bundle.js' ?>"></script>
 </body>

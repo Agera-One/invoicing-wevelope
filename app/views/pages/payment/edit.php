@@ -115,8 +115,8 @@
                             </div>
                         </div>
                         <div class="card-footer d-flex gap-3">
-                            <button type="submit" class="btn btn-success">Save</button>
-                            <a href="<?= BASEURL . 'payment' ?>" class="btn btn-danger">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                            <a href="<?= BASEURL . 'payment' ?>" class="btn btn-secondary">Cancel</a>
                         </div>
                     </form>
                 </div>
