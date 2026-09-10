@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 
 class Customer extends Model
 {
+    public $timestamps = false;
+    
     public function invoices()
     {
         return $this->hasMany(Invoice::class);

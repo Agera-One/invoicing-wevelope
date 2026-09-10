@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 
 class InvoiceDetail extends Model
 {
+    public $timestamps = false;
+    
     public function item()
     {
         return $this->belongsTo(Item::class);
