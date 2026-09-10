@@ -62,9 +62,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-success">Update</button>
-                            <a href="<?= htmlspecialchars($data['referrer'] ?? BASEURL . 'dashboard') ?>" class="btn btn-danger">Cancel</a>
+                        <div class="card-footer d-flex gap-3">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <a href="<?= htmlspecialchars($data['referrer'] ?? BASEURL . 'dashboard') ?>" class="btn btn-secondary">Cancel</a>
                         </div>
                     </form>
                 </div>
