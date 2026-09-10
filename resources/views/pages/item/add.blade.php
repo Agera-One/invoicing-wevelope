@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Item Management')
+@section('title', 'Add Item')
 
 @section('content')
 <div class="container-fluid px-4">
@@ -11,7 +11,7 @@
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-end">
                 <li class="breadcrumb-item text-decoration-none"><a href="/dashboard">Dashboard</a></li>
-                <li class="breadcrumb-item text-decoration-none"><a href="/item">Items Management</a></li>
+                <li class="breadcrumb-item text-decoration-none"><a href="{{ route('item.index') }}">Items Management</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Add Item</li>
             </ol>
         </div>
@@ -21,15 +21,14 @@
         <div class="card-header">
             <div class="card-title">Add New Item</div>
         </div>
-        <form id="itemForm" action="/item" method="POST">
+        <form id="itemForm" action="{{ route('item.store') }}" method="POST">
             <div class="card-body">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Reference Number</label>
                     <div class="d-flex align-items-center gap-2">
                         <div class="form-control-plaintext fs-5 fw-bold text-primary bg-body-secondary border rounded px-3 py-2 mb-0">
-                            <i class="bi bi-upc-scan me-2"></i><span>REF-2026-001</span>
+                            <i class="bi bi-upc-scan me-2"></i><span>{{ $code }}</span>
                         </div>
-                        {{-- <input type="hidden" name="ref_no" value="<?= $ref_no ?>"> --}}
                     </div>
                 </div>
                 <div class="mb-3">
@@ -45,7 +44,7 @@
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-success">Save</button>
-                <a href="/item" class="btn btn-danger">Cancel</a>
+                <a href="{{ route('item.index') }}" class="btn btn-danger">Cancel</a>
             </div>
         </form>
     </div>

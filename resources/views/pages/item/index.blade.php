@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Item Management')
+@section('title', 'Items Management')
 
 @section('content')
     <div class="container-fluid px-4">
@@ -18,7 +18,7 @@
 
         <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
             <div class="d-flex flex-wrap gap-2">
-                <a href="/item/create" class="btn btn-primary shadow-sm">
+                <a href="{{ route('item.create') }}" class="btn btn-primary shadow-sm">
                     <i class="bi bi-plus-circle me-1"></i> Add New Item
                 </a>
             </div>
@@ -28,10 +28,10 @@
                         <span class="input-group-text bg-transparent border-end-0 text-muted">
                             <i class="bi bi-search"></i>
                         </span>
-                        <input name="search" id="table-filter" type="text" class="form-control border-start-0 ps-0" placeholder="Filter rows…" aria-label="Filter rows" autofocus autocomplete="off" value="{{ request('search') }}">
+                        <input name="search" id="table-filter" type="text" class="form-control border-start-0 ps-0" placeholder="Filter rows…" aria-label="Filter rows" autofocus autocomplete="off" value="{{ request('search') }}" disabled>
                     </div>
                 </form>
-                <a href="/item" class="btn btn-outline-secondary w-25">
+                <a href="{{ route('item.index') }}" class="btn btn-outline-secondary w-25">
                     <i class="bi bi-arrow-counterclockwise"></i>
                 </a>
             </div>
@@ -47,7 +47,7 @@
                                 <th class="fs-6">Reference Number</th>
                                 <th class="fs-6">Name</th>
                                 <th class="fs-6">Price</th>
-                                <th class="fs-6" class="pe-4" width="160">Action</th>
+                                <th class="fs-6 pe-4" width="160">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -59,9 +59,12 @@
                                     <td class="fs-6">Rp{{ number_format($item->price, 0, ',', '.') }}</td>
                                     <td class="pe-4">
                                         <div class="d-flex gap-1">
-                                            <a class="btn btn-sm btn-success px-3" href="/item/edit/{{ $item->id }}">Edit</a>
-                                            <a class="btn btn-sm btn-danger px-2" href="/item/delete/{{ $item->id }}"
-                                                onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                                            <a class="btn btn-sm btn-success px-3" href="{{ route('item.edit', $item) }}">Edit</a>
+                                            <form action="{{ route('item.destroy', $item) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
@@ -71,7 +74,9 @@
                 </div>
             </div>
 
-            {{ $items->links() }}
+            <div class="border-top align px-4">
+                {{ $items->onEachSide(0)->links() }}
+            </div>
         </div>
     </div>
 @endsection
