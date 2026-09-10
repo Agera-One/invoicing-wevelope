@@ -25,7 +25,7 @@ class CustomerController extends Controller
             'CUST'
         );
 
-        return view('pages.customer.add', compact('code'));
+        return view('pages.customer.create', compact('code'));
     }
 
     public function store(Request $request, GenerateCodeServices $codeGenerator)

@@ -12,7 +12,6 @@ class ItemController extends Controller
     public function index()
     {
         $items = Item::latest('id')->paginate(10);
-
         return view('pages.item.index', compact('items'));
     }
 
@@ -24,7 +23,7 @@ class ItemController extends Controller
             'REF'
         );
 
-        return view('pages.item.add', compact('code'));
+        return view('pages.item.create', compact('code'));
     }
 
     public function store(Request $request, GenerateCodeServices $codeGenerator)
