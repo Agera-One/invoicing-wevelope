@@ -20,11 +20,11 @@
 
         <main class="app-main py-4">
             <div class="container-fluid px-4">
-                <div class="row">
-                    <div class="col-sm-6 mb-4">
-                        <h3 class="fw-bold h4 m-0 text-white">User Management</h3>
+                <div class="row mb-3">
+                    <div class="col-sm-6 mb-2">
+                        <h3 class="fw-bold h2 m-0 text-white">User Management</h3>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 mb-4">
                         <ol class="breadcrumb float-sm-end">
                             <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>" class="text-decoration-none text-decoration-custom">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">User Management</li>
@@ -87,7 +87,7 @@
                                     <?php foreach ($users as $user):
                                         $updated_at = new DateTime($user['updated_at']); ?>
                                         <tr>
-                                            <th class="ps-4 text-muted fw-normal"><?= ++$pagination['offset'] ?></th>
+                                            <th class="ps-4 text-light fw-normal"><?= ++$pagination['offset'] ?></th>
                                             <td><?= $user['name'] ?></td>
                                             <td><?= $user['email'] ?></td>
                                             <td><?= date('d F Y', strtotime($user['created_at'])) ?></td>
@@ -95,13 +95,13 @@
                                             <?= ($user['id'] == $user_id) ? '<td class="text-center"><span class="badge text-custom-success"> Online </span></td>' : '<td class="text-center"><span class="badge text-bg-secondary"> Offline </span></td>'; ?>
                                             <td class="text-center">
                                                 <div class="dropdown">
-                                                    <button class="btn btn-sm btn-icon" type="button"
+                                                    <button class="btn btn-sm btn-icon btn-primary" type="button"
                                                         data-bs-toggle="dropdown" aria-expanded="false">
                                                         <i class="bi bi-three-dots"></i>
                                                     </button>
                                                     <ul class="dropdown-menu dropdown-menu-end">
                                                         <li>
-                                                            <a class="dropdown-item text-custom" href="<?= BASEURL . 'user/edit' ?>/<?= $user['id'] ?>">Edit</a>
+                                                            <a class="dropdown-item text-light" href="<?= BASEURL . 'user/edit' ?>/<?= $user['id'] ?>">Edit</a>
                                                         </li>
                                                         <li>
                                                             <a class="dropdown-item text-danger" href="<?= BASEURL . 'user/delete' ?>/<?= $user['id'] ?>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>

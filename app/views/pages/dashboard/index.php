@@ -43,11 +43,11 @@ $oo_breakdown = [
 
         <main class="app-main py-4">
             <div class="container-fluid px-4">
-                <div class="row mb-4">
-                    <div class="col-sm-6">
-                        <h3 class="fw-bold h4 m-0">Dashboard</h3>
+                <div class="row mb-3">
+                    <div class="col-sm-6 mb-2">
+                        <h3 class="fw-bold h2 m-0">Dashboard</h3>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 mb-4">
                         <ol class="breadcrumb float-sm-end mb-0">
                             <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                         </ol>
@@ -73,14 +73,16 @@ $oo_breakdown = [
                 <div class="row g-3 mb-3">
                     <div class="col-12 col-lg-8">
                         <div class="card h-100 shadow-sm border-0">
-                            <div class="card-body">
+                            <!-- Tambahkan d-flex flex-column agar header dan grafik tersusun rapi -->
+                            <div class="card-body d-flex flex-column"> 
+                                
+                                <!-- Header Statistik (Tetap sama) -->
                                 <div class="d-flex justify-content-between align-items-start mb-3 flex-wrap gap-3">
                                     <div>
                                         <div class="dash-section-title mb-2"><span class="channel-dot" style="background:#5abd85"></span> Revenue Trend</div>
                                         <?php if ($trend_values): ?>
                                             <div class="d-flex align-items-baseline gap-2">
-                                                <span
-                                                    class="fs-3 fw-bold">Rp<?= number_format($trend_latest, 0, ',', '.') ?></span>
+                                                <span class="fs-3 fw-bold">Rp<?= number_format($trend_latest, 0, ',', '.') ?></span>
                                             </div>
                                             <small class="text-secondary">vs previous day</small>
                                         <?php else: ?>
@@ -91,8 +93,7 @@ $oo_breakdown = [
                                         <div class="dash-section-title mb-2"><span class="channel-dot" style="background:#ffc107"></span> Unpaid Trend</div>
                                         <?php if ($unpaid_trend_values): ?>
                                             <div class="d-flex align-items-baseline gap-2">
-                                                <span
-                                                    class="fs-3 fw-bold">Rp<?= number_format($unpaid_trend_latest, 0, ',', '.') ?></span>
+                                                <span class="fs-3 fw-bold">Rp<?= number_format($unpaid_trend_latest, 0, ',', '.') ?></span>
                                             </div>
                                             <small class="text-secondary">vs previous day</small>
                                         <?php else: ?>
@@ -100,7 +101,13 @@ $oo_breakdown = [
                                         <?php endif; ?>
                                     </div>
                                 </div>
-                                <canvas id="revenueTrendChart" height="90"></canvas>
+
+                                <!-- KUNCI PERBAIKAN: Bungkus canvas dengan div yang memiliki tinggi statis -->
+                                <div style="position: relative; height: 250px; width: 100%; flex-grow: 1;">
+                                    <!-- Tag canvas harus BERSIH dari atribut height, width, dan class pembentuk ukuran -->
+                                    <canvas id="revenueTrendChart"></canvas>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -211,6 +218,8 @@ $oo_breakdown = [
                 ]
             },
             options: {
+                responsive: true,
+                maintainAspectRatio: false,
                 plugins: {
                     legend: {display: true, position: 'top', align: 'end', labels: {boxWidth: 10, boxHeight: 10}},
                     tooltip: {

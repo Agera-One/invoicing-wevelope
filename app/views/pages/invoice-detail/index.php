@@ -34,14 +34,14 @@
 
         <main class="app-main py-4">
             <div class="container-fluid px-4">
-                <div class="row">
-                    <div class="col-sm-6 mb-3">
+                <div class="row mb-3">
+                    <div class="col-sm-6 mb-4">
                         <a href="<?= BASEURL . 'invoice' ?>" class="text-decoration-none text-decoration-custom small">
                             <i class="bi bi-arrow-left me-1"></i>
                             Back to Invoices
                         </a>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 mb-4">
                         <ol class="breadcrumb float-sm-end">
                             <li class="breadcrumb-item"><a class="text-decoration-none text-decoration-custom" href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
                             <li class="breadcrumb-item"><a class="text-decoration-none text-decoration-custom" href="<?= BASEURL . 'invoice' ?>">Invoices Billing</a></li>
@@ -54,7 +54,7 @@
                     <div class="conntainer-fluid">
                         <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-4">
                             <div>
-                                <h3 class="fw-bold h4 m-0 text-white">Invoice Details</h3>
+                                <h3 class="fw-bold h2 m-0 text-white">Invoice Details</h3>
                             </div>
 
                             <div class="d-flex flex-wrap justify-content-lg-end gap-2 d-print-none">

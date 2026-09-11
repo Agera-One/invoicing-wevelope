@@ -19,11 +19,11 @@
 
         <main class="app-main py-4">
             <div class="container-fluid px-4">
-                <div class="row">
-                    <div class="col-sm-6 mb-4">
-                        <h3 class="fw-bold h4 m-0">Items Management</h3>
+                <div class="row mb-3">
+                    <div class="col-sm-6 mb-2">
+                        <h3 class="fw-bold h2 m-0">Items Management</h3>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 mb-4">
                         <ol class="breadcrumb float-sm-end">
                             <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>"
                                     class="text-decoration-none text-decoration-custom">Dashboard</a></li>
@@ -31,32 +31,7 @@
                         </ol>
                     </div>
                 </div>
-
-                <div class="row g-3 mb-3">
-                    <div class="col-6 col-lg-3">
-                        <div class="card h-100 shadow-sm border-0">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <small class="text-secondary text-uppercase">Total Items</small>
-                                    <i class="bi bi-box-seam text-custom"></i>
-                                </div>
-                                <div class="fs-5 fw-bold"><?= $total_items ?></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-lg-3">
-                        <div class="card h-100 shadow-sm border-0">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <small class="text-secondary text-uppercase">Total Value</small>
-                                    <i class="bi bi-box2 text-custom-success"></i>
-                                </div>
-                                <div class="fs-5 fw-bold">Rp<?= number_format($total_value, 0, ',', '.') ?></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+     
                 <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
                     <div class="d-flex flex-wrap gap-2">
                         <a href="<?= BASEURL . 'item/add' ?>" class="btn btn-custom shadow-sm">
@@ -96,19 +71,19 @@
                                 <tbody>
                                     <?php foreach ($items as $item): ?>
                                         <tr>
-                                            <th class="ps-4 text-secondary fw-normal"><?= ++$pagination['offset'] ?></th>
+                                            <th class="ps-4 text-light fw-normal"><?= ++$pagination['offset'] ?></th>
                                             <td class="fw-medium"><?= $item['ref_no'] ?></td>
                                             <td><?= $item['name'] ?></td>
                                             <td class="text-end">Rp<?= number_format($item['price'], 0, ',', '.') ?></td>
                                             <td class="text-center">
                                                 <div class="dropdown">
-                                                    <button class="btn btn-sm btn-icon" type="button"
+                                                    <button class="btn btn-sm btn-icon btn-primary" type="button"
                                                         data-bs-toggle="dropdown" aria-expanded="false">
                                                         <i class="bi bi-three-dots"></i>
                                                     </button>
                                                     <ul class="dropdown-menu dropdown-menu-end">
                                                         <li>
-                                                            <a class="dropdown-item text-custom"
+                                                            <a class="dropdown-item text-light"
                                                                 href="<?= BASEURL . 'item/edit' ?>/<?= $item['id'] ?>">Edit</a>
                                                         </li>
                                                         <li>

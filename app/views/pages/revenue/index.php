@@ -20,11 +20,11 @@
 
         <main class="app-main py-4">
             <div class="container-fluid px-4">
-                <div class="row">
-                    <div class="col-sm-6 mb-4">
-                        <h3 class="fw-bold h4 m-0 text-white">Revenue Overview</h3>
+                <div class="row mb-3">
+                    <div class="col-sm-6 mb-2">
+                        <h3 class="fw-bold h2 m-0 text-white">Revenue Overview</h3>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 mb-4">
                         <ol class="breadcrumb float-sm-end">
                             <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>" class="text-decoration-none text-decoration-custom">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Revenue Overview</li>
@@ -73,7 +73,7 @@
                                     <?php endif; ?>
                                     <?php foreach ($omsets as $omset): ?>
                                         <tr>
-                                            <th class="ps-4 text-muted fw-normal"><?= $number++ ?></th>
+                                            <th class="ps-4 text-light fw-normal"><?= $number++ ?></th>
                                             <td class="fw-medium"><?= $omset['period'] ?></td>
                                             <td class="text-center"><?= $omset['total_invoice'] ?></td>
                                             <td class="text-center"><?= $omset['total_payment'] ?></td>

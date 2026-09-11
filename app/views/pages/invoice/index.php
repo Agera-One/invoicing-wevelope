@@ -20,11 +20,11 @@
 
         <main class="app-main py-4">
             <div class="container-fluid px-4">
-                <div class="row">
-                    <div class="col-sm-6 mb-4">
-                        <h3 class="fw-bold h4 m-0 text-white">Invoices Billing</h3>
+                <div class="row mb-3">
+                    <div class="col-sm-6 mb-2">
+                        <h3 class="fw-bold h2 m-0 text-white">Invoices Billing</h3>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 mb-4">
                         <ol class="breadcrumb float-sm-end">
                             <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>" class="text-decoration-none text-decoration-custom">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Invoices Billing</li>
@@ -113,7 +113,7 @@
                                     value="<?= $date_to ?? ''; ?>">
                             </div>
                             <div class="col-md-2 d-flex align-items-end gap-2">
-                                <button id="btn-search" type="submit" class="btn btn-md btn-secondary w-100" name="search">
+                                <button id="btn-search" type="submit" class="btn btn-md btn-primary w-100" name="search">
                                     <i class="bi bi-search me-1"></i>Search
                                 </button>
                                 <a href="<?= BASEURL . 'invoice' ?>" class="btn btn-outline-secondary w-100">
@@ -147,7 +147,7 @@
                                         $remaining_unpaid = $invoice['total_bill'] - $invoice['total_payment'];
                                         $is_paid = ($invoice_item > 0) && ($invoice['total_bill'] > 0) && ($invoice['total_payment'] == $invoice['total_bill']); ?>
                                         <tr>
-                                            <th class="ps-4 text-muted fw-normal"><?= ++$pagination['offset'] ?></th>
+                                            <th class="ps-4 text-light fw-normal"><?= ++$pagination['offset'] ?></th>
                                             <td class="fw-medium"><?= $invoice['invoice_code'] ?></td>
                                             <td><?= $invoice['pic_name'] ?></td>
                                             <td><?= $invoice['customer_name'] ?></td>
@@ -165,7 +165,7 @@
                                             <?php endif; ?>
                                             <td class="text-center">
                                                 <div class="dropdown">
-                                                    <button class="btn btn-sm btn-icon" type="button"
+                                                    <button class="btn btn-sm btn-icon btn-primary" type="button"
                                                         data-bs-toggle="dropdown" aria-expanded="false">
                                                         <i class="bi bi-three-dots"></i>
                                                     </button>
@@ -176,7 +176,7 @@
                                                         
                                                         <?php if (!$is_paid): ?>
                                                         <li>
-                                                            <a class="dropdown-item text-custom" href="<?= BASEURL . 'invoice/edit' ?>/<?= $invoice['id'] ?>">Edit</a>
+                                                            <a class="dropdown-item text-light" href="<?= BASEURL . 'invoice/edit' ?>/<?= $invoice['id'] ?>">Edit</a>
                                                         </li>
                                                         <li>
                                                             <a class="dropdown-item text-danger" href="<?= BASEURL . 'invoice/delete' ?>/<?= $invoice['id'] ?>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>

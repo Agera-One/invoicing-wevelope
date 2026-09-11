@@ -21,11 +21,11 @@
 
         <main class="app-main py-4">
             <div class="container-fluid px-4">
-                <div class="row">
-                    <div class="col-sm-6 mb-4">
-                        <h3 class="fw-bold h4 m-0">Customers Management</h3>
+                <div class="row mb-3">
+                    <div class="col-sm-6 mb-2">
+                        <h3 class="fw-bold h2 m-0">Customers Management</h3>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 mb-4">
                         <ol class="breadcrumb float-sm-end">
                             <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>"
                                     class="text-decoration-none text-decoration-custom">Dashboard</a></li>
@@ -110,7 +110,7 @@
                                 <tbody>
                                     <?php foreach ($customers as $customer): ?>
                                         <tr>
-                                            <th class="text-secondary fw-normal"><?= ++$pagination['offset'] ?></th>
+                                            <th class="text-light fw-normal"><?= ++$pagination['offset'] ?></th>
                                             <td class="fw-medium"><?= $customer['customer_code'] ?></td>
                                             <td><?= $customer['name'] ?></td>
                                             <td><?= $customer['email'] ?></td>
@@ -118,13 +118,13 @@
                                             <td><?= $customer['address'] ?></td>
                                             <td class="text-center">
                                                 <div class="dropdown">
-                                                    <button class="btn btn-sm btn-icon" type="button"
+                                                    <button class="btn btn-sm btn-icon btn-primary" type="button"
                                                         data-bs-toggle="dropdown" aria-expanded="false">
                                                         <i class="bi bi-three-dots"></i>
                                                     </button>
                                                     <ul class="dropdown-menu dropdown-menu-end">
                                                         <li>
-                                                            <a class="dropdown-item text-custom"
+                                                            <a class="dropdown-item text-light"
                                                                 href="<?= BASEURL . 'customer/edit' ?>/<?= $customer['id'] ?>">Edit</a>
                                                         </li>
                                                         <li>

@@ -20,11 +20,11 @@
 
         <main class="app-main py-4">
             <div class="container-fluid px-4">
-                <div class="row">
-                    <div class="col-sm-6 mb-4">
-                        <h3 class="fw-bold h4 m-0 text-white">Overdue Invoices</h3>
+                <div class="row mb-3">
+                    <div class="col-sm-6 mb-2">
+                        <h3 class="fw-bold h2 m-0 text-white">Overdue Invoices</h3>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 mb-4">
                         <ol class="breadcrumb float-sm-end">
                             <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>" class="text-decoration-none text-decoration-custom">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Overdue Invoices</li>
@@ -32,21 +32,7 @@
                     </div>
                 </div>
 
-                <div class="row g-3 mb-3">
-                    <div class="col-6 col-lg-3">
-                        <div class="card h-100 shadow-sm border-0">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <small class="text-secondary text-uppercase">Total Overdue</small>
-                                    <i class="bi bi-credit-card text-custom"></i>
-                                </div>
-                                <div class="fs-5 fw-bold">...</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+                <div class="d-flex flex-wrap align-items-center justify-content-end gap-3 mb-4">
                     <div class="col-md-4 d-flex gap-2">
                         <form action="" method="GET" class="flex-grow-1">
                             <div class="input-group">
@@ -86,7 +72,7 @@
                                     <?php foreach ($invoices as $invoice):
                                         $remaining_unpaid = $invoice['total_bill'] - $invoice['total_amount_paid'] ?>
                                         <tr>
-                                            <th class="ps-4 text-muted fw-normal"><?= ++$pagination['offset'] ?></th>
+                                            <th class="ps-4 text-light fw-normal"><?= ++$pagination['offset'] ?></th>
                                             <td class="fw-medium"><?= $invoice['invoice_code'] ?></td>
                                             <td><?= $invoice['customer_name'] ?></td>
                                             <td class="text-center"><?= $invoice['date'] ?></td>
