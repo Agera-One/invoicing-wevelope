@@ -35,8 +35,11 @@
               alt="User">
             <p><?= $current_user['name'] ?><small>Admin</small></p>
           </li>
-          <li class="user-footer">
-            <a href="<?= BASEURL . 'logout' ?>" class="btn btn-outline-danger w-100">
+          <li class="user-footer d-flex justify-content-between gap-2 p-2">
+            <a href="<?= BASEURL . 'profile' ?>" class="btn btn-secondary flex-fill">
+              Profile
+            </a>
+            <a href="<?= BASEURL . 'logout' ?>" class="btn btn-danger flex-fill">
               Logout
             </a>
           </li>
