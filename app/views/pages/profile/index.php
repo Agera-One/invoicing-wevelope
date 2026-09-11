@@ -7,6 +7,7 @@
     <title>Profile User</title>
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/custom.css' ?>">
 </head>
 
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
@@ -28,7 +29,7 @@
                     </div>
                 </div>
 
-                <div class="card card-primary card-outline mb-4">
+                <div class="card card-primary-custom card-outline mb-4">
                     <div class="card-header">
                         <div class="card-title">Profile User</div>
                     </div>
@@ -63,7 +64,7 @@
                             </div>
                         </div>
                         <div class="card-footer d-flex gap-3">
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-custom">Update</button>
                             <a href="<?= htmlspecialchars($data['referrer'] ?? BASEURL . 'dashboard') ?>" class="btn btn-secondary">Cancel</a>
                         </div>
                     </form>

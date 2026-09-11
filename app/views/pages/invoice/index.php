@@ -82,12 +82,12 @@
                 <div class="flex-wrap align-items-center justify-content-between gap-3 mb-4">
                     <form action="" method="GET">
                         <div class="row g-2 mb-3 d-flex justify-content-end">
-                            <div class="col-md-2 d-flex align-items-end">
+                            <div class="col-auto d-flex align-items-end">
                                 <a href="<?= BASEURL . 'invoice/add' ?>" class="btn btn-custom shadow-sm">
                                     <i class="bi bi-plus-lg me-1"></i> Add Invoice
                                 </a>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col">
                                 <label class="form-label">Keyword</label>
                                 <input
                                     type="text"
@@ -113,7 +113,7 @@
                                     value="<?= $date_to ?? ''; ?>">
                             </div>
                             <div class="col-md-2 d-flex align-items-end gap-2">
-                                <button id="btn-search" type="submit" class="btn btn-md btn-primary w-100" name="search">
+                                <button id="btn-search" type="submit" class="btn btn-md btn-custom w-100" name="search">
                                     <i class="bi bi-search me-1"></i>Search
                                 </button>
                                 <a href="<?= BASEURL . 'invoice' ?>" class="btn btn-outline-secondary w-100">
