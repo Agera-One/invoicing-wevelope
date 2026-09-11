@@ -62,7 +62,7 @@
                                     <small class="text-secondary text-uppercase">Total Unpaid Invoice</small>
                                     <i class="bi bi-receipt text-custom-warning"></i>
                                 </div>
-                                <div class="fs-5 fw-bold">...</div>
+                                <div class="fs-5 fw-bold"><?= $total_unpaid_invoice ?></div>
                             </div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                                     <small class="text-secondary text-uppercase">Total Overdue Invoice</small>
                                     <i class="bi bi-receipt text-custom-danger"></i>
                                 </div>
-                                <div class="fs-5 fw-bold">...</div>
+                                <div class="fs-5 fw-bold"><?= $total_overdue_invoice ?></div>
                             </div>
                         </div>
                     </div>
@@ -192,7 +192,8 @@
                         $total  = $pagination['total_page'];
                         $filter_params = '&keyword=' . urlencode($keyword) . '&date_from=' . urlencode($date_from) . '&date_to=' . urlencode($date_to) . '&search=';
 
-                        function pg_range($active, $total) {
+                        function pg_range($active, $total)
+                        {
                             $range = [];
                             $range[] = 1;
                             for ($i = $active - 1; $i <= $active + 1; $i++) {

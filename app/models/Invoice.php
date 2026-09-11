@@ -88,8 +88,11 @@ class Invoice extends BaseModel
     }
 
     public function countInvoiceStatus($where_condition = []) {
+        $today = date('Y-m-d');
+
         $invoices = $this->getConnection()->select('invoice', [
             'id',
+            'due_date',
             'total_bill' => Medoo::raw('(SELECT COALESCE(SUM(amount),0) FROM invoice_detail WHERE invoice_detail.invoice_id = <invoice.id>)'),
             'total_payment' => Medoo::raw('(SELECT COALESCE(SUM(amount),0) FROM payment WHERE payment.invoice_id = <invoice.id>)')
         ], [
@@ -98,14 +101,22 @@ class Invoice extends BaseModel
 
         $total_invoice = count($invoices);
         $total_paid = 0;
+        $total_unpaid = 0;
+        $total_overdue = 0;
 
         foreach ($invoices as $invoice) {
-            if ($invoice['total_bill'] > 0 && $invoice['total_payment'] >= $invoice['total_bill']) {
+            $remaining_unpaid = $invoice['total_bill'] - $invoice['total_payment'];
+
+            if ($remaining_unpaid > 0 && $invoice['due_date'] < $today) {
+                $total_overdue++;
+            } elseif ($invoice['total_payment'] == $invoice['total_bill']) {
                 $total_paid++;
+            } elseif ($invoice['total_payment'] < $invoice['total_bill']) {
+                $total_unpaid++;
             }
         }
 
-        return compact('total_invoice', 'total_paid');
+        return compact('total_invoice', 'total_paid', 'total_unpaid', 'total_overdue');
     }
 
     public function sumInvoiceValue() {

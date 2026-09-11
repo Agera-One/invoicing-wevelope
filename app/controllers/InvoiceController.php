@@ -60,6 +60,8 @@ class InvoiceController extends BaseController
             'invoice_detail' => $this->invoiceDetail,
             'total_invoice' => $status_count['total_invoice'],
             'total_paid_invoice' => $status_count['total_paid'],
+            'total_unpaid_invoice'  => $status_count['total_unpaid'],
+            'total_overdue_invoice' => $status_count['total_overdue'],
         ];
 
         $this->view('invoice/index', $datas);
