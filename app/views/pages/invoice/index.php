@@ -55,28 +55,28 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-6 col-lg-3">
+                    <div class="col-6 col-lg-3">
                         <div class="card h-100 shadow-sm border-0">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
                                     <small class="text-secondary text-uppercase">Total Unpaid Invoice</small>
-                                    <i class="bi bi-receipt text-primary"></i>
+                                    <i class="bi bi-receipt text-custom-warning"></i>
                                 </div>
                                 <div class="fs-5 fw-bold">...</div>
                             </div>
                         </div>
-                    </div> -->
-                    <!-- <div class="col-6 col-lg-3">
+                    </div>
+                    <div class="col-6 col-lg-3">
                         <div class="card h-100 shadow-sm border-0">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <small class="text-secondary text-uppercase">Total Overdue</small>
-                                    <i class="bi bi-receipt text-primary"></i>
+                                    <small class="text-secondary text-uppercase">Total Overdue Invoice</small>
+                                    <i class="bi bi-receipt text-custom-danger"></i>
                                 </div>
                                 <div class="fs-5 fw-bold">...</div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
 
                 <div class="flex-wrap align-items-center justify-content-between gap-3 mb-4">
@@ -143,8 +143,7 @@
                                 <tbody>
                                     <?php foreach ($invoices as $invoice):
                                         $invoice_item = $invoice_detail->invoiceItemCount($invoice['id']);
-                                        $remaining_unpaid = $invoice['total_bill'] - $invoice['total_payment'];
-                                        $is_paid = ($invoice_item > 0) && ($invoice['total_bill'] > 0) && ($invoice['total_payment'] == $invoice['total_bill']); ?>
+                                        $remaining_unpaid = $invoice['total_bill'] - $invoice['total_payment']; ?>
                                         <tr>
                                             <th class="ps-4 text-muted fw-normal"><?= ++$pagination['offset'] ?></th>
                                             <td class="fw-medium"><?= $invoice['invoice_code'] ?></td>
@@ -171,15 +170,12 @@
                                                         <li>
                                                             <a class="dropdown-item text-light" href="<?= BASEURL . 'invoice/detail' ?>/<?= $invoice['id'] ?>">Detail</a>
                                                         </li>
-                                                        
-                                                        <?php if (!$is_paid): ?>
                                                         <li>
                                                             <a class="dropdown-item text-custom" href="<?= BASEURL . 'invoice/edit' ?>/<?= $invoice['id'] ?>">Edit</a>
                                                         </li>
                                                         <li>
                                                             <a class="dropdown-item text-danger" href="<?= BASEURL . 'invoice/delete' ?>/<?= $invoice['id'] ?>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
                                                         </li>
-                                                        <?php endif; ?>
                                                     </ul>
                                                 </div>
                                             </td>
