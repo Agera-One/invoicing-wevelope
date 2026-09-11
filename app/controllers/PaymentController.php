@@ -12,7 +12,7 @@ class PaymentController extends BaseController
         parent::__construct();
         $this->payment = $this->model('payment');
         $this->invoice = $this->model('invoice');
-        $this->invoiceDetail = $this->model('invoicedetail');
+        $this->invoiceDetail = $this->model('invoiceDetail');
         $this->db = $this->invoice->getConnection();
     }
 
@@ -45,19 +45,16 @@ class PaymentController extends BaseController
 
     public function add($get_invoice_id = '')
     {
-        $payment_code = $this->payment->generateCode($this->db, "payment", "payment_code", "PAY");
-
-        $invoice_id  = $_POST['invoice_id'] ?? $get_invoice_id;
+        $invoice_id = $_POST['invoice_id'] ?? $get_invoice_id;
 
         $join_structure = [
             '[><]customer' => ['customer_id' => 'id'],
             '[>]invoice_detail' => ['id' => 'invoice_id'],
             '[>]payment' => ['id' => 'invoice_id'],
-            '[><]pic' => ['pic_id' => 'id'],
+            '[><]user' => ['user_id' => 'id'],
         ];
 
         $where_condition = ['invoice.company_id' => $this->companyId];
-
         $invoice_data = $this->invoice->getAll($join_structure, $where_condition);
 
         $selected_invoice = null;
@@ -68,6 +65,19 @@ class PaymentController extends BaseController
             }
         }
 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $_POST['invoice_id'] = $invoice_id;
+            unset($_POST['payment_code']);
+
+            $_POST['payment_code'] = $this->payment->generateCode($this->db, "payment", "payment_code", "PAY");
+
+            $this->payment->create($_POST);
+            $this->redirect(BASEURL . 'payment');
+            return;
+        }
+
+        $payment_code = $this->payment->generateCode($this->db, "payment", "payment_code", "PAY");
+
         $datas = [
             'payment_code' => $payment_code,
             'invoice_id' => $invoice_id,
@@ -75,14 +85,7 @@ class PaymentController extends BaseController
             'selected_invoice' => $selected_invoice,
         ];
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $_POST['invoice_id'] = $invoice_id;
-
-            $this->payment->create($_POST);
-            $this->redirect(BASEURL . 'payment');
-        } else {
-            $this->view('payment/add', $datas);
-        }
+        $this->view('payment/add', $datas);
     }
 
     public function edit($id)
@@ -93,7 +96,7 @@ class PaymentController extends BaseController
             '[><]customer' => ['customer_id' => 'id'],
             '[>]invoice_detail' => ['id' => 'invoice_id'],
             '[>]payment' => ['id' => 'invoice_id'],
-            '[><]pic' => ['pic_id' => 'id'],
+            '[><]user' => ['user_id' => 'id'],
         ];
 
         $where_condition = ['invoice.company_id' => $this->companyId];
@@ -108,6 +111,18 @@ class PaymentController extends BaseController
             }
         }
 
+        if ($selected_invoice) {
+            $selected_invoice['total_amount_paid'] -= $payment_data['amount'];
+
+            foreach ($invoice_data as &$invoice) {
+                if ((string)$invoice['id'] === (string)$payment_data['invoice_id']) {
+                    $invoice['total_amount_paid'] -= $payment_data['amount'];
+                    break;
+                }
+            }
+            unset($invoice);
+        }
+
         $datas = [
             'payment_data' => $payment_data,
             'invoice_data' => $invoice_data,
@@ -115,7 +130,26 @@ class PaymentController extends BaseController
         ];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->payment->update($id, $_POST);
+            if (!$selected_invoice) {
+                $datas['error'] = 'Invoice not found.';
+                $this->view('payment/edit', $datas);
+                return;
+            }
+
+            $amount = (float) ($_POST['amount'] ?? 0);
+            $remaining = $selected_invoice['total_bill'] - $selected_invoice['total_amount_paid'];
+
+            if ($amount <= 0 || $amount > $remaining) {
+                $datas['error'] = 'Payment amount (Rp' . number_format($amount, 0, ',', '.')
+                    . ') exceeds the remaining balance (Rp' . number_format(max($remaining, 0), 0, ',', '.') . ').';
+                $this->view('payment/edit', $datas);
+                return;
+            }
+
+            $allowed = ['invoice_id', 'date', 'amount'];
+            $update_data = array_intersect_key($_POST, array_flip($allowed));
+
+            $this->payment->update($id, $update_data);
             $this->redirect(BASEURL . 'payment');
         } else {
             $this->view('payment/edit', $datas);
