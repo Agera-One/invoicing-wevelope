@@ -46,24 +46,10 @@
                                 <span class="bi bi-lock-fill"></span>
                             </div>
                         </div>
-                        <!-- <div class="form-check">
-                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Remember Me
-                                </label>
-                            </div>
-                        </div> -->
                         <div class="d-grid">
                             <button type="submit" name="login" class="btn btn-login">Login</button>
                         </div>
                     </form>
-
-                    <p class="text-center mt-3 mb-0">
-                        <a href="<?= BASEURL . 'register' ?>" class="text-decoration-none text-decoration-custom">
-                            Register a new account
-                        </a>
-                    </p>
                 </div>
             </div>
         </div>

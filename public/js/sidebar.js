@@ -8,10 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
     customer: "master",
     pic: "master",
 
-    invoice: "sales",
-    payment: "sales",
-    outstanding: "sales",
-    overdue: "sales",
+    invoice: "transaction",
+    payment: "transaction",
+    outstanding: "transaction",
+    overdue: "transaction",
 
     revenue: "reports",
     "best-seller": "reports",

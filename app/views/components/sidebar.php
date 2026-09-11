@@ -17,7 +17,7 @@
                 data-accordion="false">
 
                 <li class="nav-item">
-                    <a href="<?= BASEURL . 'dashboard' ?>" class="nav-link" data-page="dashboard">
+                    <a href="<?= BASEURL . 'dashboard' ?>" class="nav-link">
                         <i class="nav-icon bi bi-grid-1x2"></i>
                         <p>Dashboard</p>
                     </a>
@@ -48,20 +48,14 @@
                             </a>
                         </li>
 
-                        <!-- <li class="nav-item">
-                            <a href="<?= BASEURL . 'pic' ?>" class="nav-link" data-page="pic">
-                                <i class="bi bi-person-check nav-icon"></i>
-                                <p>Company PIC</p>
-                            </a>
-                        </li> -->
                     </ul>
                 </li>
 
-                <li class="nav-item" data-menu="sales">
+                <li class="nav-item" data-menu="transaction">
                     <a href="#" class="nav-link">
                         <i class="nav-icon bi bi-cart-check"></i>
                         <p>
-                            Sales
+                            Transaction
                             <i class="nav-arrow bi bi-chevron-right"></i>
                         </p>
                     </a>
@@ -142,13 +136,6 @@
                             <a href="<?= BASEURL . 'company' ?>" class="nav-link" data-page="company">
                                 <i class="bi bi-building-gear nav-icon"></i>
                                 <p>Company Setting</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="<?= BASEURL . 'user' ?>" class="nav-link" data-page="user">
-                                <i class="bi bi-person-gear nav-icon"></i>
-                                <p>User Management</p>
                             </a>
                         </li>
 

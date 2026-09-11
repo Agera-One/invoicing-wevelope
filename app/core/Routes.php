@@ -1,21 +1,21 @@
 <?php
 
-class Routes {
-    public function register(App $app) {
+class Routes
+{
+    public function register(App $app)
+    {
 
         if (isset($_SESSION['user_id']) && isset($_SESSION['company_id'])) {
             $app->setDefaultController('ErrorController');
             $app->setDefaultMethod('index');
         } else {
-            $app->setDefaultController('AuthController');
-            $app->setDefaultMethod('showLoginForm');
+            $app->setDefaultController('LoginController');
+            $app->setDefaultMethod('index');
         }
 
-        $app->get('/login', ['AuthController', 'showLoginForm']);
-        $app->post('/login/store', ['AuthController', 'login']);
-        $app->get('/register', ['AuthController', 'showRegisterForm']);
-        $app->post('/register/store', ['AuthController', 'register']);
-        $app->get('/logout', ['AuthController', 'logout']);
+        $app->get('/login', ['LoginController', 'index']);
+        $app->post('/login/store', ['LoginController', 'store']);
+        $app->get('/logout', ['LoginController', 'logout']);
 
         $app->get('/dashboard', ['DashboardController', 'index']);
 
@@ -35,13 +35,6 @@ class Routes {
         $app->get('/customer/export', ['CustomerController', 'exportCsv']);
         $app->get('/customer/import', ['CustomerController', 'importCsv']);
         $app->post('/customer/import', ['CustomerController', 'importCsv']);
-
-        $app->get('/pic', ['PicController', 'index']);
-        $app->get('/pic/add', ['PicController', 'add']);
-        $app->post('/pic/add', ['PicController', 'add']);
-        $app->get('/pic/edit', ['PicController', 'edit']);
-        $app->post('/pic/edit', ['PicController', 'edit']);
-        $app->get('/pic/delete', ['PicController', 'delete']);
 
         $app->get('/invoice', ['InvoiceController', 'index']);
         $app->get('/invoice/add', ['InvoiceController', 'add']);
@@ -80,11 +73,7 @@ class Routes {
         $app->post('/company/logo', ['CompanyController', 'uploadLogo']);
         $app->post('/company/signature', ['CompanyController', 'uploadSignature']);
 
-        $app->get('/user', ['UserController', 'index']);
-        $app->get('/user/add', ['UserController', 'add']);
-        $app->post('/user/add', ['UserController', 'add']);
-        $app->get('/user/edit', ['UserController', 'edit']);
-        $app->post('/user/edit', ['UserController', 'edit']);
-        $app->get('/user/delete', ['UserController', 'delete']);
+        $app->get('/profile', ['ProfileController', 'edit']);
+        $app->post('/profile', ['ProfileController', 'edit']);
     }
 }

@@ -103,7 +103,7 @@
                                         </div>
                                         <div class="mb-4">
                                             <p class="text-secondary small mb-1">Handled by</p>
-                                            <p class="mb-0 fw-semibold"><?= $invoice['pic_name'] ?></p>
+                                            <p class="mb-0 fw-semibold"><?= $invoice['user_name'] ?></p>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 text-sm-end">
@@ -136,18 +136,16 @@
                                                         <td class="text-end"><?= $invoice_detail['quantity'] ?></td>
                                                         <td class="text-end">Rp<?= number_format($invoice_detail['unit_price'], 0, ',', '.') ?></td>
                                                         <td class="text-end">Rp<?= number_format($invoice_detail['amount'], 0, ',', '.') ?></td>
-                                                        <td class="text-center d-print-none">
-                                                            <?php if (!$is_paid): ?>
-                                                                <a class="btn btn-sm btn-outline-warning me-1" href="<?= BASEURL . 'detail/edit' ?>/<?= $invoice_detail['detail_id'] ?>/<?= $invoice_detail['invoice_id'] ?>">
+                                                        <td class="d-print-none">
+                                                            <div class="d-flex justify-content-center gap-3">
+                                                                <a class="btn btn-sm btn-outline-warning" href="<?= BASEURL . 'detail/edit' ?>/<?= $invoice_detail['detail_id'] ?>/<?= $invoice_detail['invoice_id'] ?>">
                                                                     <i class="bi bi-pencil-square"></i>
                                                                 </a>
-                                                                <a class="btn btn-sm btn-outline-danger ms-1" href="<?= BASEURL . 'detail/delete' ?>/<?= $invoice_detail['detail_id'] ?>/<?= $invoice_detail['invoice_id'] ?>"
+                                                                <a class="btn btn-sm btn-outline-danger" href="<?= BASEURL . 'detail/delete' ?>/<?= $invoice_detail['detail_id'] ?>/<?= $invoice_detail['invoice_id'] ?>"
                                                                     onclick="return confirm('Are you sure you want to delete this detail?');">
                                                                     <i class="bi bi-trash"></i>
                                                                 </a>
-                                                            <?php else: ?>
-                                                                <span class="text-muted small">Locked</span>
-                                                            <?php endif; ?>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                 <?php endif; ?>
@@ -156,14 +154,7 @@
                                     </table>
                                 </div>
 
-                                <?php if (!$is_paid): ?>
-                                    <a href="<?= BASEURL . 'detail/add' ?>/<?= $invoice_id ?>" class="btn btn-custom d-print-none">Add Item</a>
-                                <?php else: ?>
-                                    <p class="text-muted small mb-0 d-print-none">
-                                        <i class="bi bi-lock-fill me-1"></i>
-                                        This invoice has been fully paid and can no longer be modified.
-                                    </p>
-                                <?php endif; ?>
+                                <a href="<?= BASEURL . 'detail/add' ?>/<?= $invoice_id ?>" class="btn btn-custom d-print-none">Add Item</a>
 
                                 <div class="row justify-content-end">
                                     <div class="col-md-5 col-lg-4">

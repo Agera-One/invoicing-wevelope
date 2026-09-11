@@ -33,20 +33,6 @@
                     </div>
                 </div>
 
-                <div class="row g-3 mb-3">
-                    <div class="col-6 col-lg-3">
-                        <div class="card h-100 shadow-sm border-0">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <small class="text-secondary text-uppercase">Total Payment</small>
-                                    <i class="bi bi-credit-card text-custom"></i>
-                                </div>
-                                <div class="fs-5 fw-bold">...</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="d-flex flex-wrap align-Payments-center justify-content-between gap-3 mb-4">
                     <div class="d-flex flex-wrap gap-2">
                         <a href="<?= BASEURL . 'payment/add' ?>" class="btn btn-custom shadow-sm">
