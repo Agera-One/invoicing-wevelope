@@ -81,7 +81,7 @@
                                             <td class="text-end">Rp<?= number_format($payment['amount'], 0, ',', '.') ?></td>
                                             <td class="text-center">
                                                 <div class="dropdown">
-                                                    <button class="btn btn-sm btn-icon btn-primary" type="button"
+                                                    <button class="btn btn-sm btn-icon btn-custom" type="button"
                                                         data-bs-toggle="dropdown" aria-expanded="false">
                                                         <i class="bi bi-three-dots"></i>
                                                     </button>
