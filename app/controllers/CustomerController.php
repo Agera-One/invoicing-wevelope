@@ -24,12 +24,16 @@ class CustomerController extends BaseController
         $pagination = $this->customer->pagination($this->db, $page, 'customer', 'id', $where_condition);
 
         $customers = $this->customer->getAll($where_condition, $pagination['offset'], $pagination['limit']);
+        $total_customers = $this->customer->getTotalCount($where_condition);
+        $best_customer = $this->customer->getBestCustomer();
 
         $this->view('customer/index', [
             'search' => $search,
             'page' => $page,
             'pagination' => $pagination,
             'customers' => $customers,
+            'total_customers' => $total_customers,
+            'best_customer' => $best_customer['name'] ?? '-',
         ]);
     }
 

@@ -7,6 +7,7 @@
     <title>Add Item</title>
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/custom.css' ?>">
 </head>
 
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
@@ -22,23 +23,23 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>" class="text-decoration-none">Dashboard</a></li>
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'item' ?>" class="text-decoration-none">Items Management</a></li>
+                            <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>" class="text-decoration-none text-decoration-custom">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="<?= BASEURL . 'item' ?>" class="text-decoration-none text-decoration-custom">Items Management</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Add Item</li>
                         </ol>
                     </div>
                 </div>
 
-                <div class="card card-primary card-outline mb-4">
-                    <div class="card-header">
+                <div class="card card-primary-custom card-outline mb-4">
+                    <div class="card-header border-0">
                         <div class="card-title">Add New Item</div>
                     </div>
                     <form id="itemForm" action="" method="POST">
-                        <div class="card-body">
+                        <div class="card-body border-0">
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Reference Number</label>
                                 <div class="d-flex align-items-center gap-2">
-                                    <div class="form-control-plaintext fs-5 fw-bold text-primary bg-body-secondary border rounded px-3 py-2 mb-0">
+                                    <div class="form-control-plaintext fs-5 fw-bold text-custom bg-body-secondary border rounded px-3 py-2 mb-0">
                                         <i class="bi bi-upc-scan me-2"></i><span><?= $ref_no ?></span>
                                     </div>
                                     <input type="hidden" name="ref_no" value="<?= $ref_no ?>">
@@ -55,9 +56,9 @@
                                 <div class="invalid-feedback" id="priceError"></div>
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-primary me-2">Save</button>
-                            <a href="<?= BASEURL . 'item' ?>" class="btn btn-danger">Cancel</a>
+                        <div class="card-footer border-0">
+                            <button type="submit" class="btn btn-custom me-2">Save</button>
+                            <a href="<?= BASEURL . 'item' ?>" class="btn btn-secondary">Cancel</a>
                         </div>
                     </form>
                 </div>

@@ -43,3 +43,8 @@ body {
 .table-hover > tbody > tr:hover > * {
     --bs-table-accent-bg: rgba(var(--bs-primary-rgb), .08);
 }
+
+.text-custom-success {
+    color: rgb(0, 202, 0);
+    background-color: rgba(0, 199, 0, 0.5);
+}

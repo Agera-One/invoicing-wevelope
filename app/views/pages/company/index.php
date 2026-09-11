@@ -8,7 +8,24 @@
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/company.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/custom.css' ?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+            background-color: #1e2125;
+        }
+
+        .app-wrapper {
+            height: 100vh;
+        }
+
+        .app-main {
+            overflow-y: auto;
+        }
+    </style>
 </head>
 
 <body class="layout-fixed fixed-header sidebar-expand-lg">
@@ -24,7 +41,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>" class="text-decoration-none">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>" class="text-decoration-none text-decoration-custom">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Company Profile Settings</li>
                         </ol>
                     </div>
@@ -98,7 +115,7 @@
                                         </div>
 
                                         <div class="text-end">
-                                            <a href="<?= BASEURL . 'company/info' ?>" class="btn btn-custom-warning btn-sm px-3">
+                                            <a href="<?= BASEURL . 'company/info' ?>" class="btn btn-custom btn-sm px-3">
                                                 <!-- <i class="bi bi-pencil-square me-1"></i> -->
                                                  Change
                                             </a>
@@ -126,7 +143,7 @@
                                             </div>
                                         </div>
                                         <div class="text-end">
-                                            <a href="<?= BASEURL . 'company/contact' ?>" class="btn btn-custom-warning btn-sm px-3">
+                                            <a href="<?= BASEURL . 'company/contact' ?>" class="btn btn-custom btn-sm px-3">
                                                 <!-- <i class="bi bi-pencil-square me-1"></i> -->
                                                  Change
                                             </a>

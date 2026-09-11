@@ -38,15 +38,3 @@ body {
     color: #adb5bd;
     margin-bottom: 15px;
 }
-
-.btn-custom-warning {
-    background-color: #ffc107 !important;
-    border-color: #ffc107 !important;
-    color: #000000 !important;
-    font-weight: 500;
-    font-size: 14px;
-}
-
-.btn-custom-warning:hover {
-    background-color: #e0a800 !important;
-}

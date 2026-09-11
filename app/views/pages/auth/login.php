@@ -60,7 +60,7 @@
                     </form>
 
                     <p class="text-center mt-3 mb-0">
-                        <a href="<?= BASEURL . 'register' ?>" class="text-decoration-none">
+                        <a href="<?= BASEURL . 'register' ?>" class="text-decoration-none text-decoration-custom">
                             Register a new account
                         </a>
                     </p>

@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/user.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/pagination.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/custom.css' ?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css" crossorigin="anonymous" />
 </head>
 
@@ -24,15 +26,29 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>" class="text-decoration-none">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>" class="text-decoration-none text-decoration-custom">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">User Management</li>
                         </ol>
                     </div>
                 </div>
 
+                <!-- <div class="row g-3 mb-3">
+                    <div class="col-6 col-lg-3">
+                        <div class="card h-100 shadow-sm border-0">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <small class="text-secondary text-uppercase">Total Payment</small>
+                                    <i class="bi bi-credit-card text-custom"></i>
+                                </div>
+                                <div class="fs-5 fw-bold">...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
                 <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
                     <div class="d-flex flex-wrap gap-2">
-                        <a href="<?= BASEURL . 'user/add' ?>" class="btn btn-primary shadow-sm">
+                        <a href="<?= BASEURL . 'user/add' ?>" class="btn btn-custom shadow-sm">
                             <i class="bi bi-plus-lg me-1"></i> Add User
                         </a>
                     </div>
@@ -76,7 +92,7 @@
                                             <td><?= $user['email'] ?></td>
                                             <td><?= date('d F Y', strtotime($user['created_at'])) ?></td>
                                             <td><?= $updated_at->format('d F Y H:i') ?></td>
-                                            <?= ($user['id'] == $user_id) ? '<td class="text-center"><span class="badge text-bg-success"> Online </span></td>' : '<td class="text-center"><span class="badge text-bg-secondary"> Offline </span></td>'; ?>
+                                            <?= ($user['id'] == $user_id) ? '<td class="text-center"><span class="badge text-custom-success"> Online </span></td>' : '<td class="text-center"><span class="badge text-bg-secondary"> Offline </span></td>'; ?>
                                             <td class="text-center">
                                                 <div class="dropdown">
                                                     <button class="btn btn-sm btn-icon" type="button"
@@ -85,7 +101,7 @@
                                                     </button>
                                                     <ul class="dropdown-menu dropdown-menu-end">
                                                         <li>
-                                                            <a class="dropdown-item text-warning" href="<?= BASEURL . 'user/edit' ?>/<?= $user['id'] ?>">Edit</a>
+                                                            <a class="dropdown-item text-custom" href="<?= BASEURL . 'user/edit' ?>/<?= $user['id'] ?>">Edit</a>
                                                         </li>
                                                         <li>
                                                             <a class="dropdown-item text-danger" href="<?= BASEURL . 'user/delete' ?>/<?= $user['id'] ?>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>

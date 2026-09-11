@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/customer.css' ?>">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css"
-        crossorigin="anonymous" />
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/pagination.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/custom.css' ?>">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
 
@@ -28,7 +28,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
                             <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>"
-                                    class="text-decoration-none">Dashboard</a></li>
+                                    class="text-decoration-none text-decoration-custom">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Customers Management</li>
                         </ol>
                     </div>
@@ -40,9 +40,20 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
                                     <small class="text-secondary text-uppercase">Total Customers</small>
-                                    <i class="bi bi-people text-primary"></i>
+                                    <i class="bi bi-people text-custom"></i>
                                 </div>
-                                <div class="fs-5 fw-bold">...</div>
+                                <div class="fs-5 fw-bold"><?= $total_customers ?></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                        <div class="card h-100 shadow-sm border-0">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <small class="text-secondary text-uppercase">Best Customers</small>
+                                    <i class="bi bi-person-up text-white"></i>
+                                </div>
+                                <div class="fs-5 fw-bold"><?= $best_customer ?></div>
                             </div>
                         </div>
                     </div>
@@ -50,7 +61,7 @@
 
                 <div class="d-flex flex-wrap align-item-center justify-content-between gap-3 mb-4">
                     <div class="d-flex flex-wrap gap-2">
-                        <a href="<?= BASEURL . 'customer/add' ?>" class="btn btn-primary shadow-sm">
+                        <a href="<?= BASEURL . 'customer/add' ?>" class="btn btn-custom shadow-sm">
                             <i class="bi bi-plus-lg me-1"></i> Add Customer
                         </a>
                         <a href="<?= BASEURL . 'customer/export' ?>" class="btn btn-outline-secondary">
@@ -113,7 +124,7 @@
                                                     </button>
                                                     <ul class="dropdown-menu dropdown-menu-end">
                                                         <li>
-                                                            <a class="dropdown-item text-warning"
+                                                            <a class="dropdown-item text-custom"
                                                                 href="<?= BASEURL . 'customer/edit' ?>/<?= $customer['id'] ?>">Edit</a>
                                                         </li>
                                                         <li>

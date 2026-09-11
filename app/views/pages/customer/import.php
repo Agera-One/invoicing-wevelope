@@ -27,8 +27,8 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
                             <ol class="breadcrumb float-sm-end">
-                                <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
-                                <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'customer' ?>">Customers Management</a></li>
+                                <li class="breadcrumb-item"><a class="text-decoration-none" href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a class="text-decoration-none" href="<?= BASEURL . 'customer' ?>">Customers Management</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Import CSV</li>
                             </ol>
                         </ol>
@@ -66,35 +66,36 @@
                     <?php endif; ?>
                 <?php endif; ?>
 
-                <div class="card shadow-sm border-0">
-                    <div class="card-header bg-success text-white py-3">
+                <div class="card shadow-sm card-success card-outline">
+                    <div class="card-header text-white py-3 border-0">
                         <h5 class="card-title mb-0 fw-bold">Import Customer via CSV</h5>
                     </div>
                     <div class="card-body p-4">
                         <form action="" method="POST" enctype="multipart/form-data">
 
                             <div class="mb-4">
-                                <label for="file_name" class="form-label fw-semibold text-secondary">Choose CSV File</label>
-                                <input type="file" class="form-control" id="file_name" name="file_name" accept=".csv" required>
+                                <label for="file_name" class="form-label fw-semibold text-secondary">Choose CSV
+                                    File</label>
+                                <input type="file" class="form-control" id="file_name" name="file_name" accept=".csv"
+                                    required>
                                 <div class="form-text text-muted mt-2">
-                                    Column structure must match the export template: <code>CUSTOMER CODE, NAME, EMAIL, PHONE, ADDRESS</code>
+                                    Column structure must match the export template:
+                                    <code>CUSTOMER CODE, NAME, EMAIL, PHONE, ADDRESS</code>
                                     <br>
-                                    <code>CUSTOMER CODE</code> is optional — leave it blank and one will be generated automatically in the format <code>CUST-YYYY-XXXX</code>. If filled in, it must follow that same format and must be unique.
+                                    <code>CUSTOMER CODE</code> is optional — leave it blank and one will be generated
+                                    automatically in the format <code>CUST-YYYY-XXXX</code>. If filled in, it must
+                                    follow that same format and must be unique.
                                 </div>
                             </div>
-
-                            <hr class="text-muted my-4">
-
-                            <div class="d-flex justify-content-between align-items-center">
-                                <a href="<?= BASEURL . 'customer' ?>" class="btn btn-outline-secondary px-4">
-                                    Back
-                                </a>
-                                <button type="submit" class="btn btn-success px-4">
-                                    Upload & Import
-                                </button>
-                            </div>
-
                         </form>
+                    </div>
+                    <div class="card-footer d-flex gap-3 align-items-center border-0">
+                        <button type="submit" class="btn btn-success px-4">
+                            Import
+                        </button>
+                        <a href="<?= BASEURL . 'customer' ?>" class="btn btn-danger px-4">
+                            Back
+                        </a>
                     </div>
                 </div>
             </div>

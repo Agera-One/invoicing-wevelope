@@ -81,6 +81,27 @@ class Invoice extends BaseModel {
         ]);
     }
 
+    public function countInvoiceStatus($where_condition = []) {
+        $invoices = $this->getConnection()->select('invoice', [
+            'id',
+            'total_bill' => Medoo::raw('(SELECT COALESCE(SUM(amount),0) FROM invoice_detail WHERE invoice_detail.invoice_id = <invoice.id>)'),
+            'total_payment' => Medoo::raw('(SELECT COALESCE(SUM(amount),0) FROM payment WHERE payment.invoice_id = <invoice.id>)')
+        ], [
+            ...$where_condition
+        ]);
+
+        $total_invoice = count($invoices);
+        $total_paid = 0;
+
+        foreach ($invoices as $invoice) {
+            if ($invoice['total_bill'] > 0 && $invoice['total_payment'] >= $invoice['total_bill']) {
+                $total_paid++;
+            }
+        }
+
+        return compact('total_invoice', 'total_paid');
+    }
+
     public function sumInvoiceValue() {
         return $this->getConnection()->sum('invoice', [
             '[><]invoice_detail' => ['id' => 'invoice_id']

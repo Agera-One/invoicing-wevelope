@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/report.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/revenue.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/custom.css' ?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css" crossorigin="anonymous" />
 </head>
 
@@ -25,7 +26,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>" class="text-decoration-none">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>" class="text-decoration-none text-decoration-custom">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Revenue Overview</li>
                         </ol>
                     </div>
@@ -34,15 +35,15 @@
                 <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
                     <div class="btn-group period-filter" role="group" aria-label="Period filter">
                         <a href="?period=daily"
-                            class="btn btn-outline-primary <?= $period === 'daily' ? 'active btn-primary text-white' : '' ?>">
+                            class="btn btn-outline-custom <?= $period === 'daily' ? 'active btn-custom text-white' : '' ?>">
                             Daily
                         </a>
                         <a href="?period=weekly"
-                            class="btn btn-outline-primary <?= $period === 'weekly' ? 'active btn-primary text-white' : '' ?>">
+                            class="btn btn-outline-custom <?= $period === 'weekly' ? 'active btn-custom text-white' : '' ?>">
                             Weekly
                         </a>
                         <a href="?period=monthly"
-                            class="btn btn-outline-primary <?= $period === 'monthly' ? 'active btn-primary text-white' : '' ?>">
+                            class="btn btn-outline-custom <?= $period === 'monthly' ? 'active btn-custom text-white' : '' ?>">
                             Monthly
                         </a>
                     </div>

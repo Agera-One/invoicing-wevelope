@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/payment.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/pagination.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/custom.css' ?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
@@ -25,15 +27,29 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>" class="text-decoration-none">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>" class="text-decoration-none text-decoration-custom">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Payment Transactions</li>
                         </ol>
                     </div>
                 </div>
 
+                <div class="row g-3 mb-3">
+                    <div class="col-6 col-lg-3">
+                        <div class="card h-100 shadow-sm border-0">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <small class="text-secondary text-uppercase">Total Payment</small>
+                                    <i class="bi bi-credit-card text-custom"></i>
+                                </div>
+                                <div class="fs-5 fw-bold">...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="d-flex flex-wrap align-Payments-center justify-content-between gap-3 mb-4">
                     <div class="d-flex flex-wrap gap-2">
-                        <a href="<?= BASEURL . 'payment/add' ?>" class="btn btn-primary shadow-sm">
+                        <a href="<?= BASEURL . 'payment/add' ?>" class="btn btn-custom shadow-sm">
                             <i class="bi bi-plus-lg me-1"></i> Add Payment
                         </a>
                     </div>
@@ -85,7 +101,7 @@
                                                     </button>
                                                     <ul class="dropdown-menu dropdown-menu-end">
                                                         <li>
-                                                            <a class="dropdown-item text-warning" href="<?= BASEURL . 'payment/edit' ?>/<?= $payment['id'] ?>">Edit</a>
+                                                            <a class="dropdown-item text-custom" href="<?= BASEURL . 'payment/edit' ?>/<?= $payment['id'] ?>">Edit</a>
                                                         </li>
                                                         <li>
                                                             <a class="dropdown-item text-danger" href="<?= BASEURL . 'payment/delete' ?>/<?= $payment['id'] ?>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>

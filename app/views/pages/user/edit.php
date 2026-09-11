@@ -7,6 +7,7 @@
     <title>Edit User</title>
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/custom.css' ?>">
 </head>
 
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
@@ -22,19 +23,19 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item"><a class="text-decoration-none" href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a class="text-decoration-none" href="<?= BASEURL . 'user' ?>">User Management</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none text-decoration-custom" href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none text-decoration-custom" href="<?= BASEURL . 'user' ?>">User Management</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Edit User</li>
                         </ol>
                     </div>
                 </div>
 
-                <div class="card card-warning card-outline mb-4">
-                    <div class="card-header">
+                <div class="card card-primary-custom card-outline mb-4">
+                    <div class="card-header border-0">
                         <div class="card-title">Edit Item</div>
                     </div>
                     <form action="" method="POST" id="userForm" novalidate>
-                        <div class="card-body">
+                        <div class="card-body border-0">
                             <div class="mb-3">
                                 <label class="form-label">Name</label>
                                 <input value="<?= htmlspecialchars($data['name']) ?>" id="name" name="name" type="text"
@@ -52,18 +53,19 @@
                                 <input id="password" name="password" type="password" class="form-control"
                                     placeholder="Leave blank if you don't want to change it">
                                 <div class="invalid-feedback" id="passwordError"></div>
-                                <div class="mb-3">
-                                    <label class="form-label">Confirm Password</label>
-                                    <input id="confirm_password" name="confirm_password" type="password"
-                                        class="form-control" placeholder="Re-enter your new password">
-                                    <div class="invalid-feedback" id="confirmPasswordError"></div>
-                                </div>
                             </div>
+                            <div class="mb-3">
+                                <label class="form-label">Confirm Password</label>
+                                <input id="confirm_password" name="confirm_password" type="password"
+                                    class="form-control" placeholder="Re-enter your new password">
+                                <div class="invalid-feedback" id="confirmPasswordError"></div>
+                            </div>
+                        </div>
+                        <div class="card-footer border-0">
+                            <button type="submit" class="btn btn-custom me-2">Update</button>
+                            <a href="<?= BASEURL . 'user' ?>" class="btn btn-secondary">Cancel</a>
+                        </div>
                     </form>
-                </div>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-warning me-2">Update</button>
-                    <a href="<?= BASEURL . 'user' ?>" class="btn btn-danger">Cancel</a>
                 </div>
             </div>
         </main>

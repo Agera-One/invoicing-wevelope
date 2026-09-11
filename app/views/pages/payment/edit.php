@@ -7,6 +7,23 @@
     <title>Edit Payment</title>
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/custom.css' ?>">
+    <style>
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+            background-color: #1e2125;
+        }
+
+        .app-wrapper {
+            height: 100vh;
+        }
+
+        .app-main {
+            overflow-y: auto;
+        }
+    </style>
 </head>
 
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
@@ -22,19 +39,19 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item"><a class="text-decoration-none" href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a class="text-decoration-none" href="<?= BASEURL . 'payment' ?>">Payment Transactions</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none text-decoration-custom" href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none text-decoration-custom" href="<?= BASEURL . 'payment' ?>">Payment Transactions</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Edit Payment</li>
                         </ol>
                     </div>
                 </div>
 
-                <div class="card card-warning card-outline mb-4">
-                    <div class="card-header">
+                <div class="card card-primary-custom card-outline mb-4">
+                    <div class="card-header border-0">
                         <div class="card-title">Form Payment Invoice</div>
                     </div>
                     <form action="" method="POST">
-                        <div class="card-body">
+                        <div class="card-body border-0">
                             <div class="mb-3">
                                 <label class="form-label">Choose Invoice <span class="text-danger">*</span></label>
                                 <select name="invoice_id" id="invoice-select" class="form-select" aria-label="Default select example" required>
@@ -97,7 +114,7 @@
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Payment Code</label>
                                 <div class="d-flex align-items-center gap-2">
-                                    <div class="form-control-plaintext fs-5 fw-bold text-primary bg-body-secondary border rounded px-3 py-2 mb-0">
+                                    <div class="form-control-plaintext fs-5 fw-bold text-custom bg-body-secondary border rounded px-3 py-2 mb-0">
                                         <i class="bi bi-upc-scan me-2"></i><span id="noFakturText"><?= $payment_data['payment_code'] ?></span>
                                     </div>
                                 </div>
@@ -114,9 +131,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-warning me-2">Save</button>
-                            <a href="<?= BASEURL . 'payment' ?>" class="btn btn-danger">Cancel</a>
+                        <div class="card-footer border-0">
+                            <button type="submit" class="btn btn-custom me-2">Save</button>
+                            <a href="<?= BASEURL . 'payment' ?>" class="btn btn-secondary">Cancel</a>
                         </div>
                     </form>
                 </div>

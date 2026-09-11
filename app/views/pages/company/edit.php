@@ -7,6 +7,23 @@
     <title>Edit Company Profile</title>
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/custom.css' ?>">
+    <style>
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+            background-color: #1e2125;
+        }
+
+        .app-wrapper {
+            height: 100vh;
+        }
+
+        .app-main {
+            overflow-y: auto;
+        }
+    </style>
 </head>
 
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
@@ -22,15 +39,17 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item"><a class="text-decoration-none" href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a class="text-decoration-none" href="<?= BASEURL . 'company' ?>">Company Profile Settings</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none text-decoration-custom"
+                                    href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none text-decoration-custom"
+                                    href="<?= BASEURL . 'company' ?>">Company Profile Settings</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Edit Company Profile</li>
                         </ol>
                     </div>
                 </div>
 
-                <div class="card card-warning card-outline mb-4">
-                    <div class="card-header">
+                <div class="card card-primary-custom card-outline mb-4">
+                    <div class="card-header border-0">
                         <div class="card-title">Edit Company Information</div>
                     </div>
                     <?php if ($section === 'info'): ?>
@@ -40,131 +59,98 @@
                             <?php endif; ?>
                             <div class="card-body">
                                 <div class="row row-gap-3">
-                                <?php if ($section === 'info'): ?>
-                                    <div class="col-sm-6">
-                                        <label class="form-label">Company Name</label>
-                                        <input
-                                            type="text"
-                                            name="name"
-                                            class="form-control"
-                                            value="<?= $name ?? '' ?>"
-                                            required>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label class="form-label">Business Entity</label>
-                                        <select name="business_entity" class="form-select" required>
-                                            <option value="" disabled <?= empty($business_entity) ? 'selected' : '' ?>>
-                                                Select Business Entity
-                                            </option>
-                                            <option value="PT" <?= (($business_entity ?? '') == 'PT') ? 'selected' : '' ?>>
-                                                PT
-                                            </option>
-                                            <option value="CV" <?= (($business_entity ?? '') == 'CV') ? 'selected' : '' ?>>
-                                                CV
-                                            </option>
-                                            <option value="UD" <?= (($business_entity ?? '') == 'UD') ? 'selected' : '' ?>>
-                                                UD
-                                            </option>
-                                            <option value="Firma" <?= (($business_entity ?? '') == 'Firma') ? 'selected' : '' ?>>
-                                                Firma
-                                            </option>
-                                            <option value="Koperasi" <?= (($business_entity ?? '') == 'Koperasi') ? 'selected' : '' ?>>
-                                                Koperasi
-                                            </option>
-                                            <option value="Perorangan" <?= (($business_entity ?? '') == 'Perorangan') ? 'selected' : '' ?>>
-                                                Perorangan
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label class="form-label">Business Sector</label>
-                                        <input
-                                            type="text"
-                                            name="sector"
-                                            class="form-control"
-                                            value="<?= $sector ?? '' ?>">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label class="form-label">Website</label>
-                                        <input
-                                            type="url"
-                                            name="website"
-                                            class="form-control"
-                                            value="<?= $website ?? '' ?>">
-                                    </div>
-                                    <div class="col-12">
-                                        <label class="form-label">Business Description</label>
-                                        <textarea
-                                            name="description"
-                                            class="form-control"
-                                            rows="4"><?= $description ?? '' ?></textarea>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label class="form-label">Country</label>
-                                        <input
-                                            type="text"
-                                            name="country"
-                                            class="form-control"
-                                            value="<?= $country ?? '' ?>">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label class="form-label">Province</label>
-                                        <input
-                                            type="text"
-                                            name="province"
-                                            class="form-control"
-                                            value="<?= $province ?? '' ?>">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label class="form-label">City / Regency</label>
-                                        <input
-                                            type="text"
-                                            name="city"
-                                            class="form-control"
-                                            value="<?= $city ?? '' ?>">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label class="form-label">Subdistrict</label>
-                                        <input
-                                            type="text"
-                                            name="subdistrict"
-                                            class="form-control"
-                                            value="<?= $subdistrict ?? '' ?>">
-                                    </div>
-                                    <div class="col-12">
-                                        <label class="form-label">Address</label>
-                                        <textarea
-                                            name="address"
-                                            class="form-control"
-                                            rows="3"><?= $address ?? '' ?></textarea>
-                                    </div>
+                                    <?php if ($section === 'info'): ?>
+                                        <div class="col-sm-6">
+                                            <label class="form-label">Company Name</label>
+                                            <input type="text" name="name" class="form-control" value="<?= $name ?? '' ?>"
+                                                required>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="form-label">Business Entity</label>
+                                            <select name="business_entity" class="form-select" required>
+                                                <option value="" disabled <?= empty($business_entity) ? 'selected' : '' ?>>
+                                                    Select Business Entity
+                                                </option>
+                                                <option value="PT" <?= (($business_entity ?? '') == 'PT') ? 'selected' : '' ?>>
+                                                    PT
+                                                </option>
+                                                <option value="CV" <?= (($business_entity ?? '') == 'CV') ? 'selected' : '' ?>>
+                                                    CV
+                                                </option>
+                                                <option value="UD" <?= (($business_entity ?? '') == 'UD') ? 'selected' : '' ?>>
+                                                    UD
+                                                </option>
+                                                <option value="Firma" <?= (($business_entity ?? '') == 'Firma') ? 'selected' : '' ?>>
+                                                    Firma
+                                                </option>
+                                                <option value="Koperasi" <?= (($business_entity ?? '') == 'Koperasi') ? 'selected' : '' ?>>
+                                                    Koperasi
+                                                </option>
+                                                <option value="Perorangan" <?= (($business_entity ?? '') == 'Perorangan') ? 'selected' : '' ?>>
+                                                    Perorangan
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="form-label">Business Sector</label>
+                                            <input type="text" name="sector" class="form-control"
+                                                value="<?= $sector ?? '' ?>">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="form-label">Website</label>
+                                            <input type="url" name="website" class="form-control"
+                                                value="<?= $website ?? '' ?>">
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label">Business Description</label>
+                                            <textarea name="description" class="form-control"
+                                                rows="4"><?= $description ?? '' ?></textarea>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="form-label">Country</label>
+                                            <input type="text" name="country" class="form-control"
+                                                value="<?= $country ?? '' ?>">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="form-label">Province</label>
+                                            <input type="text" name="province" class="form-control"
+                                                value="<?= $province ?? '' ?>">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="form-label">City / Regency</label>
+                                            <input type="text" name="city" class="form-control" value="<?= $city ?? '' ?>">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="form-label">Subdistrict</label>
+                                            <input type="text" name="subdistrict" class="form-control"
+                                                value="<?= $subdistrict ?? '' ?>">
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label">Address</label>
+                                            <textarea name="address" class="form-control"
+                                                rows="3"><?= $address ?? '' ?></textarea>
+                                        </div>
 
-                                <?php elseif ($section === 'contact'): ?>
-                                    <div class="col-sm-6">
-                                        <label class="form-label">Email</label>
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            class="form-control"
-                                            value="<?= $email ?? '' ?>">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label class="form-label">Phone</label>
-                                        <input
-                                            type="text"
-                                            name="phone"
-                                            class="form-control"
-                                            value="<?= $phone ?? '' ?>">
-                                    </div>
-                                <?php endif; ?>
+                                    <?php elseif ($section === 'contact'): ?>
+                                        <div>
+                                            <label class="form-label">Email</label>
+                                            <input type="email" name="email" class="form-control"
+                                                value="<?= $email ?? '' ?>">
+                                        </div>
+                                        <div>
+                                            <label class="form-label">Phone</label>
+                                            <input type="text" name="phone" class="form-control"
+                                                value="<?= $phone ?? '' ?>">
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
 
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-warning me-2">Update</button>
-                                <a href="<?= BASEURL . 'company' ?>" class="btn btn-danger">Cancel</a>
+                            <div class="card-footer border-0">
+                                <button type="submit" class="btn btn-custom me-2">Update</button>
+                                <a href="<?= BASEURL . 'company' ?>" class="btn btn-secondary">Cancel</a>
                             </div>
-                            </form>
+                        </form>
                 </div>
             </div>
         </main>

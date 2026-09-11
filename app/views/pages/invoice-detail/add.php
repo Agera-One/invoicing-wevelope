@@ -7,6 +7,7 @@
     <title>Add Invoice Item</title>
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/custom.css' ?>">
 </head>
 
 <body class="layout-fixed fixed-header sidebar-expand-lg bg-body-tertiary">
@@ -22,15 +23,15 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'invoice' ?>">Invoices Billing</a></li>
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'invoice/detail' ?>/<?= $invoice_id ?>">Invoice Details</a></li>
+                            <li class="breadcrumb-item text-decoration-none text-decoration-custom"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item text-decoration-none text-decoration-custom"><a href="<?= BASEURL . 'invoice' ?>">Invoices Billing</a></li>
+                            <li class="breadcrumb-item text-decoration-none text-decoration-custom"><a href="<?= BASEURL . 'invoice/detail' ?>/<?= $invoice_id ?>">Invoice Details</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Add Invoice Item</li>
                         </ol>
                     </div>
                 </div>
 
-                <div class="card card-primary card-outline mb-4">
+                <div class="card card-primary-custom card-outline mb-4">
                     <div class="card-header">
                         <div class="card-title">Add Some Item</div>
                     </div>
@@ -57,7 +58,7 @@
                                 <label class="form-label">Unit Price</label>
                                 <div class="d-flex align-items-center gap-2">
                                     <div id="unit_price_box" class="form-control-plaintext fs-5 fw-bold text-success bg-body-secondary border rounded px-3 py-2 mb-0">
-                                        <i class="bi bi-currency-dollar me-2"></i><span id="unit_price_display">Rp<?= number_format($_POST['unit_price'] ?? 0, 0, ',', '.') ?></span>
+                                        <span id="unit_price_display">Rp<?= number_format($_POST['unit_price'] ?? 0, 0, ',', '.') ?></span>
                                     </div>
                                     <input type="hidden" name="unit_price" id="unit_price" value="<?= $_POST['unit_price'] ?? 0; ?>">
                                 </div>
@@ -65,8 +66,8 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary me-2">Save</button>
-                            <a href="<?= BASEURL . 'invoice/detail' ?>/<?= $invoice_id ?>" class="btn btn-danger">Cancel</a>
+                            <button type="submit" class="btn btn-custom me-2">Save</button>
+                            <a href="<?= BASEURL . 'invoice/detail' ?>/<?= $invoice_id ?>" class="btn btn-secondary">Cancel</a>
                         </div>
                     </form>
                 </div>

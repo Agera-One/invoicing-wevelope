@@ -1,4 +1,5 @@
 <?php
+use Medoo\Medoo;
 
 class Customer extends BaseModel
 {
@@ -46,6 +47,27 @@ class Customer extends BaseModel
     public function delete($id)
     {
         return $this->getConnection()->delete('customer', ['id' => $id]);
+    }
+
+    public function getTotalCount($where_condition = [])
+    {
+        return $this->getConnection()->count('customer', $where_condition);
+    }
+
+    public function getBestCustomer()
+    {
+        return $this->getConnection()->get('customer', [
+            '[><]invoice' => ['id' => 'customer_id'],
+            '[><]invoice_detail' => ['invoice.id' => 'invoice_id']
+        ], [
+            'customer.name',
+            'total_spent' => Medoo::raw('SUM(<invoice_detail.amount>)')
+        ], [
+            'customer.company_id' => $this->companyId,
+            'GROUP' => 'customer.id',
+            'ORDER' => ['total_spent' => 'DESC'],
+            'LIMIT' => 1
+        ]);
     }
 
     public function isCodeTakenByOther($customerCode, $checkCondition)

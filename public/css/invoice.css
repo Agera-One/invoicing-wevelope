@@ -43,18 +43,3 @@ body {
 .table-hover > tbody > tr:hover > * {
     --bs-table-accent-bg: rgba(var(--bs-primary-rgb), .08);
 }
-
-.text-custom-overdue {
-    color: red;
-    background-color: #ff000082;
-}
-
-.text-custom-unpaid {
-    color: yellow;
-    background-color: #ffea0093;
-}
-
-.text-custom-paid {
-    color: rgb(0, 202, 0);
-    background-color: rgba(0, 199, 0, 0.5);
-}

@@ -1,9 +1,9 @@
 <?php
 $mini_stats = [
-    ['label' => 'Invoice Value', 'value' => 'Rp' . number_format($invoice_value, 0, ',', '.'), 'icon' => 'bi-receipt-cutoff text-primary'],
-    ['label' => 'Total Revenue', 'value' => 'Rp' . number_format($total_revenue, 0, ',', '.'), 'icon' => 'bi-cash-coin text-success'],
-    ['label' => 'Total Unpaid', 'value' => 'Rp' . number_format($total_unpaid, 0, ',', '.'), 'icon' => 'bi-hourglass-split text-warning'],
-    ['label' => 'Total Overdue', 'value' => 'Rp' . number_format($total_overdue, 0, ',', '.'), 'icon' => 'bi-exclamation-triangle text-danger'],
+    ['label' => 'Invoice Value', 'value' => 'Rp' . number_format($invoice_value, 0, ',', '.'), 'text' => 'text-white' ,'icon' => 'bi-receipt-cutoff text-custom'],
+    ['label' => 'Total Revenue', 'value' => 'Rp' . number_format($total_revenue, 0, ',', '.'), 'text' => 'text-white' ,'icon' => 'bi-cash-coin text-custom-success'],
+    ['label' => 'Total Outstanding', 'value' => 'Rp' . number_format($total_unpaid, 0, ',', '.'), 'text' => 'text-white' ,'icon' => 'bi-hourglass-split text-custom-warning'],
+    ['label' => 'Total Overdue', 'value' => 'Rp' . number_format($total_overdue, 0, ',', '.'), 'text' => 'text-danger' ,'icon' => 'bi-exclamation-triangle text-custom-danger'],
 ];
 
 $trend_values = $trend_values ?? [];
@@ -18,8 +18,8 @@ $unpaid_trend_prev = count($unpaid_trend_values) > 1 ? $unpaid_trend_values[coun
 $oo_outstanding = $total_unpaid;
 $oo_overdue = $total_overdue;
 $oo_breakdown = [
-    ['label' => 'Outstanding', 'value' => $oo_outstanding, 'color' => '#ffc107'],
-    ['label' => 'Overdue', 'value' => $oo_overdue, 'color' => '#dc3237'],
+    ['label' => 'Outstanding', 'value' => $oo_outstanding, 'color' => '#dbd847'],
+    ['label' => 'Overdue', 'value' => $oo_overdue, 'color' => '#dc3545'],
 ];
 ?>
 <!DOCTYPE html>
@@ -32,6 +32,7 @@ $oo_breakdown = [
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/dashboard.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/custom.css' ?>">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 </head>
 
@@ -62,7 +63,7 @@ $oo_breakdown = [
                                         <small class="text-secondary text-uppercase"><?= $stat['label'] ?></small>
                                         <i class="bi <?= $stat['icon'] ?>"></i>
                                     </div>
-                                    <div class="fs-5 fw-bold"><?= $stat['value'] ?></div>
+                                    <div class="<?= $stat['text'] ?> fs-5 fw-bold"><?= $stat['value'] ?></div>
                                 </div>
                             </div>
                         </div>
@@ -108,7 +109,7 @@ $oo_breakdown = [
                         <div class="card h-100 shadow-sm border-0">
                             <div class="card-body text-center">
                                 <div class="dash-section-title mb-3 text-start">Outstanding vs Overdue</div>
-                                <div class="satisfaction-donut mx-auto mb-3 mt-5">
+                                <div class="satisfaction-donut mx-auto my-5">
                                     <canvas id="ooChart"></canvas>
                                 </div>
                                 <div class="d-flex justify-content-center flex-wrap gap-3 align-items-end">
@@ -190,7 +191,7 @@ $oo_breakdown = [
                     {
                         label: 'Revenue',
                         data: trendValues,
-                        borderColor: '#5abd85',
+                        borderColor: '#00ff00',
                         backgroundColor: revenueGradient,
                         fill: true,
                         tension: 0.4,
@@ -200,7 +201,7 @@ $oo_breakdown = [
                     {
                         label: 'Unpaid',
                         data: unpaidTrendValues,
-                        borderColor: '#ffc107',
+                        borderColor: '#ffff00',
                         backgroundColor: unpaidGradient,
                         fill: true,
                         tension: 0.4,
