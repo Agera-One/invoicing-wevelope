@@ -132,7 +132,6 @@
                                     <tr>
                                         <th class="ps-4">#</th>
                                         <th class="ps-4">Invoice Code</th>
-                                        <th>PIC Name</th>
                                         <th>Customer Name</th>
                                         <th>Invoice Date</th>
                                         <th>Due Date</th>
@@ -149,7 +148,6 @@
                                         <tr>
                                             <th class="ps-4 text-muted fw-normal"><?= ++$pagination['offset'] ?></th>
                                             <td class="fw-medium"><?= $invoice['invoice_code'] ?></td>
-                                            <td><?= $invoice['pic_name'] ?></td>
                                             <td><?= $invoice['customer_name'] ?></td>
                                             <td><?= $invoice['date'] ?></td>
                                             <td><?= $invoice['due_date'] ?></td>
