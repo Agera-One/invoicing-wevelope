@@ -1,11 +1,11 @@
 .app-sidebar {
-    background-color: #1a1d20 !important;
+    background-color: #212529 !important;
     border-right: 1px solid #2b3035 !important;
     font-family: system-ui, -apple-system, sans-serif;
 }
 
 .app-sidebar .sidebar-brand {
-    background-color: #15171a !important;
+    background-color: #212529 !important;
     border-bottom: 1px solid #2b3035 !important;
     height: 3.5rem;
     display: flex;

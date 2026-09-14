@@ -47,6 +47,7 @@ class InvoiceController extends BaseController
         $pagination = $this->invoice->pagination($this->db, $page, 'invoice', 'invoice.id', $where_condition, $join_structure);
 
         $invoices = $this->invoice->getAll($join_structure, $where_condition, $pagination['offset'], $pagination['limit']);
+        $status_count = $this->invoice->countInvoiceStatus(['invoice.company_id' => $this->companyId]);
 
         $datas = [
             'today' => $today,
@@ -57,6 +58,10 @@ class InvoiceController extends BaseController
             'pagination' => $pagination,
             'invoices' => $invoices,
             'invoice_detail' => $this->invoiceDetail,
+            'total_invoice' => $status_count['total_invoice'],
+            'total_paid_invoice' => $status_count['total_paid'],
+            'total_unpaid_invoice'  => $status_count['total_unpaid'],
+            'total_overdue_invoice' => $status_count['total_overdue'],
         ];
 
         $this->view('invoice/index', $datas);

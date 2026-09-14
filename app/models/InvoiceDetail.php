@@ -9,7 +9,8 @@ class InvoiceDetail extends BaseModel
         parent::__construct();
     }
 
-    public function getAll($invoice_id) {
+    public function getAll($invoice_id)
+    {
         return $this->getConnection()->select('invoice', [
             '[>]invoice_detail' => ['id' => 'invoice_id'],
             '[>]customer' => ['customer_id' => 'id'],
@@ -39,13 +40,15 @@ class InvoiceDetail extends BaseModel
         ]);
     }
 
-    public function find($id) {
+    public function find($id)
+    {
         return $this->getConnection()->get('invoice_detail', '*', [
             'id' => $id
         ]);
     }
 
-    public function create($data) {
+    public function create($data)
+    {
         return $this->getConnection()->insert('invoice_detail', [
             'invoice_id' => $data['invoice_id'],
             'item_id' => $data['item_id'],
@@ -55,7 +58,8 @@ class InvoiceDetail extends BaseModel
         ]);
     }
 
-    public function update($id, $data) {
+    public function update($id, $data)
+    {
         $this->getConnection()->update('invoice_detail', [
             'invoice_id' => $data['invoice_id'],
             'item_id' => $data['item_id'],
@@ -67,7 +71,8 @@ class InvoiceDetail extends BaseModel
         ]);
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         $this->getConnection()->delete('invoice_detail', [
             'id' => $id
         ]);
@@ -80,7 +85,8 @@ class InvoiceDetail extends BaseModel
         ]);
     }
 
-    public function sumInvoiceBill($invoice_id) {
+    public function sumInvoiceBill($invoice_id)
+    {
         $total_bill_query = $this->getConnection()->select('invoice_detail', 'amount', ['invoice_id' => $invoice_id]);
         return array_sum($total_bill_query) ?? 0;
     }

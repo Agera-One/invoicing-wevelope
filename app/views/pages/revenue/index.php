@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/report.css' ?>">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css"
-        crossorigin="anonymous" />
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/revenue.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/custom.css' ?>">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css" crossorigin="anonymous" />
 </head>
 
 <body class="layout-fixed fixed-header sidebar-expand-lg bg-body-tertiary">
@@ -20,13 +20,13 @@
 
         <main class="app-main py-4">
             <div class="container-fluid px-4">
-                <div class="row">
-                    <div class="col-sm-6 mb-4">
-                        <h3 class="fw-bold h4 m-0 text-white">Revenue Overview</h3>
+                <div class="row mb-3">
+                    <div class="col-sm-6 mb-2">
+                        <h3 class="fw-bold h2 m-0 text-white">Revenue Overview</h3>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 mb-4">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>" class="text-decoration-none text-decoration-custom">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Revenue Overview</li>
                         </ol>
                     </div>
@@ -35,15 +35,15 @@
                 <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
                     <div class="btn-group period-filter" role="group" aria-label="Period filter">
                         <a href="?period=daily"
-                            class="btn btn-outline-light <?= $period === 'daily' ? 'active btn-light text-dark' : '' ?>">
+                            class="btn btn-outline-custom <?= $period === 'daily' ? 'active btn-custom text-white' : '' ?>">
                             Daily
                         </a>
                         <a href="?period=weekly"
-                            class="btn btn-outline-light <?= $period === 'weekly' ? 'active btn-light text-dark' : '' ?>">
+                            class="btn btn-outline-custom <?= $period === 'weekly' ? 'active btn-custom text-white' : '' ?>">
                             Weekly
                         </a>
                         <a href="?period=monthly"
-                            class="btn btn-outline-light <?= $period === 'monthly' ? 'active btn-light text-dark' : '' ?>">
+                            class="btn btn-outline-custom <?= $period === 'monthly' ? 'active btn-custom text-white' : '' ?>">
                             Monthly
                         </a>
                     </div>
@@ -56,13 +56,13 @@
                     <div class="card-body p-0">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover align-middle mb-0">
-                                <thead class="table-light text-uppercase fs-7 tracking-wider">
+                                <thead>
                                     <tr>
-                                        <th scope="col" class="ps-4" width="60">#</th>
-                                        <th scope="col">Period</th>
-                                        <th scope="col">Invoices Paid</th>
-                                        <th scope="col">Total Payments</th>
-                                        <th scope="col" class="pe-4">Revenue</th>
+                                        <th class="ps-4">#</th>
+                                        <th class="ps-4">Period</th>
+                                        <th class="text-center">Invoices Paid</th>
+                                        <th class="text-center">Total Payments</th>
+                                        <th class="text-end">Revenue</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -73,11 +73,11 @@
                                     <?php endif; ?>
                                     <?php foreach ($omsets as $omset): ?>
                                         <tr>
-                                            <th scope="row" class="ps-4 text-muted fw-normal"><?= $number++ ?></th>
+                                            <th class="ps-4 text-light fw-normal"><?= $number++ ?></th>
                                             <td class="fw-medium"><?= $omset['period'] ?></td>
-                                            <td><?= $omset['total_invoice'] ?></td>
-                                            <td><?= $omset['total_payment'] ?></td>
-                                            <td class="pe-4 fw-semibold">Rp<?= number_format($omset['revenue'], 0, ',', '.') ?></td>
+                                            <td class="text-center"><?= $omset['total_invoice'] ?></td>
+                                            <td class="text-center"><?= $omset['total_payment'] ?></td>
+                                            <td class="text-end fw-semibold">Rp<?= number_format($omset['revenue'], 0, ',', '.') ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

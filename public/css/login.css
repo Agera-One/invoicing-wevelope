@@ -1,0 +1,69 @@
+/* .login-page {
+    background-color: #1e2125;
+} */
+
+.auth-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 880px;
+    overflow: hidden;
+    border: 0;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, .15);
+}
+
+.auth-brand {
+    background: #5d5fee;
+    color: #fff;
+    padding: 3rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    min-height: 100%;
+}
+
+.auth-brand-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: .75rem;
+    background: rgba(255, 255, 255, .15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.auth-brand p {
+    color: rgba(255, 255, 255, .75);
+}
+
+.auth-form-side {
+    padding: 3rem 2.5rem;
+}
+
+@media (max-width: 767.98px) {
+    .auth-brand {
+        padding: 2rem;
+        min-height: 160px;
+    }
+
+    .auth-form-side {
+        padding: 2rem;
+    }
+}
+
+.btn-login {
+    background-color: #5d5fee;
+}
+
+.btn-login:hover {
+    background-color: #8587ff;
+}

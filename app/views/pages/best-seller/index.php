@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/report.css' ?>">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css"
-        crossorigin="anonymous" />
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/best-seller.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/custom.css' ?>">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css" crossorigin="anonymous" />
 </head>
 
 <body class="layout-fixed fixed-header sidebar-expand-lg bg-body-tertiary">
@@ -20,13 +20,13 @@
 
         <main class="app-main py-4">
             <div class="container-fluid px-4">
-                <div class="row">
-                    <div class="col-sm-6 mb-4">
-                        <h3 class="fw-bold h4 m-0 text-white">Best Selling Products</h3>
+                <div class="row mb-3">
+                    <div class="col-sm-6 mb-2">
+                        <h3 class="fw-bold h2 m-0 text-white">Best Selling Products</h3>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 mb-4">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>" class="text-decoration-none text-decoration-custom">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Best Selling Products</li>
                         </ol>
                     </div>
@@ -35,19 +35,19 @@
                 <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
                     <div class="btn-group period-filter" role="group" aria-label="Period filter">
                         <a href="?period=all"
-                            class="btn btn-outline-light <?= $period === 'all' ? 'active btn-light text-dark' : '' ?>">
+                            class="btn btn-outline-custom <?= $period === 'all' ? 'active btn-custom text-white' : '' ?>">
                             All Time
                         </a>
                         <a href="?period=yearly"
-                            class="btn btn-outline-light <?= $period === 'yearly' ? 'active btn-light text-dark' : '' ?>">
+                            class="btn btn-outline-custom <?= $period === 'yearly' ? 'active btn-custom text-white' : '' ?>">
                             Yearly
                         </a>
                         <a href="?period=monthly"
-                            class="btn btn-outline-light <?= $period === 'monthly' ? 'active btn-light text-dark' : '' ?>">
+                            class="btn btn-outline-custom <?= $period === 'monthly' ? 'active btn-custom text-white' : '' ?>">
                             Monthly
                         </a>
                         <a href="?period=weekly"
-                            class="btn btn-outline-light <?= $period === 'weekly' ? 'active btn-light text-dark' : '' ?>">
+                            class="btn btn-outline-custom <?= $period === 'weekly' ? 'active btn-custom text-white' : '' ?>">
                             Weekly
                         </a>
                     </div>
@@ -60,13 +60,13 @@
                     <div class="card-body p-0">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover align-middle mb-0">
-                                <thead class="table-light text-uppercase fs-7 tracking-wider">
+                                <thead>
                                     <tr>
-                                        <th scope="col" class="ps-4" width="60">#</th>
-                                        <th scope="col">Item Name</th>
-                                        <th scope="col">Unit Price</th>
-                                        <th scope="col">Units Sold</th>
-                                        <th scope="col" class="pe-4">Total Sales</th>
+                                        <th class="ps-4" width="60">#</th>
+                                        <th class="ps-4">Item Name</th>
+                                        <th class="text-end">Unit Price</th>
+                                        <th class="text-center">Units Sold</th>
+                                        <th class="text-end">Total Sales</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -79,11 +79,11 @@
                                     <?php else: ?>
                                         <?php foreach ($top_products as $top_product): ?>
                                             <tr>
-                                                <th scope="row" class="ps-4 text-muted fw-normal"><?= $number++ ?></th>
+                                                <th class="ps-4 text-light fw-normal"><?= $number++ ?></th>
                                                 <td class="fw-medium"><?= $top_product['item_name'] ?></td>
-                                                <td>Rp<?= number_format($top_product['price'], 0, ',', '.') ?></td>
-                                                <td><?= $top_product['total_unit_sold'] ?></td>
-                                                <td class="pe-4 fw-semibold">Rp<?= number_format($top_product['total_sales'], 0, ',', '.') ?></td>
+                                                <td class="text-end">Rp<?= number_format($top_product['price'], 0, ',', '.') ?></td>
+                                                <td class="text-center"><?= $top_product['total_unit_sold'] ?></td>
+                                                <td class="text-end fw-semibold">Rp<?= number_format($top_product['total_sales'], 0, ',', '.') ?></td>
                                             </tr>
                                         <?php endforeach; ?>
                                     <?php endif; ?>

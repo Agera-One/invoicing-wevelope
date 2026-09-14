@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -7,9 +7,10 @@
     <title>Outstanding Invoices</title>
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css"
-        crossorigin="anonymous" />
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/outstanding.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/pagination.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/custom.css' ?>">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css" crossorigin="anonymous" />
 </head>
 
 <body class="layout-fixed fixed-header sidebar-expand-lg bg-body-tertiary">
@@ -19,19 +20,19 @@
 
         <main class="app-main py-4">
             <div class="container-fluid px-4">
-                <div class="row">
-                    <div class="col-sm-6 mb-4">
-                        <h3 class="fw-bold h4 m-0 text-white">Outstanding Invoices</h3>
+                <div class="row mb-3">
+                    <div class="col-sm-6 mb-2">
+                        <h3 class="fw-bold h2 m-0 text-white">Outstanding Invoices</h3>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 mb-4">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>" class="text-decoration-none text-decoration-custom">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Outstanding Invoices</li>
                         </ol>
                     </div>
                 </div>
 
-                <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+                <div class="d-flex flex-wrap align-items-center justify-content-end gap-3 mb-4">
                     <div class="col-md-4 d-flex gap-2">
                         <form action="" method="GET" class="flex-grow-1">
                             <div class="input-group">
@@ -39,7 +40,7 @@
                                     <i class="bi bi-search"></i>
                                 </span>
                                 <input name="search" id="table-filter" type="search"
-                                    class="form-control border-start-0 ps-0" placeholder="Filter rows…"
+                                    class="form-control border-start-0 ps-1" placeholder="Filter rows…"
                                     aria-label="Filter rows" autofocus autocomplete="off"
                                     value="<?= $search ?? '' ?>">
                             </div>
@@ -54,33 +55,33 @@
                     <div class="card-body p-0">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover align-middle mb-0">
-                                <thead class="table-light text-uppercase fs-7 tracking-wider">
+                                <thead>
                                     <tr>
-                                        <th scope="col" class="ps-4" width="60">#</th>
-                                        <th scope="col">Invoice Code</th>
-                                        <th scope="col">Customer Name</th>
-                                        <th scope="col">Date</th>
-                                        <th scope="col">Due Date</th>
-                                        <th scope="col">Total Bill</th>
-                                        <th scope="col">Amount Paid</th>
-                                        <th scope="col">Remaining Unpaid</th>
-                                        <th scope="col">Action</th>
+                                        <th class="ps-4">#</th>
+                                        <th class="ps-4">Invoice Code</th>
+                                        <th>Customer Name</th>
+                                        <th class="text-center">Date</th>
+                                        <th class="text-center">Due Date</th>
+                                        <th class="text-end">Total Bill</th>
+                                        <th class="text-end">Amount Paid</th>
+                                        <th class="text-end">Remaining Unpaid</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($invoices as $invoice):
                                         $remaining_unpaid = $invoice['total_bill'] - $invoice['total_amount_paid']; ?>
                                         <tr>
-                                            <th scope="row" class="ps-4 text-muted fw-normal"><?= ++$pagination['offset'] ?></th>
+                                            <th class="ps-4 text-light fw-normal"><?= ++$pagination['offset'] ?></th>
                                             <td class="fw-medium"><?= $invoice['invoice_code'] ?></td>
                                             <td><?= $invoice['customer_name'] ?></td>
-                                            <td><?= $invoice['date'] ?></td>
-                                            <td><?= $invoice['due_date'] ?></td>
-                                            <td>Rp<?= number_format($invoice['total_bill'], 0, ',', '.') ?></td>
-                                            <td>Rp<?= number_format($invoice['total_amount_paid'], 0, ',', '.') ?></td>
-                                            <td class="text-danger">Rp<?= number_format($remaining_unpaid, 0, ',', '.') ?></td>
-                                            <td>
-                                                <a class="btn btn-sm btn-success" href="<?= BASEURL . 'payment/add' ?>/<?= $invoice['id'] ?>">Pay</a>
+                                            <td class="text-center"><?= $invoice['date'] ?></td>
+                                            <td class="text-center"><?= $invoice['due_date'] ?></td>
+                                            <td class="text-end">Rp<?= number_format($invoice['total_bill'], 0, ',', '.') ?></td>
+                                            <td class="text-end">Rp<?= number_format($invoice['total_amount_paid'], 0, ',', '.') ?></td>
+                                            <td class="text-danger text-end">Rp<?= number_format($remaining_unpaid, 0, ',', '.') ?></td>
+                                            <td class="text-center">
+                                                <a class="btn btn-sm btn-custom" href="<?= BASEURL . 'payment/add' ?>/<?= $invoice['id'] ?>">Pay</a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

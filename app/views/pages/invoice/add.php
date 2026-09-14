@@ -7,6 +7,7 @@
     <title>Add New Invoice</title>
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/custom.css' ?>">
 </head>
 
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
@@ -16,20 +17,20 @@
 
         <main class="app-main py-4">
             <div class="container-fluid px-4">
-                <div class="row">
-                    <div class="col-sm-6 mb-4">
-                        <h3 class="fw-bold h4 m-0 text-white">Add New Invoice</h3>
+                <div class="row mb-3">
+                    <div class="col-sm-6 mb-2">
+                        <h3 class="fw-bold h2 m-0 text-white">Add New Invoice</h3>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 mb-4">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'invoice' ?>">Invoices Billing</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-custom text-decoration-none" href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-custom text-decoration-none" href="<?= BASEURL . 'invoice' ?>">Invoices Billing</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Add New Invoice</li>
                         </ol>
                     </div>
                 </div>
 
-                <div class="card card-primary card-outline mb-4">
+                <div class="card card-primary-custom card-outline mb-4">
                     <div class="card-header">
                         <div class="card-title">Add New Invoice</div>
                     </div>
@@ -38,7 +39,7 @@
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Invoice Code</label>
                                 <div class="d-flex align-items-center gap-2">
-                                    <div class="form-control-plaintext fs-5 fw-bold text-primary bg-body-secondary border rounded px-3 py-2 mb-0">
+                                    <div class="form-control-plaintext fs-5 fw-bold text-custom bg-body-secondary border rounded px-3 py-2 mb-0">
                                         <i class="bi bi-upc-scan me-2"></i><span><?= $invoice_code ?></span>
                                     </div>
                                     <input type="hidden" name="invoice_code" value="<?= $invoice_code ?>">
@@ -67,7 +68,7 @@
                             </div>
                         </div>
                         <div class="card-footer d-flex gap-3">
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-custom">Save</button>
                             <a href="<?= BASEURL . 'invoice' ?>" class="btn btn-secondary">Cancel</a>
                         </div>
                     </form>

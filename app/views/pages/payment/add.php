@@ -7,6 +7,23 @@
     <title>Add Payment</title>
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/custom.css' ?>">
+    <style>
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+            background-color: #1e2125;
+        }
+
+        .app-wrapper {
+            height: 100vh;
+        }
+
+        .app-main {
+            overflow-y: auto;
+        }
+    </style>
 </head>
 
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
@@ -16,25 +33,25 @@
 
         <main class="app-main py-4">
             <div class="container-fluid px-4">
-                <div class="row">
-                    <div class="col-sm-6 mb-4">
-                        <h3 class="fw-bold h4 m-0 text-white">Add Payment</h3>
+                <div class="row mb-3">
+                    <div class="col-sm-6 mb-2">
+                        <h3 class="fw-bold h2 m-0 text-white">Add Payment</h3>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 mb-4">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'payment' ?>">Payment Transactions</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none text-decoration-custom" href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none text-decoration-custom" href="<?= BASEURL . 'payment' ?>">Payment Transactions</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Add Payment</li>
                         </ol>
                     </div>
                 </div>
 
-                <div class="card card-primary card-outline mb-4">
-                    <div class="card-header">
+                <div class="card card-primary-custom card-outline mb-4">
+                    <div class="card-header border-0">
                         <div class="card-title">Form Payment Invoice</div>
                     </div>
                     <form action="" method="POST">
-                        <div class="card-body">
+                        <div class="card-body border-0">
                             <div class="mb-3">
                                 <label class="form-label">Choose Invoice <span class="text-danger">*</span></label>
                                 <select name="invoice_id" id="invoice-select" class="form-select" aria-label="Default select example" required>
@@ -81,7 +98,7 @@
                                     </span>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center py-1">
-                                    <span class="text-muted">Amount Paid</span>
+                                    <span class="text-muted">Already Paid</span>
                                     <span id="summary-paid">
                                         Rp<?= number_format($selected_invoice['total_amount_paid'] ?? 0, 0, ',', '.') ?>
                                     </span>
@@ -98,7 +115,7 @@
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Payment Code</label>
                                 <div class="d-flex align-items-center gap-2">
-                                    <div class="form-control-plaintext fs-5 fw-bold text-primary bg-body-secondary border rounded px-3 py-2 mb-0">
+                                    <div class="form-control-plaintext fs-5 fw-bold text-custom bg-body-secondary border rounded px-3 py-2 mb-0">
                                         <i class="bi bi-upc-scan me-2"></i><span><?= $payment_code ?></span>
                                     </div>
                                     <input type="hidden" name="payment_code" value="<?= $payment_code ?>">
@@ -116,8 +133,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer d-flex gap-3">
-                            <button type="submit" class="btn btn-primary">Save</button>
+                        <div class="card-footer border-0">
+                            <button type="submit" class="btn btn-custom me-2">Save</button>
                             <a href="<?= BASEURL . 'payment' ?>" class="btn btn-secondary">Cancel</a>
                         </div>
                     </form>

@@ -20,12 +20,15 @@ class ItemController extends BaseController {
         $pagination = $this->item->pagination($this->db, $page, 'item', 'id', $where_condition);
 
         $items = $this->item->getAll($where_condition, $pagination['offset'], $pagination['limit']);
+        $stats = $this->item->getTotalStats($where_condition);
 
         $datas = [
             'search' => $search,
             'page' => $page,
             'pagination' => $pagination,
             'items' => $items,
+            'total_items' => $stats['total_items'] ?? 0,
+            'total_value' => $stats['total_value'] ?? 0,
         ];
 
         $this->view('item/index', $datas);

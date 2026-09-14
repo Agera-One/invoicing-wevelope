@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -7,9 +7,9 @@
     <title>Items Management</title>
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css"
-        crossorigin="anonymous" />
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/item.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/pagination.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/custom.css' ?>">
 </head>
 
 <body class="layout-fixed fixed-header sidebar-expand-lg bg-body-tertiary">
@@ -19,23 +19,23 @@
 
         <main class="app-main py-4">
             <div class="container-fluid px-4">
-                <div class="row">
-                    <div class="col-sm-6 mb-4">
-                        <h3 class="fw-bold h4 m-0 text-white">Items Management</h3>
+                <div class="row mb-3">
+                    <div class="col-sm-6 mb-2">
+                        <h3 class="fw-bold h2 m-0">Items Management</h3>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 mb-4">
                         <ol class="breadcrumb float-sm-end">
-
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>"
+                                    class="text-decoration-none text-decoration-custom">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Items Management</li>
                         </ol>
                     </div>
                 </div>
-
+     
                 <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
                     <div class="d-flex flex-wrap gap-2">
-                        <a href="<?= BASEURL . 'item/add' ?>" class="btn btn-primary shadow-sm">
-                            <i class="bi bi-plus-circle me-1"></i> Add New Item
+                        <a href="<?= BASEURL . 'item/add' ?>" class="btn btn-custom shadow-sm">
+                            <i class="bi bi-plus-lg me-1"></i> Add Item
                         </a>
                     </div>
                     <div class="col-md-4 d-flex align-items-end gap-3">
@@ -44,7 +44,9 @@
                                 <span class="input-group-text bg-transparent border-end-0 text-muted">
                                     <i class="bi bi-search"></i>
                                 </span>
-                                <input name="search" id="table-filter" type="search" class="form-control border-start-0 ps-0" placeholder="Filter rows…" aria-label="Filter rows" autofocus autocomplete="off" value="<?= $search ?? ''; ?>">
+                                <input name="search" id="table-filter" type="search"
+                                    class="form-control border-start-0 ps-1" placeholder="Filter rows…"
+                                    aria-label="Filter rows" autofocus autocomplete="off" value="<?= $search ?? ''; ?>">
                             </div>
                         </form>
                         <a href="<?= BASEURL . 'item' ?>" class="btn btn-outline-secondary w-25">
@@ -57,27 +59,39 @@
                     <div class="card-body p-0">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover align-middle mb-0">
-                                <thead class="table-light text-uppercase fs-7 tracking-wider">
+                                <thead>
                                     <tr>
-                                        <th scope="col" class="ps-4" width="60">#</th>
-                                        <th scope="col">Reference Number</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Price</th>
-                                        <th scope="col" class="pe-4" width="160">Action</th>
+                                        <th class="ps-4">#</th>
+                                        <th>Reference Number</th>
+                                        <th>Name</th>
+                                        <th class="text-end">Price</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($items as $item): ?>
                                         <tr>
-                                            <th scope="row" class="ps-4 text-muted fw-normal"><?= ++$pagination['offset'] ?></th>
-                                            <td class="fw-medium text-white"><?= $item['ref_no'] ?></td>
+                                            <th class="ps-4 text-light fw-normal"><?= ++$pagination['offset'] ?></th>
+                                            <td class="fw-medium"><?= $item['ref_no'] ?></td>
                                             <td><?= $item['name'] ?></td>
-                                            <td>Rp<?= number_format($item['price'], 0, ',', '.') ?></td>
-                                            <td class="pe-4">
-                                                <div class="d-flex gap-3">
-                                                    <a class="btn btn-sm btn-success px-3" href="<?= BASEURL . 'item/edit' ?>/<?= $item['id'] ?>">Edit</a>
-                                                    <a class="btn btn-sm btn-danger px-2" href="<?= BASEURL . 'item/delete' ?>/<?= $item['id'] ?>"
-                                                        onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                                            <td class="text-end">Rp<?= number_format($item['price'], 0, ',', '.') ?></td>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                    <button class="btn btn-sm btn-icon btn-custom" type="button"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="bi bi-three-dots"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                        <li>
+                                                            <a class="dropdown-item text-light"
+                                                                href="<?= BASEURL . 'item/edit' ?>/<?= $item['id'] ?>">Edit</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item text-danger"
+                                                                href="<?= BASEURL . 'item/delete' ?>/<?= $item['id'] ?>"
+                                                                onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                             </td>
                                         </tr>

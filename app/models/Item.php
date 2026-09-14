@@ -44,6 +44,13 @@ class Item extends BaseModel {
         ]);
     }
 
+    public function getTotalStats($where_condition = []) {
+        return $this->getConnection()->get('item', [
+            'total_items' => Medoo::raw('COUNT(id)'),
+            'total_value' => Medoo::raw('IFNULL(SUM(price),0)')
+        ], $where_condition);
+    }
+
     public function getTopItem() {
         return $this->getConnection()->select('item', [
             '[><]invoice_detail' => [

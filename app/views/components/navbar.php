@@ -29,7 +29,7 @@
           </span>
         </a>
         <ul class="dropdown-menu dropdown-menu-end profile-dropdown">
-          <li class="user-header">
+          <li class="user-header" style="background-color: #252a31 !important; background-image: none !important;">
             <img
               src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&s=160"
               alt="User">

@@ -8,7 +8,24 @@
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/company.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/custom.css' ?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+            background-color: #1e2125;
+        }
+
+        .app-wrapper {
+            height: 100vh;
+        }
+
+        .app-main {
+            overflow-y: auto;
+        }
+    </style>
 </head>
 
 <body class="layout-fixed fixed-header sidebar-expand-lg">
@@ -18,13 +35,13 @@
 
         <main class="app-main py-4 min-vh-100">
             <div class="container-fluid px-4">
-                <div class="row">
-                    <div class="col-sm-6 mb-4">
-                        <h3 class="fw-bold h4 m-0 text-white">Company Profile Settings</h3>
+                <div class="row mb-3">
+                    <div class="col-sm-6 mb-2">
+                        <h3 class="fw-bold h2 m-0 text-white">Company Profile Settings</h3>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 mb-4">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>" class="text-decoration-none text-decoration-custom">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Company Profile Settings</li>
                         </ol>
                     </div>
@@ -33,8 +50,8 @@
                 <div class="content-wrapper">
                     <div class="app-content">
                         <div class="row">
-                            <div class="col-md-7">
-                                <div class="card custom-dark-card">
+                            <div class="col-7">
+                                <div class="card custom-dark-card shadow-sm border-0">
                                     <div class="card-header">
                                         <span class="card-title mb-0">Company Information</span>
                                     </div>
@@ -98,8 +115,9 @@
                                         </div>
 
                                         <div class="text-end">
-                                            <a href="<?= BASEURL . 'company/info' ?>" class="btn btn-custom-warning btn-sm px-3">
-                                                <i class="bi bi-pencil-square me-1"></i> Change
+                                            <a href="<?= BASEURL . 'company/info' ?>" class="btn btn-custom btn-sm px-3">
+                                                <!-- <i class="bi bi-pencil-square me-1"></i> -->
+                                                 Change
                                             </a>
                                         </div>
                                     </div>
@@ -107,7 +125,7 @@
                             </div>
 
                             <div class="col-md-5">
-                                <div class="card custom-dark-card">
+                                <div class="card custom-dark-card shadow-sm border-0">
                                     <div class="card-header">
                                         <span class="card-title mb-0">Company Contact Information</span>
                                     </div>
@@ -125,14 +143,15 @@
                                             </div>
                                         </div>
                                         <div class="text-end">
-                                            <a href="<?= BASEURL . 'company/contact' ?>" class="btn btn-custom-warning btn-sm px-3">
-                                                <i class="bi bi-pencil-square me-1"></i> Change
+                                            <a href="<?= BASEURL . 'company/contact' ?>" class="btn btn-custom btn-sm px-3">
+                                                <!-- <i class="bi bi-pencil-square me-1"></i> -->
+                                                 Change
                                             </a>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="card custom-dark-card mt-3">
+                                <div class="card custom-dark-card mt-3 shadow-sm border-0">
                                     <div class="card-header">
                                         <span class="card-title mb-0">Document Branding</span>
                                     </div>

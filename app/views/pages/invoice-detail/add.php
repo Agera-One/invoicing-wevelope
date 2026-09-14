@@ -7,6 +7,7 @@
     <title>Add Invoice Item</title>
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/custom.css' ?>">
 </head>
 
 <body class="layout-fixed fixed-header sidebar-expand-lg bg-body-tertiary">
@@ -16,21 +17,21 @@
 
         <main class="app-main py-4">
             <div class="container-fluid px-4">
-                <div class="row">
-                    <div class="col-sm-6 mb-4">
-                        <h3 class="fw-bold h4 m-0 text-white">Add Invoice Item</h3>
+                <div class="row mb-3">
+                    <div class="col-sm-6 mb-2">
+                        <h3 class="fw-bold h2 m-0 text-white">Add Invoice Item</h3>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 mb-4">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'invoice' ?>">Invoices Billing</a></li>
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'invoice/detail' ?>/<?= $invoice_id ?>">Invoice Details</a></li>
+                            <li class="breadcrumb-item text-decoration-none text-decoration-custom"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item text-decoration-none text-decoration-custom"><a href="<?= BASEURL . 'invoice' ?>">Invoices Billing</a></li>
+                            <li class="breadcrumb-item text-decoration-none text-decoration-custom"><a href="<?= BASEURL . 'invoice/detail' ?>/<?= $invoice_id ?>">Invoice Details</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Add Invoice Item</li>
                         </ol>
                     </div>
                 </div>
 
-                <div class="card card-primary card-outline mb-4">
+                <div class="card card-primary-custom card-outline mb-4">
                     <div class="card-header">
                         <div class="card-title">Add Some Item</div>
                     </div>
@@ -64,8 +65,8 @@
                                 <div id="unitPriceError" class="invalid-feedback"></div>
                             </div>
                         </div>
-                        <div class="card-footer d-flex gap-3">
-                            <button type="submit" class="btn btn-primary">Save</button>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-custom me-2">Save</button>
                             <a href="<?= BASEURL . 'invoice/detail' ?>/<?= $invoice_id ?>" class="btn btn-secondary">Cancel</a>
                         </div>
                     </form>

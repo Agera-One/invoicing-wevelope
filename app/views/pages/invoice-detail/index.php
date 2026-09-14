@@ -7,9 +7,24 @@
     <title>Invoice Details</title>
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css"
-        crossorigin="anonymous" />
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/custom.css' ?>">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css" crossorigin="anonymous" />
+    <style>
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+            background-color: #1e2125;
+        }
+
+        .app-wrapper {
+            height: 100vh;
+        }
+
+        .app-main {
+            overflow-y: auto;
+        }
+    </style>
 </head>
 
 <body class="layout-fixed fixed-header sidebar-expand-lg bg-body-tertiary">
@@ -19,17 +34,17 @@
 
         <main class="app-main py-4">
             <div class="container-fluid px-4">
-                <div class="row">
-                    <div class="col-sm-6 mb-3">
-                        <a href="<?= BASEURL . 'invoice' ?>" class="text-decoration-none small">
+                <div class="row mb-3">
+                    <div class="col-sm-6 mb-4">
+                        <a href="<?= BASEURL . 'invoice' ?>" class="text-decoration-none text-decoration-custom small">
                             <i class="bi bi-arrow-left me-1"></i>
                             Back to Invoices
                         </a>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 mb-4">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'invoice' ?>">Invoices Billing</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none text-decoration-custom" href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none text-decoration-custom" href="<?= BASEURL . 'invoice' ?>">Invoices Billing</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Invoice Details</li>
                         </ol>
                     </div>
@@ -39,7 +54,7 @@
                     <div class="conntainer-fluid">
                         <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-4">
                             <div>
-                                <h3 class="fw-bold h4 m-0 text-white">Invoice Details</h3>
+                                <h3 class="fw-bold h2 m-0 text-white">Invoice Details</h3>
                             </div>
 
                             <div class="d-flex flex-wrap justify-content-lg-end gap-3 d-print-none">
@@ -56,7 +71,7 @@
                             </div>
                         </div>
 
-                        <div class="card">
+                        <div class="card shadow-sm border-0">
                             <div class="card-body p-4 p-md-5">
                                 <div class="row mb-4">
                                     <div class="col-sm-6">
@@ -64,9 +79,9 @@
                                             <img src="<?= BASEURL . 'public/uploads/company/logo/' ?><?= $invoice['company_logo'] ?>" alt="<?= $invoice['company_name']; ?>"
                                                 style="max-height: 100px; width: auto;"
                                                 class="mb-4">
-                                            <h2 class="h4 text-primary fw-semibold"><?= $invoice['company_name'] ?></h2>
+                                            <h2 class="h4 text-white fw-semibold"><?= $invoice['company_name'] ?></h2>
                                         <?php else : ?>
-                                            <h2 class="h4 text-primary fw-semibold"><?= $invoice['company_name'] ?></h2>
+                                            <h2 class="h4 text-white fw-semibold"><?= $invoice['company_name'] ?></h2>
                                         <?php endif; ?>
                                         <p class="text-secondary mb-0 small">
                                             <?= $invoice['company_province'] ?><br>
@@ -107,7 +122,7 @@
                                                 <th class="border-top-0 text-end" style="width: 6rem" scope="col">Qty</th>
                                                 <th class="border-top-0 text-end" style="width: 9rem" scope="col">Unit price</th>
                                                 <th class="border-top-0 text-end" style="width: 9rem" scope="col">Amount</th>
-                                                <th class="border-top-0 text-end d-print-none" style="width: 9rem" scope="col">Action</th>
+                                                <th class="border-top-0 text-center d-print-none" style="width: 9rem" scope="col">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -122,16 +137,13 @@
                                                         <td class="text-end">Rp<?= number_format($invoice_detail['unit_price'], 0, ',', '.') ?></td>
                                                         <td class="text-end">Rp<?= number_format($invoice_detail['amount'], 0, ',', '.') ?></td>
                                                         <td class="d-print-none">
-                                                            <div class="d-flex justify-content-end gap-3">
-                                                                <a class="btn btn-sm btn-success"
-                                                                    href="<?= BASEURL . 'detail/edit' ?>/<?= $invoice_detail['detail_id'] ?>/<?= $invoice_detail['invoice_id'] ?>">
-                                                                    Edit
+                                                            <div class="d-flex justify-content-center gap-3">
+                                                                <a class="btn btn-sm btn-outline-warning" href="<?= BASEURL . 'detail/edit' ?>/<?= $invoice_detail['detail_id'] ?>/<?= $invoice_detail['invoice_id'] ?>">
+                                                                    <i class="bi bi-pencil-square"></i>
                                                                 </a>
-
-                                                                <a class="btn btn-sm btn-danger"
-                                                                    href="<?= BASEURL . 'detail/delete' ?>/<?= $invoice_detail['detail_id'] ?>/<?= $invoice_detail['invoice_id'] ?>"
+                                                                <a class="btn btn-sm btn-outline-danger" href="<?= BASEURL . 'detail/delete' ?>/<?= $invoice_detail['detail_id'] ?>/<?= $invoice_detail['invoice_id'] ?>"
                                                                     onclick="return confirm('Are you sure you want to delete this detail?');">
-                                                                    Delete
+                                                                    <i class="bi bi-trash"></i>
                                                                 </a>
                                                             </div>
                                                         </td>
@@ -142,7 +154,7 @@
                                     </table>
                                 </div>
 
-                                <a href="<?= BASEURL . 'detail/add' ?>/<?= $invoice_id ?>" class="btn btn-primary d-print-none">Add Item</a>
+                                <a href="<?= BASEURL . 'detail/add' ?>/<?= $invoice_id ?>" class="btn btn-custom d-print-none">Add Item</a>
 
                                 <div class="row justify-content-end">
                                     <div class="col-md-5 col-lg-4">

@@ -1,0 +1,50 @@
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+    background-color: #1e2125;
+}
+
+.app-wrapper {
+    height: 100vh;
+}
+
+.app-main {
+    overflow-y: auto;
+}
+
+.card {
+    background-color: #212529;
+}
+
+.table > thead {
+    background: #36393d;
+}
+
+.table > thead th {
+    font-weight: 700;
+    color: #fff;
+    border-bottom: 1px solid var(--bs-border-color);
+    padding: .9rem 1rem;
+}
+
+.table > tbody td,
+.table > tbody th {
+    padding: .9rem 1rem;
+    border-bottom: 1px solid var(--bs-border-color);
+    vertical-align: middle;
+}
+
+.table > tbody tr:last-child td,
+.table > tbody tr:last-child th {
+    border-bottom: none;
+}
+
+.table-hover > tbody > tr:hover > * {
+    --bs-table-accent-bg: rgba(var(--bs-primary-rgb), .08);
+}
+
+.text-custom-success {
+    color: rgb(0, 202, 0);
+    background-color: rgba(0, 199, 0, 0.5);
+}

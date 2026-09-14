@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Customers</title>
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/adminlte.min.css' ?>">
     <link rel="stylesheet" href="<?= BASEURL . 'public/css/bootstrap.css' ?>">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css"
-        crossorigin="anonymous" />
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/customer.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/pagination.css' ?>">
+    <link rel="stylesheet" href="<?= BASEURL . 'public/css/custom.css' ?>">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tabulator-tables@6.4.0/dist/css/tabulator_bootstrap5.min.css" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
 
@@ -20,13 +21,14 @@
 
         <main class="app-main py-4">
             <div class="container-fluid px-4">
-                <div class="row">
-                    <div class="col-sm-6 mb-4">
-                        <h3 class="fw-bold h4 m-0 text-white">Customers Management</h3>
+                <div class="row mb-3">
+                    <div class="col-sm-6 mb-2">
+                        <h3 class="fw-bold h2 m-0">Customers Management</h3>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 mb-4">
                         <ol class="breadcrumb float-sm-end">
-                            <li class="breadcrumb-item text-decoration-none"><a href="<?= BASEURL . 'dashboard' ?>">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="<?= BASEURL . 'dashboard' ?>"
+                                    class="text-decoration-none text-decoration-custom">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Customers Management</li>
                         </ol>
                     </div>
@@ -34,8 +36,8 @@
 
                 <div class="d-flex flex-wrap align-item-center justify-content-between gap-3 mb-4">
                     <div class="d-flex flex-wrap gap-2">
-                        <a href="<?= BASEURL . 'customer/add' ?>" class="btn btn-primary shadow-sm">
-                            <i class="bi bi-plus-circle me-1"></i> Add New Customer
+                        <a href="<?= BASEURL . 'customer/add' ?>" class="btn btn-custom shadow-sm">
+                            <i class="bi bi-plus-lg me-1"></i> Add Customer
                         </a>
                         <a href="<?= BASEURL . 'customer/export' ?>" class="btn btn-outline-secondary">
                             <i class="bi bi-filetype-csv me-1"></i>
@@ -47,13 +49,16 @@
                         </a>
                     </div>
 
-                    <div class="col-md-4 d-flex align-customers-end gap-3">
+                    <div class="col-md-4 d-flex align-items-end gap-2">
                         <form action="" method="GET" class="flex-grow-1">
                             <div class="input-group">
                                 <span class="input-group-text bg-transparent border-end-0 text-muted">
                                     <i class="bi bi-search"></i>
                                 </span>
-                                <input name="search" id="table-filter" type="search" class="form-control border-start-0 ps-0" placeholder="Filter rows…" aria-label="Filter rows" autofocus autocomplete="off" value="<?= $_GET['search'] ?? ''; ?>">
+                                <input name="search" id="table-filter" type="search"
+                                    class="form-control border-start-0 ps-1" placeholder="Filter rows…"
+                                    aria-label="Filter rows" autofocus autocomplete="off"
+                                    value="<?= $_GET['search'] ?? ''; ?>">
                             </div>
                         </form>
                         <a href="<?= BASEURL . 'customer' ?>" class="btn btn-outline-secondary w-25">
@@ -66,31 +71,43 @@
                     <div class="card-body p-0">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover align-middle mb-0">
-                                <thead class="table-light text-uppercase fs-7 tracking-wider">
+                                <thead>
                                     <tr>
-                                        <th scope="col" class="ps-4" width="60">#</th>
-                                        <th scope="col">Customer Code</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Phone</th>
-                                        <th scope="col">Address</th>
-                                        <th scope="col" class="pe-4" width="160">Action</th>
+                                        <th class="ps-4">#</th>
+                                        <th class="ps-4">Customer Code</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Address</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($customers as $customer): ?>
                                         <tr>
-                                            <th scope="row" class="ps-4 text-muted fw-normal"><?= ++$pagination['offset'] ?></th>
+                                            <th class="text-light fw-normal"><?= ++$pagination['offset'] ?></th>
                                             <td class="fw-medium"><?= $customer['customer_code'] ?></td>
                                             <td><?= $customer['name'] ?></td>
                                             <td><?= $customer['email'] ?></td>
                                             <td><?= $customer['phone'] ?></td>
                                             <td><?= $customer['address'] ?></td>
-                                            <td class="pe-4">
-                                                <div class="d-flex gap-3">
-                                                    <a class="btn btn-sm btn-success" href="<?= BASEURL . 'customer/edit' ?>/<?= $customer['id'] ?>">Edit</a>
-                                                    <a class="btn btn-sm btn-danger" href="<?= BASEURL . 'customer/delete' ?>/<?= $customer['id'] ?>"
-                                                        onclick="return confirm('Are you sure you want to delete this customer?');">Delete</a>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                    <button class="btn btn-sm btn-icon btn-custom" type="button"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="bi bi-three-dots"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                        <li>
+                                                            <a class="dropdown-item text-light"
+                                                                href="<?= BASEURL . 'customer/edit' ?>/<?= $customer['id'] ?>">Edit</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item text-danger"
+                                                                href="<?= BASEURL . 'customer/delete' ?>/<?= $customer['id'] ?>"
+                                                                onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                             </td>
                                         </tr>
