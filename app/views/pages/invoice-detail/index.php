@@ -57,7 +57,7 @@
                                 <h3 class="fw-bold h2 m-0 text-white">Invoice Details</h3>
                             </div>
 
-                            <div class="d-flex flex-wrap justify-content-lg-end gap-2 d-print-none">
+                            <div class="d-flex flex-wrap justify-content-lg-end gap-3 d-print-none">
                                 <a href="<?= BASEURL . 'detail/print' ?>/<?= $invoice_id ?>"
                                     class="btn btn-outline-secondary" target="_blank">
                                     <i class="bi bi-printer me-1"></i>

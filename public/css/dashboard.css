@@ -69,6 +69,47 @@ body {
   vertical-align: middle;
 }
 
-.table > tbody tr:last-child td {
-  border-bottom: none;
+.finance-card-footer {
+    margin-top: auto;
+    padding-top: .6rem;
+    border-top: 1px solid var(--bs-border-color);
+}
+
+.finance-card-footer a {
+    font-size: .8rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: .25rem;
+}
+
+.finance-card-footer a:hover {
+    text-decoration: underline;
+}
+
+.finance-card--primary {
+    --accent: var(--bs-primary);
+    --accent-rgb: var(--bs-primary-rgb);
+}
+
+.finance-card--success {
+    --accent: var(--bs-success);
+    --accent-rgb: var(--bs-success-rgb);
+}
+
+.finance-card--warning {
+    --accent: var(--bs-warning);
+    --accent-rgb: var(--bs-warning-rgb);
+}
+
+.finance-card--danger {
+    --accent: var(--bs-danger);
+    --accent-rgb: var(--bs-danger-rgb);
+}
+
+.tooltip .tooltip-inner {
+    text-align: left;
+    font-weight: bold;
 }

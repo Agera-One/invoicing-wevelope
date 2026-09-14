@@ -1,27 +1,9 @@
 <?php
-$mini_stats = [
-    ['label' => 'Invoice Value', 'value' => 'Rp' . number_format($invoice_value, 0, ',', '.'), 'text' => 'text-white' ,'icon' => 'bi-receipt-cutoff text-custom'],
-    ['label' => 'Total Revenue', 'value' => 'Rp' . number_format($total_revenue, 0, ',', '.'), 'text' => 'text-white' ,'icon' => 'bi-cash-coin text-custom-success'],
-    ['label' => 'Total Outstanding', 'value' => 'Rp' . number_format($total_unpaid, 0, ',', '.'), 'text' => 'text-white' ,'icon' => 'bi-hourglass-split text-custom-warning'],
-    ['label' => 'Total Overdue', 'value' => 'Rp' . number_format($total_overdue, 0, ',', '.'), 'text' => 'text-danger' ,'icon' => 'bi-exclamation-triangle text-custom-danger'],
-];
-
 $trend_values = $trend_values ?? [];
 $trend_labels = $trend_labels ?? [];
-$trend_latest = $trend_values ? end($trend_values) : 0;
-$trend_prev = count($trend_values) > 1 ? $trend_values[count($trend_values) - 2] : 0;
-
 $unpaid_trend_values = $unpaid_trend_values ?? [];
-$unpaid_trend_latest = $unpaid_trend_values ? end($unpaid_trend_values) : 0;
-$unpaid_trend_prev = count($unpaid_trend_values) > 1 ? $unpaid_trend_values[count($unpaid_trend_values) - 2] : 0;
-
-$oo_outstanding = $total_unpaid;
-$oo_overdue = $total_overdue;
-$oo_breakdown = [
-    ['label' => 'Outstanding', 'value' => $oo_outstanding, 'color' => '#dbd847'],
-    ['label' => 'Overdue', 'value' => $oo_overdue, 'color' => '#dc3545'],
-];
 ?>
+
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 
@@ -74,8 +56,8 @@ $oo_breakdown = [
                     <div class="col-12 col-lg-8">
                         <div class="card h-100 shadow-sm border-0">
                             <!-- Tambahkan d-flex flex-column agar header dan grafik tersusun rapi -->
-                            <div class="card-body d-flex flex-column"> 
-                                
+                            <div class="card-body d-flex flex-column">
+
                                 <!-- Header Statistik (Tetap sama) -->
                                 <div class="d-flex justify-content-between align-items-start mb-3 flex-wrap gap-3">
                                     <div>
@@ -179,79 +161,17 @@ $oo_breakdown = [
     <script src="<?= BASEURL . 'public/js/lte-theme.js' ?>"></script>
     <script src="<?= BASEURL . 'public/js/adminlte.js' ?>"></script>
     <script src="<?= BASEURL . 'public/js/bootstrap.bundle.js' ?>"></script>
+    <script src="<?= BASEURL . 'public/js/dashboard.js' ?>"></script>
     <script>
-        const trendLabels = <?= json_encode($trend_labels) ?>;
-        const trendValues = <?= json_encode($trend_values) ?>;
-        const unpaidTrendValues = <?= json_encode($unpaid_trend_values) ?>;
-        const trendCtx = document.getElementById('revenueTrendChart');
-        const revenueGradient = trendCtx.getContext('2d').createLinearGradient(0, 0, 0, 220);
-        revenueGradient.addColorStop(0, 'rgba(45, 212, 64, 0.48)');
-        revenueGradient.addColorStop(1, 'rgba(45, 212, 120, 0.16)');
-        const unpaidGradient = trendCtx.getContext('2d').createLinearGradient(0, 0, 0, 220);
-        unpaidGradient.addColorStop(0, 'rgba(255, 193, 7, 0.35)');
-        unpaidGradient.addColorStop(1, 'rgba(255, 193, 7, 0.05)');
-        new Chart(trendCtx, {
-            type: 'line',
-            data: {
-                labels: trendLabels,
-                datasets: [
-                    {
-                        label: 'Revenue',
-                        data: trendValues,
-                        borderColor: '#00ff00',
-                        backgroundColor: revenueGradient,
-                        fill: true,
-                        tension: 0.4,
-                        pointRadius: 3,
-                        borderWidth: 2
-                    },
-                    {
-                        label: 'Unpaid',
-                        data: unpaidTrendValues,
-                        borderColor: '#ffff00',
-                        backgroundColor: unpaidGradient,
-                        fill: true,
-                        tension: 0.4,
-                        pointRadius: 3,
-                        borderWidth: 2
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {display: true, position: 'top', align: 'end', labels: {boxWidth: 10, boxHeight: 10}},
-                    tooltip: {
-                        callbacks: {
-                            label: ctx => ctx.dataset.label + ': Rp' + ctx.parsed.y.toLocaleString('id-ID')
-                        }
-                    }
-                },
-                scales: {
-                    x: {grid: {display: false}},
-                    y: {grid: {color: 'rgba(255,255,255,0.06)'}, ticks: {callback: v => 'Rp' + (v / 1000000).toLocaleString('id-ID') + 'M'}}
-                }
-            }
-        });
-
-        const ooData = <?= json_encode(array_column($oo_breakdown, 'value')) ?>;
-        const ooColors = <?= json_encode(array_column($oo_breakdown, 'color')) ?>;
-        new Chart(document.getElementById('ooChart'), {
-            type: 'doughnut',
-            data: {
-                datasets: [{
-                    data: ooData,
-                    backgroundColor: ooColors,
-                    borderWidth: 0
-                }]
-            },
-            options: {
-                cutout: '65%',
-                plugins: {legend: {display: false}}
-            }
-        });
+        window.dashboardData = {
+            trendLabels: <?= json_encode($trend_labels) ?>,
+            trendValues: <?= json_encode($trend_values) ?>,
+            unpaidTrendValues: <?= json_encode($unpaid_trend_values) ?>,
+            ooData: <?= json_encode(array_column($oo_breakdown, 'value')) ?>,
+            ooColors: <?= json_encode(array_column($oo_breakdown, 'color')) ?>
+        };
     </script>
+    <script src="<?= BASEURL . 'public/js/dashboard.js' ?>"></script>
 </body>
 
 </html>

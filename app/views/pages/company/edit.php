@@ -54,9 +54,9 @@
                     </div>
                     <?php if ($section === 'info'): ?>
                         <form action="<?= BASEURL . 'company/info' ?>" method="POST">
-                        <?php elseif ($section === 'contact'): ?>
-                            <form action="<?= BASEURL . 'company/contact' ?>" method="POST">
-                            <?php endif; ?>
+                    <?php elseif ($section === 'contact'): ?>
+                        <form action="<?= BASEURL . 'company/contact' ?>" method="POST">
+                    <?php endif; ?>
                             <div class="card-body">
                                 <div class="row row-gap-3">
                                     <?php if ($section === 'info'): ?>

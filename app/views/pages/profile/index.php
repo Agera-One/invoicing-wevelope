@@ -17,9 +17,9 @@
 
         <main class="app-main py-4">
             <div class="container-fluid px-4">
-                <div class="row mb-3">
-                    <div class="col-sm-6 mb-2">
-                        <h3 class="fw-bold h2 m-0 text-white">Edit User</h3>
+                <div class="row">
+                    <div class="col-sm-6 mb-4">
+                        <h3 class="fw-bold h4 m-0 text-white">Profile User</h3>
                     </div>
                     <div class="col-sm-6 mb-4">
                         <ol class="breadcrumb float-sm-end">

@@ -6,6 +6,7 @@ class DashboardController extends BaseController
     private $payment;
     private $item;
     private $invoiceDetail;
+    private $customer;
 
     public function __construct()
     {
@@ -13,18 +14,25 @@ class DashboardController extends BaseController
         $this->invoice = $this->model('invoice');
         $this->payment = $this->model('payment');
         $this->item = $this->model('item');
-        $this->invoiceDetail = $this->model('invoicedetail');
+        $this->invoiceDetail = $this->model('invoiceDetail');
+        $this->customer = $this->model('customer');
     }
 
     public function index()
     {
         $number = 1;
         $today = date('Y-m-d');
-        $invoice_value = $this->invoice->sumInvoiceValue();
+        $total_invoice = $this->invoice->countTotalInvoice();
+        $total_customer = $this->customer->countTotalCustomer();
         $total_revenue = $this->payment->sumRevenue();
         $invoices = $this->invoice->getAllCompact();
         $top_item = $this->item->getTopItem();
-        $sum_unpaid_overdue = $this->invoice->sumUnpaidOverdue($today);
+        $sum_overdue = $this->invoice->sumOverdue($today);
+        $total_overdue = $sum_overdue['total_overdue'] ?? 0;
+
+        $invoice_value = $this->invoice->sumInvoiceValue();
+        $sum_unpaid = $this->invoice->sumUnpaid($today);
+        $total_unpaid = $sum_unpaid['total_unpaid'] ?? 0;
 
         $period = $this->payment->validatorPeriod('daily');
         $revenue_trend_raw = $this->payment->sumRevenuePeriod($period['periodKeyExpr'], $period['periodLabelExpr'], $this->companyId, $period['limit']);
@@ -53,19 +61,45 @@ class DashboardController extends BaseController
             $unpaid_trend_values[] = floatval($unpaidByDate[$d] ?? 0);
         }
 
+        $trend_latest = $trend_values ? end($trend_values) : 0;
+        $trend_prev = count($trend_values) > 1 ? $trend_values[count($trend_values) - 2] : 0;
+
+        $unpaid_trend_latest = $unpaid_trend_values ? end($unpaid_trend_values) : 0;
+        $unpaid_trend_prev = count($unpaid_trend_values) > 1 ? $unpaid_trend_values[count($unpaid_trend_values) - 2] : 0;
+
+        $mini_stats = [
+            ['label' => 'Invoice Value', 'value' => 'Rp' . number_format($invoice_value, 0, ',', '.'), 'text' => 'text-white', 'icon' => 'bi-receipt-cutoff text-custom'],
+            ['label' => 'Total Revenue', 'value' => 'Rp' . number_format($total_revenue, 0, ',', '.'), 'text' => 'text-white', 'icon' => 'bi-cash-coin text-custom-success'],
+            ['label' => 'Total Outstanding', 'value' => 'Rp' . number_format($total_unpaid, 0, ',', '.'), 'text' => 'text-white', 'icon' => 'bi-hourglass-split text-custom-warning'],
+            ['label' => 'Total Overdue', 'value' => 'Rp' . number_format($total_overdue, 0, ',', '.'), 'text' => 'text-danger', 'icon' => 'bi-exclamation-triangle text-custom-danger'],
+        ];
+
+        $oo_breakdown = [
+            ['label' => 'Outstanding', 'value' => $total_unpaid, 'color' => '#dbd847'],
+            ['label' => 'Overdue', 'value' => $total_overdue, 'color' => '#dc3545'],
+        ];
+
         $datas = [
             'number' => $number,
             'today' => $today,
-            'invoice_value' => $invoice_value,
+            'total_invoice' => $total_invoice,
+            'total_customer' => $total_customer,
             'total_revenue' => $total_revenue,
             'invoices' => $invoices,
             'top_item' => $top_item,
-            'total_unpaid'  => $sum_unpaid_overdue['total_unpaid']  ?? 0,
-            'total_overdue' => $sum_unpaid_overdue['total_overdue'] ?? 0,
+            'total_overdue' => $total_overdue,
+            'total_unpaid' => $total_unpaid,
+            'invoice_value' => $invoice_value,
             'invoice_detail' => $this->invoiceDetail,
             'trend_labels' => $trend_labels,
             'trend_values' => $trend_values,
             'unpaid_trend_values' => $unpaid_trend_values,
+            'trend_latest' => $trend_latest,
+            'trend_prev' => $trend_prev,
+            'unpaid_trend_latest' => $unpaid_trend_latest,
+            'unpaid_trend_prev' => $unpaid_trend_prev,
+            'mini_stats' => $mini_stats,
+            'oo_breakdown' => $oo_breakdown,
         ];
 
         $this->view('dashboard/index', $datas);

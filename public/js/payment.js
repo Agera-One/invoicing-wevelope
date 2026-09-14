@@ -18,6 +18,7 @@ function updateInvoiceSummary() {
   const total = Number(selected.dataset.total || 0);
   const paid = Number(selected.dataset.paid || 0);
   const remaining = Number(selected.dataset.remaining ?? total - paid);
+  const isOverpaid = remaining < 0;
 
   document.getElementById("summary-code").textContent =
     selected.dataset.code || "-";
@@ -29,13 +30,49 @@ function updateInvoiceSummary() {
     selected.dataset.dueDate || "-";
   document.getElementById("summary-total").textContent = rupiah(total);
   document.getElementById("summary-paid").textContent = rupiah(paid);
-  document.getElementById("summary-remaining").textContent = rupiah(remaining);
+
+  const remainingEl = document.getElementById("summary-remaining");
+  remainingEl.textContent =
+    (isOverpaid ? "+" : "") + rupiah(Math.abs(remaining));
+  remainingEl.classList.toggle("text-danger", !isOverpaid);
+  remainingEl.classList.toggle("text-info", isOverpaid);
 
   summaryCard.style.display = "";
 
-  amountHint.textContent = "Max: " + rupiah(remaining);
-  amountInput.setAttribute("max", remaining);
+  if (isOverpaid) {
+    amountHint.innerHTML = `<span class="text-danger">This invoice is overpaid by ${rupiah(Math.abs(remaining))}. Reduce or remove other payments before adding a new one.</span>`;
+    amountInput.removeAttribute("max");
+  } else {
+    amountHint.textContent = "Max: " + rupiah(remaining);
+    amountInput.setAttribute("max", remaining);
+  }
 }
+
+const form = amountInput.closest("form");
+form.addEventListener("submit", function (e) {
+  const selected = invoiceSelect.options[invoiceSelect.selectedIndex];
+  if (!selected || !selected.value) return;
+
+  const total = Number(selected.dataset.total || 0);
+  const paid = Number(selected.dataset.paid || 0);
+  const remaining = Number(selected.dataset.remaining ?? total - paid);
+  const amount = Number(amountInput.value || 0);
+
+  if (amount > remaining) {
+    e.preventDefault();
+    alert(
+      "The payment amount (" +
+        rupiah(amount) +
+        ") exceeds this invoice's remaining balance (" +
+        rupiah(Math.max(remaining, 0)) +
+        "). Please adjust it.",
+    );
+    amountInput.focus();
+  }
+});
+
+invoiceSelect.addEventListener("change", updateInvoiceSummary);
+updateInvoiceSummary();
 
 invoiceSelect.addEventListener("change", updateInvoiceSummary);
 updateInvoiceSummary();

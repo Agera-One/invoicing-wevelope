@@ -87,7 +87,8 @@ class Invoice extends BaseModel
         ]);
     }
 
-    public function countInvoiceStatus($where_condition = []) {
+    public function countInvoiceStatus($where_condition = [])
+    {
         $today = date('Y-m-d');
 
         $invoices = $this->getConnection()->select('invoice', [
@@ -119,7 +120,8 @@ class Invoice extends BaseModel
         return compact('total_invoice', 'total_paid', 'total_unpaid', 'total_overdue');
     }
 
-    public function sumInvoiceValue() {
+    public function sumInvoiceValue()
+    {
         return $this->getConnection()->sum('invoice', [
             '[><]invoice_detail' => ['id' => 'invoice_id']
         ], 'invoice_detail.amount', [
@@ -127,8 +129,8 @@ class Invoice extends BaseModel
         ]) ?: 0;
     }
 
-    public function sumUnpaidOverdue($today) {
-        $total_unpaid = 0;
+    public function sumOverdue($today)
+    {
         $total_overdue = 0;
 
         $invoices = $this->getConnection()->select('invoice', [
@@ -144,18 +146,41 @@ class Invoice extends BaseModel
             $remaining = $invoice['total_bill'] - $invoice['total_payment'];
 
             if ($remaining > 0) {
-                if ($invoice['due_date'] >= $today) {
-                    $total_unpaid += $remaining;
-                } else {
+                if ($invoice['due_date'] < $today) {
                     $total_overdue += $remaining;
                 }
             }
         }
 
-        return compact('total_unpaid', 'total_overdue');
+        return compact('total_overdue');
     }
 
-    public function validatorPeriod($period) {
+    public function sumUnpaid($today)
+    {
+        $total_unpaid = 0;
+
+        $invoices = $this->getConnection()->select('invoice', [
+            'id',
+            'due_date',
+            'total_bill' => Medoo::raw('(SELECT COALESCE(SUM(amount),0) FROM invoice_detail WHERE invoice_detail.invoice_id = <invoice.id>)'),
+            'total_payment' => Medoo::raw('(SELECT COALESCE(SUM(amount),0) FROM payment WHERE payment.invoice_id = <invoice.id>)')
+        ], [
+            'invoice.company_id' => $this->companyId,
+        ]);
+
+        foreach ($invoices as $invoice) {
+            $remaining = $invoice['total_bill'] - $invoice['total_payment'];
+
+            if ($remaining > 0 && $invoice['due_date'] >= $today) {
+                $total_unpaid += $remaining;
+            }
+        }
+
+        return compact('total_unpaid');
+    }
+
+    public function validatorPeriod($period)
+    {
         if ($period === 'daily') {
             $periodKeyExpr   = "DATE(<invoice.date>)";
             $periodLabelExpr = "DATE_FORMAT(<invoice.date>, '%W, %d %M %Y')";
@@ -177,7 +202,8 @@ class Invoice extends BaseModel
         ];
     }
 
-    public function sumUnpaidPeriod($periodKeyExpr, $periodLabelExpr, $company_id, $limit) {
+    public function sumUnpaidPeriod($periodKeyExpr, $periodLabelExpr, $company_id, $limit)
+    {
         return $this->getConnection()->select('invoice', [
             'period_key' => Medoo::raw($periodKeyExpr),
             'period' => Medoo::raw($periodLabelExpr),
