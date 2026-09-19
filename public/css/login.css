@@ -67,3 +67,102 @@
 .btn-login:hover {
     background-color: #8587ff;
 }
+
+.demo-account {
+    margin-top: 18px;
+    padding: 14px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.025);
+}
+
+.demo-account-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.demo-account-icon {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    background: rgba(99, 102, 241, 0.15);
+    color: #6366f1;
+    font-size: 15px;
+}
+
+.demo-account-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #f1f1f1;
+}
+
+.demo-account-subtitle {
+    margin-top: 2px;
+    font-size: 11px;
+    color: #8b8f98;
+}
+
+.demo-account-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.demo-account-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 10px;
+    border: 0;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.035);
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.demo-account-item:hover {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.demo-account-label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    min-width: 75px;
+    color: #8b8f98;
+    font-size: 11px;
+}
+
+.demo-account-label i {
+    font-size: 12px;
+}
+
+.demo-account-value {
+    color: #d8d9dd;
+    font-family: monospace;
+    font-size: 12px;
+    text-align: right;
+}
+
+.demo-account-hint {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin-top: 10px;
+    color: #6f737c;
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+.demo-account-hint i {
+    margin-top: 1px;
+}
