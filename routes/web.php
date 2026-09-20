@@ -1,10 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CustomerController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InvoiceController;
 
 Route::post('/logout', [LoginController::class, 'logout']);
 
@@ -21,5 +22,8 @@ Route::middleware('auth')->group(function () {
         ->except(['show']);
 
     Route::resource('customer', CustomerController::class)
+        ->except(['show']);
+
+    Route::resource('invoice', InvoiceController::class)
         ->except(['show']);
 });
